@@ -33,7 +33,7 @@
 
 간단한 프로젝트 설명
 
-## Built with
+### Built with
 
 - [Spring Boot](https://spring.io)
 - [MySQL](https://www.mysql.com/)

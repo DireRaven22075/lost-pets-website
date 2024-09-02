@@ -1,6 +1,6 @@
 <a id="readme-top"></a>
 
-# __프로젝트명__
+# 프로젝트명
 
 <details>
   <summary>Table of Contents</summary>
@@ -30,13 +30,14 @@
 ## About The Project
 
 ![project-image](_docs/title.png)
-__프로젝트 이미지__
 
-__프로젝트 설명__
+간단한 프로젝트 설명
 
 ## Built with
 
-__사용한 프레임워크 작성__
+- [Spring Boot](https://spring.io)
+- [MySQL](https://www.mysql.com/)
+- [firebase](https://firebase.google.com/?hl=ko)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -76,7 +77,7 @@ Use this space to show useful examples of how a project can be used. Additional 
 <!-- CONTRIBUTORS -->
 ## Contributors
 
-- [한윤수 - ](https://github.com/DireRaven22075)
+- [한윤수(DireRaven22075) - ](https://github.com/DireRaven22075)
 - [김민성 - ](GITHUB-URL)
 - [이예호 - ](GITHUB-URL)
 

@@ -1,4 +1,7 @@
 <a id="readme-top"></a>
+
+# __프로젝트명__
+
 <details>
   <summary>Table of Contents</summary>
   <ol>
@@ -24,10 +27,9 @@
   </ol>
 </details>
 
-# __프로젝트명__
-
 ## About The Project
 
+![project-image](_docs/title.png)
 __프로젝트 이미지__
 
 __프로젝트 설명__
@@ -35,6 +37,8 @@ __프로젝트 설명__
 ## Built with
 
 __사용한 프레임워크 작성__
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Getting Started
 
@@ -47,10 +51,14 @@ __프레임워크 설치__
 
 __프로젝트 설치__
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 <!-- USUAGE -->
 ## Usuage
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- ROADMAP -->
 ## Roadmap
@@ -68,21 +76,29 @@ Use this space to show useful examples of how a project can be used. Additional 
 <!-- CONTRIBUTORS -->
 ## Contributors
 
-- [이름 - 직책](GITHUB URL)
-    - 개발 분야
+- [한윤수 - ](https://github.com/DireRaven22075)
+- [김민성 - ](GITHUB-URL)
+- [이예호 - ](GITHUB-URL)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- LICENSE -->
 ## License
 
 __사용한 라이센스__
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 <!-- CONTACTS -->
 ## Contacts
 
 __사용 가능한 연락쳐__
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgments
 
 __참고한 자료__
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>

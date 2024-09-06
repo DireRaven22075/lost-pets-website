@@ -37,7 +37,6 @@
 
 - [Spring Boot](https://spring.io)
 - [MySQL](https://www.mysql.com/)
-- [firebase](https://firebase.google.com/?hl=ko)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -64,11 +63,9 @@ Use this space to show useful examples of how a project can be used. Additional 
 <!-- ROADMAP -->
 ## Roadmap
 
-- [x] Add Changelog
-- [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
+- [x] Add Account System
+- [ ] Add MenuBar
+- [ ] Add Multiple Language 
     - [ ] Chinese
     - [ ] Spanish
 
@@ -78,8 +75,11 @@ Use this space to show useful examples of how a project can be used. Additional 
 ## Contributors
 
 - [한윤수(DireRaven22075) - ](https://github.com/DireRaven22075)
-- [김민성 - ](GITHUB-URL)
-- [이예호 - ](GITHUB-URL)
+- [김민성(kongkang123123) - ](https://github.com/kongkang123123)
+- [이예호(yecongE) - ](https://github.com/yecongE)
+- [박상인() - ]()
+- [김다민() - ]()
+- [이예솔() - ]()
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

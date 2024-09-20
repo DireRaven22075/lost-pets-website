@@ -94,7 +94,12 @@ __사용한 라이센스__
 ## Contacts
 
 __사용 가능한 연락쳐__
-
+- 김민성: rjaehno2@naver.com
+- 이예호: yeho0821@naver.com
+- 한윤수: [direraven22075@gmail.com](mailto:direraven22075@gmail.com), gskids053@chungbuk.ac.kr
+- 박상인: [cobia9e@gmail.com](mailto:cobia9e@gmail.com) , 2021041009@chungbuk.ac.kr
+- 김다민: kimdm5112@gmail.com, rlaekals585@chunguk.ac.kr
+- 이예솔:
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- ACKNOWLEDGEMENTS -->

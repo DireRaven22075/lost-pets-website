@@ -1,0 +1,8 @@
+<h1 th : text="${question.subject}">제목</h1>
+<div th:text="${question.contet}"></div>
+<h5  th:text="|${#list.size.size(question.answerList}개의 답변이 있습니다.|"></h5>
+
+<form th:action = "@{|/answer/create/${question.id}" method="post">
+	<textarea name="content" id="content" rows="1"></textarea>
+	<input type="submit" value="답변 등록">
+</form>

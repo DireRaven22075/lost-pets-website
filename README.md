@@ -79,7 +79,7 @@ Use this space to show useful examples of how a project can be used. Additional 
 - [김민성(kongkang123123) - ](https://github.com/kongkang123123)
 - [박상인() - ]()
 - [김다민() - ]()
-- [이예솔() - ]()
+- [이예솔(ieeyesoi) - ](https://github.com/ieeyesoi)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -99,7 +99,7 @@ __사용 가능한 연락쳐__
 - 한윤수: [direraven22075@gmail.com](mailto:direraven22075@gmail.com), gskids053@chungbuk.ac.kr
 - 박상인: [cobia9e@gmail.com](mailto:cobia9e@gmail.com) , 2021041009@chungbuk.ac.kr
 - 김다민: kimdm5112@gmail.com, rlaekals585@chunguk.ac.kr
-- 이예솔:
+- 이예솔: yesol4138@naver.com, yesol4138@chungbuk.ac.kr
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- ACKNOWLEDGEMENTS -->

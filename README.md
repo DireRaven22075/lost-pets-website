@@ -44,16 +44,18 @@
 
 ### Prerequisites
 
-__프레임워크 설치__
+**프레임워크 설치**
 
 <!-- INSTALLATION -->
+
 ### Installation
 
-__프로젝트 설치__
+**프로젝트 설치**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- USUAGE -->
+
 ## Usuage
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
@@ -61,21 +63,23 @@ Use this space to show useful examples of how a project can be used. Additional 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- ROADMAP -->
+
 ## Roadmap
 
 - [x] Add Account System
 - [ ] Add MenuBar
-- [ ] Add Multiple Language 
-    - [ ] Chinese
-    - [ ] Spanish
+- [ ] Add Multiple Language
+  - [ ] Chinese
+  - [ ] Spanish
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTRIBUTORS -->
+
 ## Contributors
 
 - [한윤수(DireRaven22075) - ](https://github.com/DireRaven22075)
-- [이예호(yecongE) - ](https://github.com/yecongE)
+- [이예호(yaho821) - ](https://github.com/yaho821)
 - [김민성(kongkang123123) - ](https://github.com/kongkang123123)
 - [박상인() - ]()
 - [김다민() - ]()
@@ -84,16 +88,19 @@ Use this space to show useful examples of how a project can be used. Additional 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- LICENSE -->
+
 ## License
 
-__사용한 라이센스__
+**사용한 라이센스**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTACTS -->
+
 ## Contacts
 
-__사용 가능한 연락쳐__
+**사용 가능한 연락쳐**
+
 - 김민성: rjaehno2@naver.com
 - 이예호: yeho0821@naver.com
 - 한윤수: [direraven22075@gmail.com](mailto:direraven22075@gmail.com), gskids053@chungbuk.ac.kr
@@ -103,8 +110,9 @@ __사용 가능한 연락쳐__
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- ACKNOWLEDGEMENTS -->
+
 ## Acknowledgments
 
-__참고한 자료__
+**참고한 자료**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

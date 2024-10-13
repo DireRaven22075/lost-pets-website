@@ -79,7 +79,7 @@ Use this space to show useful examples of how a project can be used. Additional 
 ## Contributors
 
 - [한윤수(DireRaven22075) - ](https://github.com/DireRaven22075)
-- [이예호(yaho821) - ](https://github.com/yaho821)
+- [이예호(yaho821) - ](https://github.com/yaho821).
 - [김민성(kongkang123123) - ](https://github.com/kongkang123123)
 - [박상인() - ]()
 - [김다민() - ]()

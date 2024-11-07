@@ -1,7 +1,0 @@
-.animation-flip {
-    transition: transform 0.5s;
-    &.flip-up { transform: rotateX(90deg); }
-    &.flip-down { transform: rotateX(-90deg); }
-    &.flip-left { transform: rotateY(-90deg); }
-    &.flip-right { transform: rotateY(90deg); }
-}

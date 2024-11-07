@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
 import team.ccnu.project.Constants;
+import team.ccnu.project.data.ProjectDTO;
 @Controller
 @RequestMapping("/")
 public class ViewController {
@@ -18,6 +20,7 @@ public class ViewController {
     public ModelAndView index() {
         ModelAndView mav = new ModelAndView(Constants.TestURL + "/index");
         System.out.println(mav.getViewName());
+        mav.addObject("setting", new ProjectDTO());
         mav.addObject("name", "AHA");
         return mav;
     }

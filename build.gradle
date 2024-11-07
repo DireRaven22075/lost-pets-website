@@ -1,42 +1,48 @@
 plugins {
-	id 'java'
-	id 'org.springframework.boot' version '3.3.3'
-	id 'io.spring.dependency-management' version '1.1.6'
+    id 'java'
+    id 'org.springframework.boot' version '3.3.3'
+    id 'io.spring.dependency-management' version '1.1.6'
 }
 
 group = 'team.ccnu'
 version = '0.0.1-SNAPSHOT'
 
 java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(17)
-	}
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
 }
 
 configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.boot:spring-boot-starter-webflux'
-	compileOnly 'org.projectlombok:lombok'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	runtimeOnly 'com.mysql:mysql-connector-j'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'io.projectreactor:reactor-test'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-	
+    implementation 'mysql:mysql-connector-java:8.0.33' //MYSQL JDBC Driver
+    implementation 'org.xerial:sqlite-jdbc:3.42.0.0'
+    //implementation 'org.springframework.boot:spring-boot-starter-mail:3.3.5' //Spring Boot Starter Mail
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa' //Spring Data JPA
+    implementation 'org.springframework.boot:spring-boot-starter-security' //Spring Security
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf' //Thymeleaf
+    implementation 'org.springframework.boot:spring-boot-starter-web' //Spring Web
+    implementation 'org.springframework.boot:spring-boot-starter-webflux' //Spring Reactive Web
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6' //Thymeleaf Spring Security
+    compileOnly 'org.projectlombok:lombok' //Lombok
+    annotationProcessor 'org.projectlombok:lombok' //Lombok
+    developmentOnly 'org.springframework.boot:spring-boot-devtools' //Spring Boot DevTools
+    runtimeOnly 'com.mysql:mysql-connector-j' //MySQL Driver
+    testImplementation 'org.springframework.boot:spring-boot-starter-test' //Spring Boot Test
+    testImplementation 'io.projectreactor:reactor-test' //Reactor Test
+    testImplementation 'org.springframework.security:spring-security-test' //Spring Security Test
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher' //JUnit Platform Launcher
 }
 
 tasks.named('test') {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }

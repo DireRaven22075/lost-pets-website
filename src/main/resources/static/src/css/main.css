@@ -1,14 +1,12 @@
-/* #region animation Folder */
-@import "animation/fade.css";
-@import "animation/slide.css";
-/* #endregion */
-
-/* #region base Folder */
+/* Base Folder */
 @import "base/reset.css";
 @import "base/typography.css";
-@import "base/color.css";
 @import "base/noselect.css";
-/* #endregion */
+
+/* Color Folder */
+@import "color/text.css";
+@import "color/view.css";
+@import "color/button.css";
 
 /* #region components Folder */
 @import "components/form.css";

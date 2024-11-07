@@ -1,4 +1,4 @@
 package team.ccnu.project.data.request;
 
-public class BoardRequestDTO {
+public class PostRequestDTO {
 }

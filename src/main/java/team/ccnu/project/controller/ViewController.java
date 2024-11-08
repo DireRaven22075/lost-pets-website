@@ -13,15 +13,20 @@ import team.ccnu.project.data.ProjectDTO;
 @RequestMapping("/")
 public class ViewController {
     ///<summary>
+    /// 시스템 개발용 함수
+    ///</summary>
+    private ModelAndView buildModelAndView(String viewName) {
+        ModelAndView mav = new ModelAndView(Constants.TestURL + viewName);
+        mav.addObject("__main__", new ProjectDTO());
+        return mav;
+    }
+    ///<summary>
     /// [HTTP GET] 메인 화면 출력 함수
     /// TODO : 구현 필요
     ///</summary>
     @GetMapping()
     public ModelAndView index() {
-        ModelAndView mav = new ModelAndView(Constants.TestURL + "/index");
-        System.out.println(mav.getViewName());
-        mav.addObject("setting", new ProjectDTO());
-        mav.addObject("name", "AHA");
+        ModelAndView mav = buildModelAndView("/index");
         return mav;
     }
     ///<summary>
@@ -30,8 +35,7 @@ public class ViewController {
     ///</summary>
     @GetMapping("/login")
     public ModelAndView login(Model model) {
-        ModelAndView mav = new ModelAndView(Constants.TestURL + "/login");
-        mav.addObject("name", "AHA");
+        ModelAndView mav = buildModelAndView("/login");
         return mav;
     }
     ///<summary>
@@ -40,8 +44,7 @@ public class ViewController {
     ///</summary>
     @GetMapping("/register")
     public ModelAndView register(Model model) {
-        ModelAndView mav = new ModelAndView(Constants.TestURL + "/register");
-        mav.addObject("name", "AHA");
+        ModelAndView mav = buildModelAndView("/register");
         return mav;
     }
     ///<summary>
@@ -50,7 +53,7 @@ public class ViewController {
     ///</summary>
     @GetMapping("/forgot-password")
     public ModelAndView forgotPassword(Model model) {
-        ModelAndView mav = new ModelAndView(Constants.TestURL + "/forgot-password");
+        ModelAndView mav = buildModelAndView("/forgot-password");
         return mav;
     }
     ///<summary>
@@ -59,8 +62,7 @@ public class ViewController {
     ///</summary>
     @GetMapping("/ami")
     public ModelAndView ami(Model model) {
-        ModelAndView mav = new ModelAndView(Constants.TestURL + "/ami");
-        mav.addObject("name", "AHA");
+        ModelAndView mav = buildModelAndView("/ami");
         return mav;
     }
     ///<summary>
@@ -69,8 +71,7 @@ public class ViewController {
     ///</summary>
     @GetMapping("/board/{id}/{index}")
     public ModelAndView board(Model model, @PathVariable String id, @PathVariable String index) {
-        ModelAndView mav = new ModelAndView(Constants.TestURL + "/board");
-
+        ModelAndView mav = buildModelAndView("/board");
         return mav;
     }
     /// <summary>
@@ -79,7 +80,7 @@ public class ViewController {
     /// </summary>
     @GetMapping("/post/{id}/{sn}")
     public ModelAndView post(Model model, @PathVariable String id, @PathVariable String sn) {
-        ModelAndView mav = new ModelAndView(Constants.TestURL + "/post");
+        ModelAndView mav = buildModelAndView("/board");
         return mav;
     }
     ///<summary>
@@ -88,8 +89,7 @@ public class ViewController {
     ///</summary>
     @GetMapping("/write/{id}")
     public ModelAndView write(Model model, @PathVariable String id) {
-        ModelAndView mav = new ModelAndView(Constants.TestURL + "/write");
-        mav.addObject("name", "AHA");
+        ModelAndView mav = buildModelAndView("/board");
         return mav;
     }
     ///<summary>
@@ -97,7 +97,7 @@ public class ViewController {
     ///</summary>
     @GetMapping("/modify/{id}/{uid}")
     public ModelAndView modify(Model model, @PathVariable String id, @PathVariable String uid) {
-        ModelAndView mav = new ModelAndView(Constants.TestURL + "/modify");
+        ModelAndView mav = buildModelAndView("/board");
         return mav;
     }
 }

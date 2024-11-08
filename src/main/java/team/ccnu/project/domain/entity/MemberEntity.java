@@ -9,10 +9,16 @@ package team.ccnu.project.domain.entity;
  */
 
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @lombok.Getter
-@lombok.NoArgsConstructor(access = lombok.AccessLevel.PROTECTED)
+@lombok.Setter
+@lombok.NoArgsConstructor
 @Entity
 @Table(name = "member_main")
 ///<summary>
@@ -37,5 +43,5 @@ public class MemberEntity {
     @Column(name="MEM_NAME", nullable = false)
     private String name;
     @Column(name="MEM_UID", nullable=false)
-    private String uid;
+    private String uid="Nil";
 }

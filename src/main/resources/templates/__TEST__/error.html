@@ -1,15 +1,30 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
 <head>
+    <title th:text="${__main__.title}"></title>
+
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <script src="/src/js/main.js"></script>
+    <script src="/src/js/event/function.js"></script>
+
     <link rel="stylesheet" type="text/css" href="/src/css/main.css" />
 </head>
+
 <body>
-    THIS IS ERROR PAGE.
-    <div th:text="${error}"></div>
-    <div th:text="${text}"></div>
-    <a href="/">Move to INDEX</a>
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <div id="View-ERR-Body">
+        <p id="Txt-Err-Title" th:text="${error.title}"></p>
+        <p id="Txt-Err-desc" th:text="${error.description}"></p>
+        <div class="sort-hor">
+            <button id="Btn-ERR-Return">이전으로</button>
+            <button id="Btn-ERR-Mv2Main">메인으로</button>
+        </div>
+    </div>
+
 </body>
+
 </html>

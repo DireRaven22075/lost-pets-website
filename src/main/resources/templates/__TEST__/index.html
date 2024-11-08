@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
 <head>
+    <title th:text="${__main__.title}">__ERROR__</title>
+
     <meta charset="UTF-8">
-    <title th:text="${setting.title}">__ERR-TITLE__</title>
+    <meta value="viewport" content="width=device-width, initial-scale=1.0">
+
     <script src="/src/js/main.js"></script>
+    <script src="/src/js/page/main.js"></script>
+
     <link rel="stylesheet" type="text/css" href="/src/css/main.css" />
+
+    <link rel="stylesheet" type="text/css" href="/src/css/page/main.css" />
 </head>
-<body>
-    <div th:replace="fragments/header :: header"></div>
-    THIS IS MAIN PAGE.
-    <div th:text="${name}"></div>
-    <a href="/ami">AM I?</a>
-    <a href="/error">ERR</a>
-    <a href="/write">WRT</a>
-    <a href="/modify">MOD</a>
-    <a href="/login">LOGIN</a>
-    <a href="/register">REGISTER</a>
+
+<body id="System-Body" class="">
+    <div th:replace="~{fragments/header :: header}"></div>
+    <div th:replace="~{fragments/footer :: footer}"></div>
 </body>
+
 </html>

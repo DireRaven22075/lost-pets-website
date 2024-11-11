@@ -1,14 +1,20 @@
 package team.ccnu.project.domain.entity.board;
 
-import jakarta.persistence.*;
+import java.sql.Timestamp;
+import java.util.LinkedList;
+
+import org.hibernate.annotations.CreationTimestamp;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
-import team.ccnu.project.domain.entity.MemberEntity;
-
-import java.sql.Timestamp;
-import java.util.LinkedList;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -24,7 +30,6 @@ public class BoardEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long sn;
     @OneToMany
-    @
     private LinkedList<PostEntity> posts = new LinkedList<>();
     @CreationTimestamp
     private Timestamp time;

@@ -22,6 +22,7 @@
 | 비밀번호 업데이트 | PUT | /api/auth/password/reset | 비밀번호 재설정 |
 | 회원가입 | POST | /api/users | 새 사용자 계정을 생성 |
 | 회원탈퇴 | DELETE | /api/users/{uid} | 특정 사용자의 계정을 삭제 |
+| 프로필 사진 교체 | POST | /api/users/profile/{uid} | 특정 사용자의 프로필 업데이트 |
 | 회원정보 업데이트 | PUT | /api/users/{uid} | 특정 사용자의 정보를 전체 수정 |
 
 ### 2. 게시판, 게시글 관련 기능

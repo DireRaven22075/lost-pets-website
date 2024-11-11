@@ -14,6 +14,9 @@ public class MemberService {
     public void deleteUser(String id) {
         memberRepository.deleteById(id);
     }
+    public MemberEntity findBySn(Long sn) {
+        return memberRepository.findBySn(sn);
+    }
     public MemberEntity addUser(String id, String pw, String name, String email) {
         MemberEntity member = new MemberEntity();
         member.setId(id);

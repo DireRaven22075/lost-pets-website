@@ -1,13 +1,6 @@
 package team.ccnu.project.domain.entity;
 
-/*
- * 회원 정보를 담는 Entity
- * - name : 회원 이름
- * - memberID : 회원 ID
- * - password : 회원 비밀번호
- * - email : 회원 이메일
- */
-
+import org.hibernate.annotations.ColumnDefault;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -30,18 +23,31 @@ import jakarta.persistence.Table;
 ///name = MEM_NAME (Member Name)
 ///</summary>
 public class MemberEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="MEM_SN")
     private Long sn;
+    
     @Column(name="MEM_ID", nullable=false)
+    @ColumnDefault("Nil")
     private String id;
+
 	@Column(name="MEM_PW", nullable=false)
+    @ColumnDefault("Nil")
     private String pw;
+
 	@Column(name="MEM_EMAIL", nullable=false)
+    @ColumnDefault("Nil")
     private String email;
+
     @Column(name="MEM_NAME", nullable = false)
+    @ColumnDefault("Nil")
     private String name;
+
+    @Column(name="MEM_ICON", nullable=false)
+    @ColumnDefault("Nil")
+    private String icon;
+    
     @Column(name="MEM_UID", nullable=false)
-    private String uid="Nil";
+    @ColumnDefault("Nil")
+    private String uid;
 }

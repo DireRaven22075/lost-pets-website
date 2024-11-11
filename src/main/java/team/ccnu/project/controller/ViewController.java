@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import team.ccnu.project.Constants;
 import team.ccnu.project.data.ProjectDTO;
 @Controller
 @RequestMapping("/")
@@ -16,8 +15,8 @@ public class ViewController {
     /// 시스템 개발용 함수
     ///</summary>
     private ModelAndView buildModelAndView(String viewName) {
-        ModelAndView mav = new ModelAndView(Constants.TestURL + viewName);
-        mav.addObject("__main__", new ProjectDTO());
+        ModelAndView mav = new ModelAndView("__TEST__" + viewName);
+        mav.addObject("main", new ProjectDTO());
         return mav;
     }
     ///<summary>

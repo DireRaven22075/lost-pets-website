@@ -2,7 +2,7 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title th:text="${__main__.title}">__ERROR__</title>
+    <title th:text="${main?.title ?: 'ERROR'}"></title>
 
     <meta charset="UTF-8">
     <meta value="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,8 +16,11 @@
 </head>
 
 <body id="System-Body" class="">
-    <div th:replace="~{fragments/header :: header}"></div>
-    <div th:replace="~{fragments/footer :: footer}"></div>
 </body>
+    <div id="View-Main-Header">
 
+    </div>
+    <div id="View-Main-Body">
+        
+    </div>
 </html>

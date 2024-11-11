@@ -1,23 +1,32 @@
 /* Base Folder */
+
+/*
 @import "base/reset.css";
 @import "base/typography.css";
 @import "base/noselect.css";
+*/
 
 /* Color Folder */
+/*
 @import "color/text.css";
 @import "color/view.css";
 @import "color/button.css";
+*/
 
 /* #region components Folder */
+/*
 @import "components/form.css";
 @import "components/button.css";
 @import "components/input.css";
 @import "components/label.css";
 @import "components/text.css";
+*/
 /* #endregion */
 
 /* #region layout Folder */
+/*
 @import "layout/flex.css";
+*/
 /* #endregion */
 
 @import url(fontawesome-all.min.css);
@@ -122,10 +131,10 @@ input, select, textarea {
 
 	body {
 		background-color: #935d8c;
-		background-image: url("images/overlay.png"), -moz-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
-		background-image: url("images/overlay.png"), -webkit-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
-		background-image: url("images/overlay.png"), -ms-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
-		background-image: url("images/overlay.png"), linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
+		background-image: url("css/images/overlay.png"), -moz-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
+		background-image: url("css/images/overlay.png"), -webkit-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
+		background-image: url("css/images/overlay.png"), -ms-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
+		background-image: url("css/images/overlay.png"), linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
 	}
 
 		body.is-preload *, body.is-preload *:before, body.is-preload *:after {

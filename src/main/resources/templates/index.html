@@ -42,6 +42,10 @@
 
       <!-- Main -->
       <div id="main">
+        <div th:if="${account != null}">
+          <div th:text="${id}">
+
+        </div>
         <!-- Introduction -->
         <section id="intro" class="main">
           <div class="spotlight">
@@ -187,7 +191,7 @@
         if (loggedIn) {
           getStartedButton.href = "userinfo.html"; // 로그인 상태일 때 유저 정보 페이지로 연결
         } else {
-          getStartedButton.href = "login.html"; // 비로그인 상태일 때 로그인 페이지로 연결
+          getStartedButton.href = "/login"; // 비로그인 상태일 때 로그인 페이지로 연결
         }
       });
     </script>

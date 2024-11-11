@@ -2,17 +2,30 @@ package team.ccnu.project.controller.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import team.ccnu.project.domain.entity.MemberEntity;
 import team.ccnu.project.service.MemberService;
+
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
+    @GetMapping("/logout")
+    public String getMethodName(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
+        return "redirect:/";
+    }
+    
     @Autowired
     private MemberService memberService;
     /// <summary>
@@ -23,7 +36,13 @@ public class AuthController {
     /// URL : /api/auth/login
     /// </summary>
     @PostMapping("/login")
-    public String login(@RequestParam String id, @RequestParam String pw) {
+    public String login(HttpServletRequest request, @RequestParam String id, @RequestParam String pw) {
+        //TEST : 
+        if (id.equals("admin") && pw.equals("admin")) {
+            HttpSession session = request.getSession(true);
+            session.setAttribute("id", id);
+            return "{status: 'success', message: '로그인 성공'}";
+        }
         MemberEntity member = memberService.findById(id);
         if (member == null) {
             return "{status: 'fail', message: '아이디가 존재하지 않습니다.'}";

@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import team.ccnu.project.data.ProjectDTO;
 @Controller
 @RequestMapping("/")
@@ -15,7 +17,7 @@ public class ViewController {
     /// 시스템 개발용 함수
     ///</summary>
     private ModelAndView buildModelAndView(String viewName) {
-        ModelAndView mav = new ModelAndView("__TEST__" + viewName);
+        ModelAndView mav = new ModelAndView(viewName);
         mav.addObject("main", new ProjectDTO());
         return mav;
     }
@@ -24,8 +26,16 @@ public class ViewController {
     /// TODO : 구현 필요
     ///</summary>
     @GetMapping()
-    public ModelAndView index() {
+    public ModelAndView index(HttpServletRequest request, Model model) {
         ModelAndView mav = buildModelAndView("/index");
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            String id = (String)session.getAttribute("id");
+            if (id != null) {
+                mav.addObject("id", id);
+                mav.addObject("account", true);
+            }
+        }
         return mav;
     }
     ///<summary>

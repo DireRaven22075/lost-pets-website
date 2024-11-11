@@ -26,7 +26,6 @@ repositories {
 dependencies {
     // https://mvnrepository.com/artifact/com.google.guava/guava
     implementation 'com.google.guava:guava:33.3.1-jre' //Google Guava
-
     implementation 'mysql:mysql-connector-java:8.0.33' //MYSQL JDBC Driver
     implementation 'org.xerial:sqlite-jdbc:3.42.0.0'
     //implementation 'org.springframework.boot:spring-boot-starter-mail:3.3.5' //Spring Boot Starter Mail

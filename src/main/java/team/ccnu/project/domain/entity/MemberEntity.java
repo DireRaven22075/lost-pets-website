@@ -24,7 +24,7 @@ import jakarta.persistence.Table;
 ///</summary>
 public class MemberEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="MEM_SN")
+    @Column(name="MEM_SN", nullable = false)
     private Long sn;
     
     @Column(name="MEM_ID", nullable=false)
@@ -43,11 +43,11 @@ public class MemberEntity {
     @ColumnDefault("Nil")
     private String name;
 
-    @Column(name="MEM_ICON", nullable=false)
+    @Column(name="MEM_ICON")
     @ColumnDefault("Nil")
     private String icon;
     
-    @Column(name="MEM_UID", nullable=false)
+    @Column(name="MEM_UID")
     @ColumnDefault("Nil")
     private String uid;
 }

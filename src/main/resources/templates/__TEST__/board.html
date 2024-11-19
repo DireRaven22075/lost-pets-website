@@ -1,15 +1,20 @@
-<!DOCTYPE html>
-<html lang="ko">
+<!doctype html>
+<html lang="ko" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <script src="/src/js/main.js"></script>
-    <link rel="stylesheet" type="text/css" href="/src/css/main.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
 </head>
 <body>
-    THIS IS BOARD PAGE.
+    <div th:each="post : ${posts}">
+        <div class="header">
+            <h4 th:text="${post.title}"></h4>
+            <h5 th:text="${post.ownerName}"></h5>
+        </div>
+        <pre th:text="post.content">
 
-
-    <a href="/">Move to Main</a>
+        </pre>
+        <div class=""
+    </div>
 </body>
 </html>

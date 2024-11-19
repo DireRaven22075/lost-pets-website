@@ -1,6 +1,6 @@
 package team.ccnu.project.config;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import team.ccnu.project.interceptor.ViewInterceptor;
+import team.ccnu.project.interceptor.WriteInterceptor;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer; // Ad
 @Configuration
 public class MvcConfiguration implements WebMvcConfigurer {
     @Autowired
-    private ViewInterceptor viewInterceptor;
+    private WriteInterceptor viewInterceptor;
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/**")
@@ -21,6 +21,7 @@ public class MvcConfiguration implements WebMvcConfigurer {
     }
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(viewInterceptor);
+        registry.addInterceptor(viewInterceptor).addPathPatterns("/**/write/**");
+
     }
 }

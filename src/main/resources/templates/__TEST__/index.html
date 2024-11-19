@@ -2,25 +2,47 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title th:text="${main?.title ?: 'ERROR'}"></title>
+    <title th:text="${@environment.getProperty('app.title')}"></title>
 
     <meta charset="UTF-8">
     <meta value="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script src="/src/js/main.js"></script>
-    <script src="/src/js/page/main.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="/src/css/main.css" />
-
-    <link rel="stylesheet" type="text/css" href="/src/css/page/main.css" />
 </head>
 
 <body id="System-Body" class="">
+    <div th:if="${user != null}">
+        <p> ID : <u th:text="${user.id}"></u></p>
+        <p> Mail : <u th:text="${user.mail}"></u></p>
+        <p> Name : <u th:text="${user.name}"></u></p>
+        <p> Signal : <u th:text="${user.sn}"></u></p>
+        <button id="Logout" onclick="js: logout();">
+            Logout
+        </button>
+    </div>
+    <button onclick="window.location.href='/register';">Register</button>
+    <button onclick="window.location.href='/login'">Login</button>
+    <script>
+        function logout() {
+            fetch("/api/auth/logout", {
+                method: "DELETE",
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data['status'] === "success") {
+                        alert(data["message"]);
+                        window.location.href='/';
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        }
+    </script>
 </body>
-    <div id="View-Main-Header">
 
-    </div>
-    <div id="View-Main-Body">
-        
-    </div>
 </html>

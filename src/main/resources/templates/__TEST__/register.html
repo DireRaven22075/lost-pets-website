@@ -1,19 +1,55 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="/src/js/main.js"></script>
-    <link rel="stylesheet" type="text/css" href="/src/css/main.css" />
 </head>
+
 <body>
-    <form method="post" action="/usr/lgn">
-        <input type="text" maxlength="20" name="id" />
-        <input type="password" maxlength="30" name="pw" />
-        <button type="submit">LOGIN</button>
+    <h1>REGISTER FORM</h1>
+    <form id="Form" method="post" action="/api/users">
+        <input required type="text" maxlength="20" name="id" placeholder="ID"/>
+        <input required type="password" maxlength="30" name="pw" placeholder="PW"/>
+        <input required type="text" name="name" placeholder="Nickname"/>
+        <input required type="email" name="mail" placeholder="Mail" />
+        <p id="ERROR"></p>
+        <button type="submit">REGISTER</button>
     </form>
-    <a href="/">Move to Main</a>
-    <a href="/login">Move to Login Page</a>
+    <button onclick="window.location.href='/'">Main Page</button>
+    <script>
+        const form = document.getElementById("Form").addEventListener("submit", (e) => {
+            e.preventDefault();
+            const formData = {
+                id: document.querySelector("input[name=id]").value,
+                pw: document.querySelector("input[name=pw]").value,
+                name: document.querySelector("input[name=name]").value,
+                mail: document.querySelector("input[name=mail]").value
+            }
+            fetch("/api/users", {
+                method: "POST",
+                credentials: 'include',
+                body: JSON.stringify(formData),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data['status'] === "success") {
+                        window.location.href='/';
+                    }
+                    else {
+                        document.getElementById("ERROR").innerHTML = data["message"];
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        })
+    </script>
 
 </body>
+
 </html>

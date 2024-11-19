@@ -1,199 +1,181 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Stellar by HTML5 UP</title>
-    <meta charset="utf-8" />
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <title th:text="${@environment.getProperty('project.title')}"></title>
+    <meta charset="utf-8"/>
     <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, user-scalable=no"
+            name="viewport"
+            content="width=device-width, initial-scale=1, user-scalable=no"
     />
-    <link rel="stylesheet" href="/src/css/main.css" />
-    <noscript><link rel="stylesheet" href="/src/css/noscript.css" /></noscript>
-  </head>
-  <body class="is-preload">
-    <!-- Wrapper -->
-    <div id="wrapper">
-      <!-- Header -->
-      <header id="header" class="alt">
-        <span class="logo"><img src="/src/css/images/logo.svg" alt="" /></span>
+    <link rel="stylesheet" href="/src/css/main.css"/>
+    <noscript>
+        <link rel="stylesheet" href="/src/css/noscript.css"/>
+    </noscript>
+</head>
+
+<body class="is-preload">
+<!-- Wrapper -->
+<div id="wrapper">
+    <!-- Header -->
+    <header id="header" class="alt">
+        <span class="logo"><img src="/src/css/images/logo.svg" alt=""/></span>
         <h1>유실 동물 웹사이트</h1>
         <p>오픈소스 개발 프로젝트 4조</p>
-      </header>
+    </header>
 
-      <!-- Nav -->
-      <nav id="nav">
+    <!-- Nav -->
+    <nav id="nav">
         <ul>
-          <li><a href="#intro" class="active">Introduction</a></li>
-          <li><a href="#first">게시판1</a></li>
-          <li><a href="#second">게시판2</a></li>
-          <li><a href="#third">게시판3</a></li>
-          <li>
-            <a
-              href="userinfo.html"
-              id="getStartedButton"
-              class="button"
-              style="color: black !important"
-            >
-              Get Started
-            </a>
-          </li>
+            <li><a href="#intro" class="active">Introduction</a></li>
+            <li><a href="#first">게시판1</a></li>
+            <li><a href="#second">게시판2</a></li>
+            <li><a href="#third">게시판3</a></li>
+            <li>
+                <a
+                        href="userinfo.html"
+                        id="getStartedButton"
+                        class="button"
+                        style="color: black !important"
+                >
+                    Get Started
+                </a>
+            </li>
         </ul>
-      </nav>
+    </nav>
 
-      <!-- Main -->
-      <div id="main">
-        <div th:if="${account != null}">
-          <div th:text="${id}">
+    <!-- Main -->
+    <div id="main">
+        <th:block th:if="${user != null}">
+            <div th:text="${user.id}"></div>
+            <div th:text="${user.name}"></div>
+            <div th:text="${user.mail}"></div>
+            <div th:text="${user.sn}"></div>
+        </th:block>
+            <!-- Introduction -->
+            <section id="intro" class="main">
+                <div class="spotlight">
+                    <div class="content">
+                        <header class="major">
+                            <h2>
+                                Website for reporting and protection of abandoned/puppets
+                            </h2>
+                        </header>
+                        <p>
+                            "유기/반려 동물 신고 및 보호를 위한 웹페이지"<br/>
+                            유기 동물을 찾는 사람은 많지만, 찾아주는 사람은 적습니다.<br/>
+                            이 웹페이지는 사용자 친화적이며 접근성이 높은 플랫폼으로,<br/>
+                            지역적인 특성을 추가해 지역적인 동물 보호, 동물 찾기 및 입양을
+                            돕고<br/>
+                            잃어버린 애완동물부터 유기동물까지 다양한 지역에서의 검색을 돕기
+                            위한 웹페이지입니다.
+                        </p>
+                    </div>
 
+                    <span class="image"
+                    ><img src="/src/css/images/로고.png" alt=""
+                    /></span>
+                </div>
+            </section>
+
+            <!-- Board Section -->
+            <!-- First Section -->
+            <section id="first" class="main special">
+                <header class="major">
+                    <h2>게시판 1</h2>
+                </header>
+                <ul class="features">
+                    <li>
+                        <span class="icon solid major style1 fa-code"></span>
+                        <h3>Ipsum consequat</h3>
+                        <p>
+                            Sed lorem amet ipsum dolor et amet nullam consequat a feugiat
+                            consequat tempus veroeros sed consequat.
+                        </p>
+                    </li>
+                </ul>
+                <footer class="major">
+                    <ul class="actions special">
+                        <li><a href="first.html" class="button">Learn More</a></li>
+                    </ul>
+                </footer>
+            </section>
+
+            <!-- Second Section -->
+            <section id="second" class="main special">
+                <header class="major">
+                    <h2>게시판 2</h2>
+                </header>
+                <ul class="features">
+                    <li>
+                        <span class="icon solid major style1 fa-code"></span>
+                        <h3>Ipsum consequat</h3>
+                        <p>
+                            Sed lorem amet ipsum dolor et amet nullam consequat a feugiat
+                            consequat tempus veroeros sed consequat.
+                        </p>
+                    </li>
+                </ul>
+                <footer class="major">
+                    <ul class="actions special">
+                        <li><a href="second.html" class="button">Learn More</a></li>
+                    </ul>
+                </footer>
+            </section>
+
+            <!--Third Section-->
+            <section id="third" class="main special">
+                <header class="major">
+                    <h2>게시판 3</h2>
+                </header>
+                <ul class="features">
+                    <li>
+                        <span class="icon solid major style1 fa-code"></span>
+                        <h3>Ipsum consequat</h3>
+                        <p>
+                            Sed lorem amet ipsum dolor et amet nullam consequat a feugiat
+                            consequat tempus veroeros sed consequat.
+                        </p>
+                    </li>
+                </ul>
+                <footer class="major">
+                    <ul class="actions special">
+                        <li><a href="third.html" class="button">Learn More</a></li>
+                    </ul>
+                </footer>
+            </section>
         </div>
-        <!-- Introduction -->
-        <section id="intro" class="main">
-          <div class="spotlight">
-            <div class="content">
-              <header class="major">
-                <h2>
-                  Website for reporting and protection of abandoned/puppets
-                </h2>
-              </header>
-              <p>
-                "유기/반려 동물 신고 및 보호를 위한 웹페이지"<br />
-                유기 동물을 찾는 사람은 많지만, 찾아주는 사람은 적습니다.<br />
-                이 웹페이지는 사용자 친화적이며 접근성이 높은 플랫폼으로,<br />
-                지역적인 특성을 추가해 지역적인 동물 보호, 동물 찾기 및 입양을
-                돕고<br />
-                잃어버린 애완동물부터 유기동물까지 다양한 지역에서의 검색을 돕기
-                위한 웹페이지입니다.
-              </p>
-            </div>
 
-            <span class="image"
-              ><img src="/src/css/images/로고.png" alt=""
-            /></span>
-          </div>
-        </section>
-
-        <!-- Board Section -->
-        <!-- First Section -->
-        <section id="first" class="main special">
-          <header class="major">
-            <h2>게시판 1</h2>
-          </header>
-          <ul class="features">
-            <li>
-              <span class="icon solid major style1 fa-code"></span>
-              <h3>Ipsum consequat</h3>
-              <p>
-                Sed lorem amet ipsum dolor et amet nullam consequat a feugiat
-                consequat tempus veroeros sed consequat.
-              </p>
-            </li>
-          </ul>
-          <footer class="major">
-            <ul class="actions special">
-              <li><a href="first.html" class="button">Learn More</a></li>
-            </ul>
-          </footer>
-        </section>
-
-        <!-- Second Section -->
-        <section id="second" class="main special">
-          <header class="major">
-            <h2>게시판 2</h2>
-          </header>
-          <ul class="features">
-            <li>
-              <span class="icon solid major style1 fa-code"></span>
-              <h3>Ipsum consequat</h3>
-              <p>
-                Sed lorem amet ipsum dolor et amet nullam consequat a feugiat
-                consequat tempus veroeros sed consequat.
-              </p>
-            </li>
-          </ul>
-          <footer class="major">
-            <ul class="actions special">
-              <li><a href="second.html" class="button">Learn More</a></li>
-            </ul>
-          </footer>
-        </section>
-
-        <!--Third Section-->
-        <section id="third" class="main special">
-          <header class="major">
-            <h2>게시판 3</h2>
-          </header>
-          <ul class="features">
-            <li>
-              <span class="icon solid major style1 fa-code"></span>
-              <h3>Ipsum consequat</h3>
-              <p>
-                Sed lorem amet ipsum dolor et amet nullam consequat a feugiat
-                consequat tempus veroeros sed consequat.
-              </p>
-            </li>
-          </ul>
-          <footer class="major">
-            <ul class="actions special">
-              <li><a href="third.html" class="button">Learn More</a></li>
-            </ul>
-          </footer>
-        </section>
-      </div>
-
-      <!-- Footer -->
-      <footer id="footer">
-        <section>
-          <h2>Information</h2>
-          <p>
-            이 사이트는 유기/반려 동물 신고 및 보호를 목적으로 만들어졌습니다.
-          </p>
-        </section>
-        <section>
-          <h2>Contact</h2>
-          <dl class="alt">
-            <dt>Course</dt>
-            <dd>Open-Source Development Project, Team 4</dd>
-            <dt>Team</dt>
-            <dd>
-              Front-end(김다민, 이예솔, 이예호) Back-end(김민성, 박상인, 한윤수)
-              DB(한윤수)
-            </dd>
-            <dt>Git</dt>
-            <dd>
-              <a href="https://github.com/DireRaven22075/opensource-project"
-                >TEAM_4</a
-              >
-            </dd>
-          </dl>
-        </section>
-        <p class="copyright">
-          &copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.
-        </p>
-      </footer>
+        <!-- Footer -->
+        <footer id="footer">
+            <section>
+                <h2>Information</h2>
+                <p>
+                    이 사이트는 유기/반려 동물 신고 및 보호를 목적으로 만들어졌습니다.
+                </p>
+            </section>
+            <section>
+                <h2>Contact</h2>
+                <dl class="alt">
+                    <dt>Course</dt>
+                    <dd>Open-Source Development Project, Team 4</dd>
+                    <dt>Team</dt>
+                    <dd>
+                        Front-end(김다민, 이예솔, 이예호) Back-end(김민성, 박상인, 한윤수)
+                        DB(한윤수)
+                    </dd>
+                    <dt>Git</dt>
+                    <dd>
+                        <a href="https://github.com/DireRaven22075/opensource-project"
+                        >TEAM_4</a
+                        >
+                    </dd>
+                </dl>
+            </section>
+            <p class="copyright">
+                &copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.
+            </p>
+        </footer>
     </div>
-
-    <!-- Scripts -->
-    <script src="/src/js/jquery.min.js"></script>
-    <script src="/src/js/jquery.scrollex.min.js"></script>
-    <script src="/src/js/jquery.scrolly.min.js"></script>
-    <script src="/src/js/browser.min.js"></script>
-    <script src="/src/js/breakpoints.min.js"></script>
-    <script src="/src/js/util.js"></script>
-    <script src="/src/js/main.js"></script>
-
-    <script>
-      // 로그인 상태 확인을 위한 JavaScript
-      document.addEventListener("DOMContentLoaded", function () {
-        let loggedIn = false; // 실제 로그인 상태를 기반으로 true 또는 false로 설정
-
-        // Get Started 버튼의 링크를 로그인 상태에 따라 변경
-        const getStartedButton = document.getElementById("getStartedButton");
-        if (loggedIn) {
-          getStartedButton.href = "userinfo.html"; // 로그인 상태일 때 유저 정보 페이지로 연결
-        } else {
-          getStartedButton.href = "/login"; // 비로그인 상태일 때 로그인 페이지로 연결
-        }
-      });
-    </script>
-  </body>
+</body>
 </html>

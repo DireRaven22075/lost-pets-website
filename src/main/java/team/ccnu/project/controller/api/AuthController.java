@@ -1,86 +1,82 @@
 package team.ccnu.project.controller.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
-import team.ccnu.project.domain.entity.MemberEntity;
+import team.ccnu.project.Utils;
+import team.ccnu.project.data.request.LogInDTO;
+import team.ccnu.project.data.response.UserDTO;
+import team.ccnu.project.domain.entity.User;
 import team.ccnu.project.service.MemberService;
+import team.ccnu.project.service.UserService;
 
-@RestController
+@Controller
 @RequestMapping("/api/auth")
 public class AuthController {
-    @GetMapping("/logout")
-    public String getMethodName(HttpServletRequest request) {
-        HttpSession session = request.getSession(false);
-        if (session != null) {
-            session.invalidate();
-        }
-        return "redirect:/";
-    }
-    
     @Autowired
-    private MemberService memberService;
+    private UserService userService;
     /// <summary>
-    /// TODO : 구현 필요
+    /// FIXME : MYSQL 연동 필요..
     /// <br/> 로그인 처리 <br/>
     /// METHOD : POST
     /// RETURN : Json-Session
     /// URL : /api/auth/login
     /// </summary>
     @PostMapping("/login")
-    public String login(HttpServletRequest request, @RequestParam String id, @RequestParam String pw) {
-        //TEST : 
-        if (id.equals("admin") && pw.equals("admin")) {
+    public ResponseEntity<?> apiAuthLogin(HttpServletRequest request, @RequestBody LogInDTO dto) {
+        try {
+            if (!userService.isExistID(dto.getId())) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("""
+                {"status": "error", "message" : "Id not found"}
+                """);
+            }
+            if (!userService.equalsPW(dto)) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("""
+                {"status": "error", "message" : "Password incorrect"}
+                """);
+            }
+            User user = userService.login(dto);
+            UserDTO response = new UserDTO(user);
             HttpSession session = request.getSession(true);
-            session.setAttribute("id", id);
-            return "{status: 'success', message: '로그인 성공'}";
+            session.setAttribute("user", response);
+            return ResponseEntity.ok().body("""
+            {"status": "success", "message": "login successful"}
+            """);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("""
+            {"status": "error", "message": "internal server error"}   
+            """);
         }
-        MemberEntity member = memberService.findById(id);
-        if (member == null) {
-            return "{status: 'fail', message: '아이디가 존재하지 않습니다.'}";
-        }
-        if (!member.getPw().equals(pw)) {
-            return "{status: 'fail', message: '비밀번호가 일치하지 않습니다.'}";
-        }
-        // 세션에 계정 정보 저장
-        
-        return "{status: 'success', message: '로그인 성공'}";
     }
+
     /// <summary>
-    /// TODO : 구현 필요
+    /// DONE : 구현 완료
     /// <br/> 로그아웃 처리 <br/>
     /// DELETE, Json, /api/auth/logout
     /// </summary>
     @DeleteMapping("/logout")
-    public String logout() {
-        return "success";
-    }
-    /// <summary>
-    /// TODO : 구현 필요
-    /// <br/>비밀번호 찾기 요청 처리<br/>
-    /// POST, Json, /api/auth/password/reset-request
-    /// </summary>
-    @PostMapping("/password/reset-request")
-    public String requestPasswordReset(@RequestParam String email) {
-        return "success";
-    }
-    /// <summary>
-    /// TODO : 구현 필요
-    /// 비밀번호 업데이트 처리
-    /// METHOD : PUT
-    /// RETURN : JSON
-    /// URL : /api/auth/password/reset
-    /// </summary>
-    @PutMapping("/password/reset")
-    public String resetPassword(@RequestParam String email) {
-        return "success";
+    public ResponseEntity<?> apiAuthLogout(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("""
+            {"status": "error", "message": "unauthorized"}
+            """);
+        }
+        try {
+            session.invalidate();
+            return ResponseEntity.status(HttpStatus.OK).body("""
+            {"status": "success", "message": "logout successful"}
+            """);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("""
+            {"status": "error", "message": "internal server error"}   
+            """);
+        }
     }
 }

@@ -1,22 +1,35 @@
 package team.ccnu.project.domain.entity;
 
-import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 
-import java.util.LinkedList;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.Builder;
 
 @lombok.Getter
 @lombok.Setter
 @lombok.NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
-@Table(name="user_main")
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //PK
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long sn;
 
+    //DATA COLUMN
+    // User ID
+    private String id;
+    // User Password
+    private String pw;
+    // User Name
+    private String name;
+    // Email Address
+    private String email;
 
-
-    @OneToMany
-    private LinkedList<Post> posts = new LinkedList<>();
-
+    @ColumnDefault("U")
+    private char role;
 }

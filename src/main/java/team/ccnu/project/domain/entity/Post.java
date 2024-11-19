@@ -1,24 +1,29 @@
 package team.ccnu.project.domain.entity;
 
+import java.util.LinkedList;
+
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
 
-@Getter
-@Setter
+@lombok.Getter
+@lombok.Setter
+@lombok.NoArgsConstructor
 @Entity
-@Table(name="board_data")
 public class Post {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long uid;
+    //PK
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="sn")
+    private long sn;
 
-    @Column(name="PST_TITLE", length=100)
+    @Column(name="id")
+    private int id;
+    //FK
+    @OneToMany
+    private LinkedList<File> files = new LinkedList<>();
+
+    //DATA COLUMN
     private String title;
-
-    @Lob
-    @Column(name="PST_CMT")
-    private String content;
-
-
+    @Lob private String content;
+    @ColumnDefault("0") private Long view;
+    @ColumnDefault("0") private Long like;
 }

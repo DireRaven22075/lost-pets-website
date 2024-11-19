@@ -5,85 +5,134 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>회원가입</title>
 
-    <!-- Bootstrap CSS (2.3.2 버전) -->
-    <link
-      href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css"
-      rel="stylesheet"
-    />
-
-    <style>
-      /* 화면 중앙에 배치하기 위한 스타일 */
-      body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        margin: 0;
-        background-color: #f8f9fa;
-      }
-      .signup-container {
-        max-width: 350px;
-        padding: 2em;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        background-color: white;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      }
-      legend {
-        text-align: center;
-        font-size: 1.5em;
-        color: #333;
-        margin-bottom: 1em;
-      }
-      .btn-warning {
-        width: 100%; /* 버튼을 폼의 전체 너비로 */
-      }
-    </style>
+    <link rel="stylesheet" href="/src/css/main.css" />
+    <noscript><link rel="stylesheet" href="/src/css/noscript.css" /></noscript>
   </head>
-  <body>
-    <div class="signup-container span3 well">
-      <legend>Sign up!</legend>
-      <form id="signupForm" accept-charset="UTF-8" action="" method="post">
-        <input
-          class="span3"
-          name="name"
-          placeholder="Full Name"
-          type="text"
-          required
-        />
-        <input
-          class="span3"
-          name="username"
-          placeholder="Username"
-          type="text"
-          required
-        />
-        <input
-          class="span3"
-          name="email"
-          placeholder="Email"
-          type="email"
-          required
-        />
-        <input
-          class="span3"
-          name="password"
-          placeholder="Password"
-          type="password"
-          required
-        />
-        <input
-          class="span3"
-          name="confirmPassword"
-          placeholder="Confirm Password"
-          type="password"
-          required
-        />
-        <button class="btn btn-warning" type="button" onclick="submitForm()">
-          Sign up for Website
-        </button>
-      </form>
+  <body class="is-preload">
+    <!-- Wrapper -->
+    <div id="wrapper">
+      <!-- Header -->
+      <header id="header">
+        <h1>Sign Up</h1>
+        <p>Please fill in the form to create an account</p>
+      </header>
+
+      <!-- Main -->
+      <div id="main">
+        <!-- Content -->
+        <section id="content" class="main">
+          <form method="post" action="signup_process.php">
+            <div class="row gtr-uniform">
+              <div class="col-12">
+                <input
+                  type="text"
+                  name="id"
+                  id="id"
+                  value=""
+                  placeholder="ID"
+                  required
+                />
+              </div>
+              <div class="col-12">
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  value=""
+                  placeholder="Name"
+                  required
+                />
+              </div>
+              <div class="col-12">
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  value=""
+                  placeholder="Email"
+                  required
+                />
+              </div>
+              <div class="col-12">
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  value=""
+                  placeholder="Password"
+                  required
+                />
+              </div>
+              <div class="col-12">
+                <input
+                  type="password"
+                  name="password-confirm"
+                  id="password-confirm"
+                  value=""
+                  placeholder="Confirm Password"
+                  required
+                />
+              </div>
+              <div class="col-12">
+                <ul class="actions">
+                  <li>
+                    <input type="submit" value="Sign Up" class="primary" />
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </form>
+        </section>
+      </div>
     </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+      <section>
+        <h2>Contact Us</h2>
+        <dl class="alt">
+          <dt>Address</dt>
+          <dd>1234 Somewhere Road &bull; Nashville, TN 00000 &bull; USA</dd>
+          <dt>Phone</dt>
+          <dd>(000) 000-0000 x 0000</dd>
+          <dt>Email</dt>
+          <dd>
+            <a href="mailto:information@untitled.tld"
+              >information@untitled.tld</a
+            >
+          </dd>
+        </dl>
+        <ul class="icons"></ul>
+        <li>
+          <a href="#" class="icon brands fa-twitter alt"
+            ><span class="label">Twitter</span></a
+          >
+        </li>
+        <li>
+          <a href="#" class="icon brands fa-facebook-f alt"
+            ><span class="label">Facebook</span></a
+          >
+        </li>
+        <li>
+          <a href="#" class="icon brands fa-instagram alt"
+            ><span class="label">Instagram</span></a
+          >
+        </li>
+        <li>
+          <a href="#" class="icon brands fa-github alt"
+            ><span class="label">GitHub</span></a
+          >
+        </li>
+        <li>
+          <a href="#" class="icon brands fa-dribbble alt"
+            ><span class="label">Dribbble</span></a
+          >
+        </li>
+      </section>
+      <p class="copyright">
+        &copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.
+      </p>
+    </footer>
 
     <!-- jQuery 및 Bootstrap JavaScript -->
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -92,20 +141,22 @@
     <script>
       // 폼 유효성 검사 및 제출 함수
       function submitForm() {
-        const username = document.getElementsByName("username")[0].value;
-        const email = document.getElementsByName("email")[0].value;
-        const password = document.getElementsByName("password")[0].value;
+        const id = document.getElementById("id").value;
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
         const confirmPassword =
-          document.getElementsByName("confirmPassword")[0].value;
+          document.getElementById("password-confirm").value;
 
         // 간단한 유효성 검사
         if (password !== confirmPassword) {
           alert("비밀번호가 일치하지 않습니다.");
-          return;
+          return false;
         }
 
         if (
-          username === "" ||
+          id === "" ||
+          name === "" ||
           email === "" ||
           password === "" ||
           confirmPassword === ""
@@ -118,10 +169,19 @@
 
         // 서버에 데이터 전송 부분을 여기에 추가할 수 있습니다.
         localStorage.setItem("isLoggedIn", "true"); // 로그인 상태 저장
-        localStorage.setItem("username", username); // 사용자 이름 저장 (선택 사항)
-        localStorage.setItem("password", password);
-        window.location.href = "index.html"; // 메인 페이지로 이동
+
+        // 폼 제출
+        document.querySelector("form").submit();
+        window.location.href = "login.html"; // 메인 페이지로 이동
       }
+
+      // 폼 제출 이벤트에 유효성 검사 함수 연결
+      document
+        .querySelector("form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // 기본 제출 동작 방지
+          submitForm();
+        });
     </script>
   </body>
 </html>

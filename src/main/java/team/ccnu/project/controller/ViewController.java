@@ -18,7 +18,7 @@ public class ViewController {
     ///</summary>
     @GetMapping()
     public ModelAndView index() {
-        ModelAndView mav = new ModelAndView(Constants.TestURL + "/index");
+        ModelAndView mav = new ModelAndView("/index");
         System.out.println(mav.getViewName());
         mav.addObject("setting", new ProjectDTO());
         mav.addObject("name", "AHA");

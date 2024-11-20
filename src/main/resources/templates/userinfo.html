@@ -1,142 +1,180 @@
-<!DOCTYPE html>
-<!--
-	Stellar by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html xmlns:th="https://www.thymeleaf.org">
+<!DOCTYPE HTML>
+<html>
   <head>
-    <title>사용자 정보</title>
+    <title>User Information</title>
     <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, user-scalable=no"
-    />
-    <link rel="stylesheet" href="/src/css/main.css" />
-    <noscript><link rel="stylesheet" href="/src/css/noscript.css" /></noscript>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <style>
+      /* Logout button positioning */
+      #logout {
+        position: fixed;
+        bottom: 10px;
+        right: 20px;
+        z-index: 1000;
+      }
+
+      #logout .button {
+        padding: 0px 20px;
+      }
+
+      /* Profile image style */
+      #profileImage {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 20px;
+      }
+
+      #profileImageContainer {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+    </style>
   </head>
   <body class="is-preload">
-    <!-- Wrapper -->
     <div id="wrapper">
-      <!-- Header -->
       <header id="header">
         <h1>User Information</h1>
-        <p>Ipsum dolor sit amet nullam</p>
+        <p>Review and update your profile</p>
       </header>
+      <div class="well">
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#home" data-toggle="tab">Profile</a></li>
+          <li><a href="#password" data-toggle="tab">Password</a></li>
+        </ul>
+        <div id="myTabContent" class="tab-content">
+          <div class="tab-pane active in" id="home">
+            <!-- Profile Image Section -->
+            <div id="profileImageContainer">
+              <img id="profileImage" src="" alt="Profile Image">
+              <br>
+              <input type="file" id="uploadImage" accept="image/*">
+            </div>
 
-      <!-- Main -->
-      <div id="main">
-        <!-- Content -->
-        <section id="content" class="main">
-          <span class="image main"
-            ><img src="/src/css/images/pic04.jpg" alt=""
-          /></span>
-          <h2>Magna feugiat lorem</h2>
-          <p>
-            Donec eget ex magna. Interdum et malesuada fames ac ante ipsum
-            primis in faucibus. Pellentesque venenatis dolor imperdiet dolor
-            mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor
-            sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet,
-            fergiat. Pellentesque in mi eu massa lacinia malesuada et a elit.
-            Donec urna ex, lacinia in purus ac, pretium pulvinar mauris.
-            Curabitur sapien risus, commodo eget turpis at, elementum convallis
-            fames ac ante ipsum primis in faucibus.
-          </p>
-          <p>
-            Pellentesque venenatis dolor imperdiet dolor mattis sagittis.
-            Praesent rutrum sem diam, vitae egestas enim auctor sit amet.
-            Consequat leo mauris, consectetur id ipsum sit amet, fersapien
-            risus, commodo eget turpis at, elementum convallis elit enim turpis
-            lorem ipsum dolor sit amet feugiat. Phasellus convallis elit id
-            ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat
-            malesuada quis. Aliquam dapibus, lacus eget hendrerit bibendum, urna
-            est aliquam sem, sit amet est velit quis lorem.
-          </p>
-          <h2>Tempus veroeros</h2>
-          <p>
-            Cep risus aliquam gravida cep ut lacus amet. Adipiscing faucibus
-            nunc placerat. Tempus adipiscing turpis non blandit accumsan eget
-            lacinia nunc integer interdum amet aliquam ut orci non col ut ut
-            praesent. Semper amet interdum mi. Phasellus enim laoreet ac ac
-            commodo faucibus faucibus. Curae ante vestibulum ante. Blandit. Ante
-            accumsan nisi eu placerat gravida placerat adipiscing in risus fusce
-            vitae ac mi accumsan nunc in accumsan tempor blandit aliquet aliquet
-            lobortis. Ultricies blandit lobortis praesent turpis. Adipiscing
-            accumsan adipiscing adipiscing ac lacinia cep. Orci blandit a
-            iaculis adipiscing ac. Vivamus ornare laoreet odio vis praesent nunc
-            lorem mi. Erat. Tempus sem faucibus ac id. Vis in blandit. Nascetur
-            ultricies blandit ac. Arcu aliquam. Accumsan mi eget adipiscing
-            nulla. Non vestibulum ac interdum condimentum semper commodo massa
-            arcu.
-          </p>
-        </section>
+            <form id="tab">
+              <label>Username</label>
+              <input type="text" id="username" class="input-xlarge" value="fixedUsername" readonly>
+              <label>Name</label>
+              <input type="text" id="name" class="input-xlarge" value="name" readonly>
+              <label>Email</label>
+              <input type="text" id="email" class="input-xlarge" value="fixedEmail@example.com" readonly>
+              <label>Address</label>
+              <input type="text" id="address" class="input-xlarge" value="fixedAddress" readonly>
+            </form>
+          </div>
+          <div class="tab-pane" id="password">
+            <form id="passwordForm">
+              <label>New Password</label>
+              <input type="password" id="newPassword" class="input-xlarge">
+              <button class="btn btn-primary" type="button" onclick="changePassword()">Change Password</button>
+            </form>
+          </div>
+        </div>
       </div>
 
-      <!-- Footer -->
+      <div id="updateModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+        <div class="modal-header">
+          <h3 id="updateModalLabel">Update User Information</h3>
+        </div>
+        <div class="modal-body">
+          <form id="updateForm">
+            <label>Username</label>
+            <input type="text" id="updateUsername" value="fixedUsername" class="input-xlarge">
+            <label>Name</label>
+            <input type="text" id="updateName" value="fixedName" class="input-xlarge">
+            <label>Email</label>
+            <input type="text" id="updateEmail" value="fixedEmail@example.com" class="input-xlarge">
+            <label>Address</label>
+            <input type="text" id="updateAddress" value="fixedAddress" class="input-xlarge">
+          </form>
+        </div>
+        <div class="actions">
+          <button class="btn btn-primary" type="button" onclick="updateUserInfo()">Update</button>
+        </div>
+      </div>
+
+      <section id="logout">
+        <ul class="actions">
+          <li><a href="login.html" class="button primary" id="logoutButton">Log Out</a></li>
+        </ul>
+      </section>
+
       <footer id="footer">
         <section>
-          <h2>Aliquam sed mauris</h2>
-          <p>
-            Sed lorem ipsum dolor sit amet et nullam consequat feugiat consequat
-            magna adipiscing tempus etiam dolore veroeros. eget dapibus mauris.
-            Cras aliquet, nisl ut viverra sollicitudin, ligula erat egestas
-            velit, vitae tincidunt odio.
-          </p>
-          <ul class="actions">
-            <li><a href="#" class="button">Learn More</a></li>
-          </ul>
+          <p class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
         </section>
-        <section>
-          <h2>Etiam feugiat</h2>
-          <dl class="alt">
-            <dt>Address</dt>
-            <dd>1234 Somewhere Road &bull; Nashville, TN 00000 &bull; USA</dd>
-            <dt>Phone</dt>
-            <dd>(000) 000-0000 x 0000</dd>
-            <dt>Email</dt>
-            <dd><a href="#">information@untitled.tld</a></dd>
-          </dl>
-          <ul class="icons">
-            <li>
-              <a href="#" class="icon brands fa-twitter alt"
-                ><span class="label">Twitter</span></a
-              >
-            </li>
-            <li>
-              <a href="#" class="icon brands fa-facebook-f alt"
-                ><span class="label">Facebook</span></a
-              >
-            </li>
-            <li>
-              <a href="#" class="icon brands fa-instagram alt"
-                ><span class="label">Instagram</span></a
-              >
-            </li>
-            <li>
-              <a href="#" class="icon brands fa-github alt"
-                ><span class="label">GitHub</span></a
-              >
-            </li>
-            <li>
-              <a href="#" class="icon brands fa-dribbble alt"
-                ><span class="label">Dribbble</span></a
-              >
-            </li>
-          </ul>
-        </section>
-        <p class="copyright">
-          &copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.
-        </p>
       </footer>
     </div>
 
-    <!-- Scripts -->
-    <script src="/src/js/jquery.min.js"></script>
-    <script src="/src/js/jquery.scrollex.min.js"></script>
-    <script src="/src/js/jquery.scrolly.min.js"></script>
-    <script src="/src/js/browser.min.js"></script>
-    <script src="/src/js/breakpoints.min.js"></script>
-    <script src="/src/js/util.js"></script>
-    <script src="/src/js/main.js"></script>
+    <script>
+      window.onload = function() {
+        // Load stored user data
+        document.getElementById("username").value = localStorage.getItem("username") || "fixedUsername";
+        document.getElementById("name").value = localStorage.getItem("name") || "fixedName";
+        document.getElementById("email").value = localStorage.getItem("email") || "fixedEmail@example.com";
+        document.getElementById("address").value = localStorage.getItem("address") || "fixedAddress";
+
+        // Load stored profile image
+        const savedImage = localStorage.getItem("profileImage");
+        if (savedImage) {
+          document.getElementById("profileImage").src = savedImage;
+        }
+      };
+
+      // Update user information
+      function updateUserInfo() {
+        const username = document.getElementById('updateUsername').value;
+        const name = document.getElementById('updateName').value;
+        const email = document.getElementById('updateEmail').value;
+        const address = document.getElementById('updateAddress').value;
+
+        if (!username || !email) {
+          alert('Please fill in all required fields.');
+          return;
+        }
+
+        localStorage.setItem("username", username);
+        localStorage.setItem("name", name);
+        localStorage.setItem("email", email);
+        localStorage.setItem("address", address);
+
+        // Update values in input fields
+        document.getElementById('username').value = username;
+        document.getElementById('name').value = name;
+        document.getElementById('email').value = email;
+        document.getElementById('address').value = address;
+
+        alert("Updated Successfully");
+      }
+
+      // Change password
+      function changePassword() {
+        const newPassword = document.getElementById('newPassword').value;
+        console.log('Changing password to:', newPassword);
+      }
+
+      // Handle profile image upload
+      document.getElementById('uploadImage').addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            // Set the profile image to the uploaded image
+            document.getElementById('profileImage').src = e.target.result;
+            // Save the image in localStorage
+            localStorage.setItem("profileImage", e.target.result);
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+
+      document.querySelector('#logout .button').addEventListener('click', function() {
+        localStorage.setItem('logInFlag', 'false');
+        window.location.href = 'main.html';
+      });
+    </script>
   </body>
 </html>

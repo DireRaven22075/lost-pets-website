@@ -31,14 +31,25 @@
           <li><a href="#second">입양</a></li>
           <li><a href="#third">교육</a></li>
           <li>
-            <a
-              href="userinfo.html"
-              id="getStartedButton"
-              class="button"
-              style="color: black !important"
-            >
-              Login
-            </a>
+            <th:block th:if="${user != null}">
+              <a
+                href="/login"
+                id="getStartedButton"
+                class="button"
+                style="color: black !important"
+              >
+                Login
+              </a>
+            </th:block>
+            <th:block th:unless="${user != null}">
+              <a
+                href="/ami"
+                id="Button-Header-UserInfo"
+                class="button"
+                style="color: black !important"
+                >User Info</a
+              >
+            </th:block>
           </li>
         </ul>
       </nav>

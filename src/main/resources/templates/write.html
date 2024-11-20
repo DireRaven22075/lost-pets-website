@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>게시글 작성</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <style>
+        /* 공통 스타일 */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', Arial, sans-serif;
+            background-color: #f5f5f5; /* 전체 배경을 회색으로 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .wrapper {
+            width: 90%;
+            max-width: 1200px;
+            background-color: white;
+            padding: 25px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            font-weight: 600;
+            font-size: 40px;
+            margin-bottom: 40px;
+            color: black;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 30px; /* 폼 요소 간격 */
+        }
+
+        label {
+            font-weight: bold;
+            font-size: 20px;
+            color: #000000;
+            margin-bottom: 10px; /* 라벨과 입력 필드 간격 */
+        }
+
+        /* 회색 배경을 원하는 부분에만 적용 */
+        .form-section {
+            background-color: #f0f0f0; /* 회색 배경 */
+            padding: 20px; /* 양옆에 패딩 */
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px; /* 요소 간격 */
+        }
+
+        /* 입력 필드 크기 조정 */
+        input, select, textarea, button {
+            width: 95%;
+            padding: 12px;
+            border: 1px solid #E0E0E0;
+            border-radius: 8px;
+            font-size: 16px;
+            color: #828282;
+            margin-bottom: 20px; /* 요소 간격 */
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        button {
+            background-color: #000000;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            border: none;
+            cursor: pointer;
+            padding: 16px;
+        }
+
+        button:hover {
+            background-color: #333333;
+        }
+
+        /* 파일 첨부 스타일 */
+        #uploadImage {
+            padding: 8px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <h1>게시글 작성</h1>
+        <form id="postForm" action="/submit-post" method="POST" enctype="multipart/form-data">
+            <!-- 카테고리부터 본문까지를 회색 배경으로 묶기 -->
+            <div class="form-section">
+                <!-- 카테고리 -->
+                <label for="category">카테고리</label>
+                <select id="category" name="category" required>
+                    <option value="">카테고리를 선택하세요</option>
+                    <option value="first">게시판1</option>
+                    <option value="second">게시판2</option>
+                    <option value="third">게시판3</option>
+                </select>
+
+                <!-- 제목 -->
+                <label for="title">제목</label>
+                <input type="text" id="title" name="title" placeholder="제목을 입력하세요" required />
+
+                <!-- 파일 첨부 -->
+                <label for="files">파일 첨부</label>
+                <input type="file" id="uploadImage" name="files" accept="image/*" />
+
+                <!-- 본문 -->
+                <label for="content">본문</label>
+                <textarea id="content" name="content" placeholder="본문 내용을 작성하세요" required></textarea>
+            </div>
+
+            <!-- Submit 버튼 -->
+            <button type="submit" class="submit-button">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

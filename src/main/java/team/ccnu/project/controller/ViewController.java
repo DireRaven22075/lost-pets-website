@@ -44,7 +44,7 @@ public class ViewController {
     ///</summary>
     @GetMapping("/register")
     public ModelAndView register(HttpServletRequest request) {
-        ModelAndView mav = buildModelAndView(request,"register");
+        ModelAndView mav = buildModelAndView(request,"makeaccount");
         return mav;
     }
     ///<summary>
@@ -57,7 +57,7 @@ public class ViewController {
         return mav;
     }
    ///<summary>
-   /// [HTTP GET] 비밀번호 착기 화면 출력 함수
+   /// [HTTP GET] 비밀번호 찾기 화면 출력 함수
    /// TODO : 구현 필요
    ///</summary>
    @GetMapping("/forgot-password")

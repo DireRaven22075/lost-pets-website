@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="https://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>회원가입</title>
+
+    <link rel="stylesheet" href="/src/css/main.css" />
+    <noscript><link rel="stylesheet" href="/src/css/noscript.css" /></noscript>
+  </head>
+  <body class="is-preload">
+    <!-- Wrapper -->
+    <div id="wrapper">
+      <!-- Header -->
+      <header id="header">
+        <h1>Sign Up</h1>
+        <p>Please fill in the form to create an account</p>
+      </header>
+
+      <!-- Main -->
+      <div id="main">
+        <!-- Content -->
+        <section id="content" class="main">
+          <form method="post" action="signup_process.php">
+            <div class="row gtr-uniform">
+              <div class="col-12">
+                <input
+                  type="text"
+                  name="id"
+                  id="id"
+                  value=""
+                  placeholder="ID"
+                  required
+                />
+              </div>
+              <div class="col-12">
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  value=""
+                  placeholder="Name"
+                  required
+                />
+              </div>
+              <div class="col-12">
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  value=""
+                  placeholder="Email"
+                  required
+                />
+              </div>
+              <div class="col-12">
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  value=""
+                  placeholder="Password"
+                  required
+                />
+              </div>
+              <div class="col-12">
+                <input
+                  type="password"
+                  name="password-confirm"
+                  id="password-confirm"
+                  value=""
+                  placeholder="Confirm Password"
+                  required
+                />
+              </div>
+              <div class="col-12">
+                <ul class="actions">
+                  <li>
+                    <input type="submit" value="Sign Up" class="primary" />
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </form>
+        </section>
+      </div>
+    </div>
+
+    <!-- jQuery 및 Bootstrap JavaScript -->
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+    <script>
+      // 폼 유효성 검사 및 제출 함수
+      function submitForm() {
+        const id = document.getElementById("id").value;
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const confirmPassword =
+          document.getElementById("password-confirm").value;
+
+        // 간단한 유효성 검사
+        if (password !== confirmPassword) {
+          alert("비밀번호가 일치하지 않습니다.");
+          return false;
+        }
+
+        if (
+          id === "" ||
+          name === "" ||
+          email === "" ||
+          password === "" ||
+          confirmPassword === ""
+        ) {
+          alert("모든 필드를 채워주세요.");
+          return;
+        }
+        alert("회원가입이 완료되었습니다!");
+
+        // 서버에 데이터 전송 부분을 여기에 추가할 수 있습니다.
+        localStorage.setItem("isLoggedIn", "true"); // 로그인 상태 저장
+
+        // 폼 제출
+        document.querySelector("form").submit();
+        window.location.href = "login.html"; // 메인 페이지로 이동
+      }
+
+      // 폼 제출 이벤트에 유효성 검사 함수 연결
+      document
+        .querySelector("form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // 기본 제출 동작 방지
+          submitForm();
+        });
+    </script>
+  </body>
+</html>

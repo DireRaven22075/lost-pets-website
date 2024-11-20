@@ -1,0 +1,24 @@
+index.html<!DOCTYPE html>
+<html lang="ko" xmlns:th="https://thymeleaf.org">
+
+<head>
+    <title th:text="${@environment.getProperty('app.title')}"></title>
+
+    <meta charset="UTF-8"/>
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+
+    <link rel="stylesheet" type="text/css" href="/src/css/main.css" />
+
+    <script src="/src/js/main.js"></script>
+</head>
+
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+
+</html>

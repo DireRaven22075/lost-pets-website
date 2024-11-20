@@ -5,3 +5,8 @@
     --text-color-sub : #3D3D3D;
     --text-color-hide : #FFFFFF;
 }
+body {
+    width: 100vw;
+    height: 200vh;
+    background: linear-gradient(225deg, #5A5096 80%, #d27d87 45%);
+}

@@ -1,18 +1,17 @@
 package team.ccnu.project.domain.entity;
 
-/*
- * 회원 정보를 담는 Entity
- * - name : 회원 이름
- * - memberID : 회원 ID
- * - password : 회원 비밀번호
- * - email : 회원 이메일
- */
+import org.hibernate.annotations.ColumnDefault;
 
-
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @lombok.Getter
-@lombok.NoArgsConstructor(access = lombok.AccessLevel.PROTECTED)
+@lombok.Setter
+@lombok.NoArgsConstructor
 @Entity
 @Table(name = "member_main")
 ///<summary>
@@ -24,18 +23,31 @@ import jakarta.persistence.*;
 ///name = MEM_NAME (Member Name)
 ///</summary>
 public class MemberEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="MEM_SN")
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="MEM_SN", nullable = false)
     private Long sn;
+    
     @Column(name="MEM_ID", nullable=false)
+    @ColumnDefault("Nil")
     private String id;
+
 	@Column(name="MEM_PW", nullable=false)
+    @ColumnDefault("Nil")
     private String pw;
+
 	@Column(name="MEM_EMAIL", nullable=false)
+    @ColumnDefault("Nil")
     private String email;
+
     @Column(name="MEM_NAME", nullable = false)
+    @ColumnDefault("Nil")
     private String name;
-    @Column(name="MEM_UID", nullable=false)
+
+    @Column(name="MEM_ICON")
+    @ColumnDefault("Nil")
+    private String icon;
+    
+    @Column(name="MEM_UID")
+    @ColumnDefault("Nil")
     private String uid;
 }

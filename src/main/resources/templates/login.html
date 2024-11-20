@@ -28,12 +28,12 @@
       <div id="main">
         <!-- Content -->
         <section id="content" class="main">
-          <form method="post" action="login_process.php">
+          <form method="post" action="/api/auth/login">
             <div class="row gtr-uniform">
               <div class="col-12">
                 <input
                   type="text"
-                  name="username"
+                  name="id"
                   id="username"
                   value=""
                   placeholder="Username"
@@ -43,7 +43,7 @@
               <div class="col-12">
                 <input
                   type="password"
-                  name="password"
+                  name="pw"
                   id="password"
                   value=""
                   placeholder="Password"

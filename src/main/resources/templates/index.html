@@ -1,15 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="https://www.thymeleaf.org">
   <head>
-    <title>CCNU</title>
+    <title th:text="${@environment.getProperty('project.title')}"></title>
     <meta charset="utf-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, user-scalable=no"
     />
     <link rel="stylesheet" href="/src/css/main.css" />
-    <noscript><link rel="stylesheet" href="/src/css/noscript.css" /></noscript>
+    <noscript>
+      <link rel="stylesheet" href="/src/css/noscript.css" />
+    </noscript>
   </head>
+
   <body class="is-preload">
     <!-- Wrapper -->
     <div id="wrapper">
@@ -42,6 +45,12 @@
 
       <!-- Main -->
       <div id="main">
+        <th:block th:if="${user != null}">
+          <div th:text="${user.id}"></div>
+          <div th:text="${user.name}"></div>
+          <div th:text="${user.mail}"></div>
+          <div th:text="${user.sn}"></div>
+        </th:block>
         <!-- Introduction -->
         <section id="intro" class="main">
           <div class="spotlight">
@@ -161,29 +170,5 @@
         </p>
       </footer>
     </div>
-
-    <!-- Scripts -->
-    <script src="/src/js/jquery.min.js"></script>
-    <script src="/src/js/jquery.scrollex.min.js"></script>
-    <script src="/src/js/jquery.scrolly.min.js"></script>
-    <script src="/src/js/browser.min.js"></script>
-    <script src="/src/js/breakpoints.min.js"></script>
-    <script src="/src/js/util.js"></script>
-    <script src="/src/js/main.js"></script>
-
-    <script>
-      // 로그인 상태 확인을 위한 JavaScript
-      document.addEventListener("DOMContentLoaded", function () {
-        let loggedIn = false; // 실제 로그인 상태를 기반으로 true 또는 false로 설정
-
-        // Get Started 버튼의 링크를 로그인 상태에 따라 변경
-        const getStartedButton = document.getElementById("getStartedButton");
-        if (loggedIn) {
-          getStartedButton.href = "userinfo.html"; // 로그인 상태일 때 유저 정보 페이지로 연결
-        } else {
-          getStartedButton.href = "login.html"; // 비로그인 상태일 때 로그인 페이지로 연결
-        }
-      });
-    </script>
   </body>
 </html>

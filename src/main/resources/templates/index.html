@@ -1,181 +1,150 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org">
-
+<html lang="ko">
 <head>
-    <title th:text="${@environment.getProperty('project.title')}"></title>
-    <meta charset="utf-8"/>
-    <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, user-scalable=no"
-    />
-    <link rel="stylesheet" href="/src/css/main.css"/>
-    <noscript>
-        <link rel="stylesheet" href="/src/css/noscript.css"/>
-    </noscript>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>유실 동물 웹사이트</title>
+  <link rel="stylesheet" type="text/css" href="/src/css/index.css" />
 </head>
+<body>
+  <!-- 네비게이션 -->
+  <div class="navigation">
+    <div class="title">Lost Pets Website</div>
+    <a id="getStartedButton" href="login.html" class="btn get-started-button">Get Started</a>
+  </div>
 
-<body class="is-preload">
-<!-- Wrapper -->
-<div id="wrapper">
-    <!-- Header -->
-    <header id="header" class="alt">
-        <span class="logo"><img src="/src/css/images/logo.svg" alt=""/></span>
-        <h1>유실 동물 웹사이트</h1>
-        <p>오픈소스 개발 프로젝트 4조</p>
-    </header>
+  <!-- 메인 이미지 -->
+  <div class="main-image"></div>
 
-    <!-- Nav -->
-    <nav id="nav">
-        <ul>
-            <li><a href="#intro" class="active">Introduction</a></li>
-            <li><a href="#first">게시판1</a></li>
-            <li><a href="#second">게시판2</a></li>
-            <li><a href="#third">게시판3</a></li>
-            <li>
-                <a
-                        href="userinfo.html"
-                        id="getStartedButton"
-                        class="button"
-                        style="color: black !important"
-                >
-                    Get Started
-                </a>
-            </li>
-        </ul>
-    </nav>
+  <!-- 소개 섹션 -->
+  <div class="intro">
+    <h1>유실 동물 웹사이트</h1>
+    <p>
+      “Website for reporting and protection of abandoned/puppets”
+      <br>
+      유기 동물을 찾는 사람은 많지만, 찾아주는 사람은 적습니다.
+      <br>
+      이 웹페이지는 사용자 친화적이며 접근성이 높은 플랫폼으로,
+      지역적인 특성을 추가해 지역적인 동물 보호, 동물 찾기 및 입양을 돕기 위한 웹페이지입니다.
+    </p>
+  </div>
 
-    <!-- Main -->
-    <div id="main">
-        <th:block th:if="${user != null}">
-            <div th:text="${user.id}"></div>
-            <div th:text="${user.name}"></div>
-            <div th:text="${user.mail}"></div>
-            <div th:text="${user.sn}"></div>
-        </th:block>
-            <!-- Introduction -->
-            <section id="intro" class="main">
-                <div class="spotlight">
-                    <div class="content">
-                        <header class="major">
-                            <h2>
-                                Website for reporting and protection of abandoned/puppets
-                            </h2>
-                        </header>
-                        <p>
-                            "유기/반려 동물 신고 및 보호를 위한 웹페이지"<br/>
-                            유기 동물을 찾는 사람은 많지만, 찾아주는 사람은 적습니다.<br/>
-                            이 웹페이지는 사용자 친화적이며 접근성이 높은 플랫폼으로,<br/>
-                            지역적인 특성을 추가해 지역적인 동물 보호, 동물 찾기 및 입양을
-                            돕고<br/>
-                            잃어버린 애완동물부터 유기동물까지 다양한 지역에서의 검색을 돕기
-                            위한 웹페이지입니다.
-                        </p>
-                    </div>
+  <!-- 게시판 섹션 -->
+  <div class="boards">
+    <h2>게시판 소개</h2>
 
-                    <span class="image"
-                    ><img src="/src/css/images/로고.png" alt=""
-                    /></span>
-                </div>
-            </section>
-
-            <!-- Board Section -->
-            <!-- First Section -->
-            <section id="first" class="main special">
-                <header class="major">
-                    <h2>게시판 1</h2>
-                </header>
-                <ul class="features">
-                    <li>
-                        <span class="icon solid major style1 fa-code"></span>
-                        <h3>Ipsum consequat</h3>
-                        <p>
-                            Sed lorem amet ipsum dolor et amet nullam consequat a feugiat
-                            consequat tempus veroeros sed consequat.
-                        </p>
-                    </li>
-                </ul>
-                <footer class="major">
-                    <ul class="actions special">
-                        <li><a href="first.html" class="button">Learn More</a></li>
-                    </ul>
-                </footer>
-            </section>
-
-            <!-- Second Section -->
-            <section id="second" class="main special">
-                <header class="major">
-                    <h2>게시판 2</h2>
-                </header>
-                <ul class="features">
-                    <li>
-                        <span class="icon solid major style1 fa-code"></span>
-                        <h3>Ipsum consequat</h3>
-                        <p>
-                            Sed lorem amet ipsum dolor et amet nullam consequat a feugiat
-                            consequat tempus veroeros sed consequat.
-                        </p>
-                    </li>
-                </ul>
-                <footer class="major">
-                    <ul class="actions special">
-                        <li><a href="second.html" class="button">Learn More</a></li>
-                    </ul>
-                </footer>
-            </section>
-
-            <!--Third Section-->
-            <section id="third" class="main special">
-                <header class="major">
-                    <h2>게시판 3</h2>
-                </header>
-                <ul class="features">
-                    <li>
-                        <span class="icon solid major style1 fa-code"></span>
-                        <h3>Ipsum consequat</h3>
-                        <p>
-                            Sed lorem amet ipsum dolor et amet nullam consequat a feugiat
-                            consequat tempus veroeros sed consequat.
-                        </p>
-                    </li>
-                </ul>
-                <footer class="major">
-                    <ul class="actions special">
-                        <li><a href="third.html" class="button">Learn More</a></li>
-                    </ul>
-                </footer>
-            </section>
-        </div>
-
-        <!-- Footer -->
-        <footer id="footer">
-            <section>
-                <h2>Information</h2>
-                <p>
-                    이 사이트는 유기/반려 동물 신고 및 보호를 목적으로 만들어졌습니다.
-                </p>
-            </section>
-            <section>
-                <h2>Contact</h2>
-                <dl class="alt">
-                    <dt>Course</dt>
-                    <dd>Open-Source Development Project, Team 4</dd>
-                    <dt>Team</dt>
-                    <dd>
-                        Front-end(김다민, 이예솔, 이예호) Back-end(김민성, 박상인, 한윤수)
-                        DB(한윤수)
-                    </dd>
-                    <dt>Git</dt>
-                    <dd>
-                        <a href="https://github.com/DireRaven22075/opensource-project"
-                        >TEAM_4</a
-                        >
-                    </dd>
-                </dl>
-            </section>
-            <p class="copyright">
-                &copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.
-            </p>
-        </footer>
+    <div class="board-item">
+      <img src="/static/src/img/user1.jpg" alt="Report" class="board-image">
+      <div class="board">
+        <h3>신고 게시판</h3>
+        <p>유실 동물 발견 시 동물 정보를 입력해 유실 동물 신고를 할 수 있는 게시판</p>
+        <a href="report.html">신고 게시판 이동</a>
+      </div>
     </div>
+
+    <div class="board-item">
+      <img src="/static/src/img/user2.jpg" alt="Adoption" class="board-image">
+      <div class="board">
+        <h3>입양 게시판</h3>
+        <p>보호가 필요하거나 임시 보호 중인 유실 동물을 입양할 수 있는 게시판</p>
+        <a href="adoption.html">입양 게시판 이동</a>
+      </div>
+    </div>
+
+    <div class="board-item">
+      <img src="/static/src/img/user3.jpg" alt="Education" class="board-image">
+      <div class="board">
+        <h3>교육 게시판</h3>
+        <p>유실 동물 발견 또는 입양 시 필요한 교육 정보를 공유하는 게시판</p>
+        <a href="education.html">교육 게시판 이동</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 유실 동물 관련 기관 -->
+  <div class="institutions">
+    <div class="list">
+      <h2>유실 동물 관련 기관</h2>
+      <div class="item">
+        <p>반려동물보호센터<br><br>주소 : 충청북도 청주시 흥덕구 강내면 서부로 411-55<br>
+            전화 번호 : 043-201-2298<br>
+            운영 시간 : 09:00 ~ 18:00</p>
+        <button onclick="window.open('https://www.cheongju.go.kr/www/contents.do?key=23266')">Go</button>
+      </div>
+      <div class="item">
+        <p>유기동물구조센터<br><br>주소 : 경기도 양주시 남면 감악산로 63-37<br>
+
+            전화 번호 : 031-867-9119<br>
+            운영 시간 : 09:00 ~ 18:00</p>
+        <button onclick="window.open('https://www.karama.or.kr/')">Go</button>
+      </div>
+      <div class="item">
+        <p>대전반려동물센터<br><br>주소: 대전광역시 유성구 금남구즉로 1234<br>
+            042-270-7239<br>
+            10:00 ~ 18:00</p>
+        <button onclick="window.open('https://www.daejeon.go.kr/ani/index.do')">Go</button>
+      </div>
+    </div>
+    </div>
+  </div>
+
+
+  <!-- Review 섹션 -->
+  <div class="reviews">
+    <h2>Review</h2>
+    <div class="review-container">
+      <div class="review-card">
+        <img src="/src/img/reviewer1.jpg" alt="">
+        <p>"덕분에 소중한 가족을 찾았어요"</p>
+        <span>정혜 | 서울특별시</span>
+      </div>
+      <div class="review-card">
+        <img src="/src/img/reviewer2.jpg" alt="Reviewer">
+        <p>"접근성이 너무 좋아요"</p>
+        <span>사용자1 | 대전광역시</span>
+      </div>
+      <div class="review-card">
+        <img src="/src/img/reviewer3.jpg" alt="Reviewer">
+        <p>"정말 좋은 사이트 같아요"</p>
+        <span>감자 | 부산광역시</span>
+      </div>
+      <div class="review-card">
+        <img src="/src/img/reviewer4.jpg" alt="Reviewer">
+        <p>"우리 초코 찾아주셔서 감사해요"</p>
+        <span>효정 | 광주시</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 푸터 -->
+  <div class="footer">
+    <h2>Website for reporting and protection of pets</h2><br>
+    <div class="signup-buttons">
+      <a href="login.html">Sign In</a>
+      <a href="signup.html">Sign Up</a>
+    </div><br><br>
+    <p>Information.<br>
+      이 사이트는 유기/반려 동물 신고 및 보호를 목적으로 만들어졌습니다.<br>
+    <p></p>Contact.<br>
+      Open-Source Development Project, Team 4<br>
+      Front-end(김다민, 이예솔, 이예호) Back-end(김민성, 박상인, 한윤수) DB(한윤수)<br>
+    </p>
+
+  <div class = "GitHub">
+    <button onclick="window.open('https://github.com/DireRaven22075/opensource-project')">GitHub</button>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const logInFlag = localStorage.getItem("logInFlag");
+
+      const getStartedButton = document.getElementById("getStartedButton");
+      if (logInFlag == 1) {
+        getStartedButton.href = "userinfo.html";
+      } else {
+        getStartedButton.href = "login.html";
+      }
+    });
+  </script>
 </body>
 </html>

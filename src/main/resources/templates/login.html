@@ -1,130 +1,62 @@
 <!DOCTYPE html>
-<!--
-    Stellar by HTML5 UP
-    html5up.net | @ajlkn
-    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
+<html lang="ko">
   <head>
-    <title>Login - Stellar by HTML5 UP</title>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, user-scalable=no"
-    />
-    <link rel="stylesheet" href="/src/css/main.css" />
-    <noscript><link rel="stylesheet" href="/src/css/noscript.css" /></noscript>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <link rel="stylesheet" type="text/css" href="/src/css/login.css" />
   </head>
-  <body class="is-preload">
-    <!-- Wrapper -->
-    <div id="wrapper">
-      <!-- Header -->
-      <header id="header">
-        <h1>Log in</h1>
-        <p>Please enter your credentials to log in</p>
-      </header>
+  <body>
+    <div class="login-container">
+      <div class="login-box">
+        <h1>Log In</h1>
+        <form>
+          <label for="id">ID</label>
+          <input type="text" id="id" placeholder="Value" />
 
-      <!-- Main -->
-      <div id="main">
-        <!-- Content -->
-        <section id="content" class="main">
-          <form method="post" action="/api/auth/login">
-            <div class="row gtr-uniform">
-              <div class="col-12">
-                <input
-                  type="text"
-                  name="id"
-                  id="username"
-                  value=""
-                  placeholder="Username"
-                  required
-                />
-              </div>
-              <div class="col-12">
-                <input
-                  type="password"
-                  name="pw"
-                  id="password"
-                  value=""
-                  placeholder="Password"
-                  required
-                />
-              </div>
-              <div class="col-12">
-                <ul class="actions">
-                  <li>
-                    <input type="submit" value="Log In" class="primary" />
-                  </li>
-                  <li>
-                    <input
-                      type="button"
-                      value="Make Account"
-                      onclick="location.href='makeaccount.html'"
-                    />
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </form>
-        </section>
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Value" />
+
+          <button type="submit" class="btn">Sign In</button>
+          <button
+            type="button"
+            class="btn secondary"
+            onclick="window.location.href='signup.html'"
+          >
+            Make Account
+          </button>
+        </form>
+        <button
+          type="button"
+          class="btn home"
+          onclick="window.location.href='index.html'"
+        >
+          Home
+        </button>
       </div>
-
-      <!-- Footer -->
-      <footer id="footer">
-        <section>
-          <h2>Contact Us</h2>
-          <dl class="alt">
-            <dt>Address</dt>
-            <dd>1234 Somewhere Road &bull; Nashville, TN 00000 &bull; USA</dd>
-            <dt>Phone</dt>
-            <dd>(000) 000-0000 x 0000</dd>
-            <dt>Email</dt>
-            <dd>
-              <a href="mailto:information@untitled.tld"
-                >information@untitled.tld</a
-              >
-            </dd>
-          </dl>
-          <ul class="icons"></ul>
-          <li>
-            <a href="#" class="icon brands fa-twitter alt"
-              ><span class="label">Twitter</span></a
-            >
-          </li>
-          <li>
-            <a href="#" class="icon brands fa-facebook-f alt"
-              ><span class="label">Facebook</span></a
-            >
-          </li>
-          <li>
-            <a href="#" class="icon brands fa-instagram alt"
-              ><span class="label">Instagram</span></a
-            >
-          </li>
-          <li>
-            <a href="#" class="icon brands fa-github alt"
-              ><span class="label">GitHub</span></a
-            >
-          </li>
-          <li>
-            <a href="#" class="icon brands fa-dribbble alt"
-              ><span class="label">Dribbble</span></a
-            >
-          </li>
-        </section>
-        <p class="copyright">
-          &copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.
-        </p>
-      </footer>
     </div>
 
-    <!-- Scripts -->
-    <script src="/src/js/jquery.min.js"></script>
-    <script src="/src/js/jquery.scrollex.min.js"></script>
-    <script src="/src/js/jquery.scrolly.min.js"></script>
-    <script src="/src/js/browser.min.js"></script>
-    <script src="/src/js/breakpoints.min.js"></script>
-    <script src="/src/js/util.js"></script>
-    <script src="/src/js/main.js"></script>
+    <script>
+      document
+        .querySelector("form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          var id = document.getElementById("id").value;
+          var password = document.getElementById("password").value;
+
+          // Simulate database check
+          var exID = "user456"; // Replace with your database check logic
+          var exPW = "pass456"; // Replace with your database check logic
+
+          if (id === exID && password === exPW) {
+            // 로그인 성공 시 logInFlag를 localStorage에 설정
+            localStorage.setItem("logInFlag", "1"); // 1 means logged in
+            alert("Login successful!");
+            window.location.href = "index.html"; // 로그인 후 index.html로 이동
+          } else {
+            alert("Invalid username or password.");
+          }
+        });
+    </script>
   </body>
-</html>
+</xmlns:th=>

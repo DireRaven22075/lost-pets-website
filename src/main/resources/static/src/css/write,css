@@ -1,0 +1,90 @@
+/* 공통 스타일 */
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Inter", Arial, sans-serif;
+        background-color: #f5f5f5; /* 전체 배경을 회색으로 */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      .wrapper {
+        width: 200%;
+        max-width: 1200px;
+        background-color: white;
+        padding: 25px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+      }
+
+      h1 {
+        text-align: center;
+        font-weight: 600;
+        font-size: 40px;
+        margin-bottom: 40px;
+        color: black;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 30px; /* 폼 요소 간격 */
+      }
+
+      label {
+        font-weight: bold;
+        font-size: 20px;
+        color: #000000;
+        margin-bottom: 10px; /* 라벨과 입력 필드 간격 */
+      }
+
+      /* 회색 배경을 원하는 부분에만 적용 */
+      .form-section {
+        background-color: #f0f0f0; /* 회색 배경 */
+        padding: 20px; /* 양옆에 패딩 */
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px; /* 요소 간격 */
+      }
+
+      /* 입력 필드 크기 조정 */
+      input,
+      select,
+      textarea,
+      button {
+        width: 95%;
+        padding: 12px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        font-size: 16px;
+        color: #828282;
+        margin-bottom: 20px; /* 요소 간격 */
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 150px;
+      }
+
+      button {
+        background-color: #000000;
+        color: white;
+        font-weight: bold;
+        font-size: 20px;
+        border: none;
+        cursor: pointer;
+        padding: 16px;
+      }
+
+      button:hover {
+        background-color: #333333;
+      }
+
+      /* 파일 첨부 스타일 */
+      #uploadImage {
+        padding: 8px;
+        font-size: 14px;
+      }

@@ -71,7 +71,7 @@ public class ViewController {
    ///</summary>
    @GetMapping("/ami")
    public ModelAndView ami(HttpServletRequest request) {
-       ModelAndView mav = buildModelAndView(request, "/ami");
+       ModelAndView mav = buildModelAndView(request, "/userinfo");
        return mav;
    }
    ///<summary>

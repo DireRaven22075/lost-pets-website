@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import team.ccnu.project.data.request.SignUpDTO;
+import team.ccnu.project.domain.entity.User;
 import team.ccnu.project.service.UserService;
+import team.ccnu.project.data.request.UpdateDTO;
 
 @RestController
 @RequestMapping("/api/users")
@@ -33,22 +35,22 @@ public class UserController {
         try {
             if (userService.isExistID(dto.getId())) {
                 return ResponseEntity.status(HttpStatus.CONFLICT).body("""
-                {"status": "error", "message": "ID is already exist"}
-                """);
+                        {"status": "error", "message": "ID is already exist"}
+                        """);
             }
             if (userService.isExistEMail(dto.getMail())) {
                 return ResponseEntity.status(HttpStatus.CONFLICT).body("""
-                {"status": "error", "message": "E-Mail is already exist"}
-                """);
+                        {"status": "error", "message": "E-Mail is already exist"}
+                        """);
             }
             userService.signUp(dto);
             return ResponseEntity.ok().body("""
-            {"status": "success", "message": "Register Success"}
-            """);
+                    {"status": "success", "message": "Register Success"}
+                    """);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("""
-            {"status": "error", "message": "Internal Server Error"}
-            """);
+                    {"status": "error", "message": "Internal Server Error"}
+                    """);
         }
     }
 
@@ -59,26 +61,33 @@ public class UserController {
     @DeleteMapping("/{mem}")
     public ResponseEntity<?> apiDeleteUser(HttpServletRequest request, @PathVariable Long mem) {
         HttpSession session = request.getSession();
-        if (session == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("""
-            {"status": "error", "message": "session is null"}
-            """);
-        }
-        if (session.getAttribute("SN") != mem) {
+        if (session == null || session.getAttribute("user") == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("""
-            
+                    {"status": "error", "message": "Unauthorized Request"}
+                    """);
+        }
+        try {
+            session.invalidate();
+            User user = userService.findById(session.getAttribute("user.id").toString());
+            user.setRole('B');
+            userService.update(user);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("""
+                 {"status": "error", "message": "Internal Server Error"}   
             """);
         }
-        session.invalidate();
-        //TODO : 구현 필요
-        return ResponseEntity.ok().body("{\"status\":\"success\"}");
+        return ResponseEntity.status(HttpStatus.OK).body("""
+            {"status": "success", "message": "Success"}   
+        """);
     }
 
     /// <summary>
     /// 회원정보 업데이트
     /// </summary>
     @PutMapping("/{mem}")
-    public ResponseEntity<?> apiUpdateUser(HttpServletRequest request, @PathVariable Long mem) {
+    public ResponseEntity<?> apiUpdateUser(HttpServletRequest request,
+                                           @PathVariable Long mem,
+                                           @RequestBody UpdateDTO dto) {
         HttpSession session = request.getSession();
         if (session == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"status\": \"session not found\"}");
@@ -86,7 +95,6 @@ public class UserController {
         if (session.getAttribute("SN") != mem) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"status\": \"unauthorized\"}");
         }
-        JSONObject obj = new JSONObject(request.getParameter("json"));
         //TODO : 서비스 측 구현
 
         return ResponseEntity.ok().body("{\"status\":\"success\"}");

@@ -23,7 +23,10 @@ public class UserService {
         user.setRole('U');
         repos.save(user);
     }
-
+    public void update(User user) {
+        repos.save(user);
+        return;
+    }
     public void signUp(SignUpDTO dto) {
         User user = new User();
         user.setId(dto.getId());
@@ -47,5 +50,15 @@ public class UserService {
     }
     public boolean isExistEMail(String email) {
         return repos.findByEmail(email) != null;
+    }
+
+    public User findByEmail(String email) {
+        return repos.findByEmail(email);
+    }
+    public User findById(String id) {
+        return repos.findById(id);
+    }
+    public User findBySn(Long sn) {
+        return repos.findBySn(sn);
     }
 }

@@ -10,18 +10,18 @@
     <div class="login-container">
       <div class="login-box">
         <h1>Log In</h1>
-        <form>
+        <form id="Form">
           <label for="id">ID</label>
-          <input type="text" id="id" placeholder="Value" />
+          <input type="text" id="id" name="id" placeholder="Value" />
 
           <label for="password">Password</label>
-          <input type="password" id="password" placeholder="Value" />
+          <input type="password" id="password" name="pw" placeholder="Value" />
 
           <button type="submit" class="btn">Sign In</button>
           <button
             type="button"
             class="btn secondary"
-            onclick="window.location.href='signup.html'"
+            onclick="window.location.href='/register'"
           >
             Make Account
           </button>
@@ -35,28 +35,34 @@
         </button>
       </div>
     </div>
-
     <script>
-      document
-        .querySelector("form")
-        .addEventListener("submit", function (event) {
-          event.preventDefault();
-          var id = document.getElementById("id").value;
-          var password = document.getElementById("password").value;
-
-          // Simulate database check
-          var exID = "user456"; // Replace with your database check logic
-          var exPW = "pass456"; // Replace with your database check logic
-
-          if (id === exID && password === exPW) {
-            // 로그인 성공 시 logInFlag를 localStorage에 설정
-            localStorage.setItem("logInFlag", "1"); // 1 means logged in
-            alert("Login successful!");
-            window.location.href = "index.html"; // 로그인 후 index.html로 이동
-          } else {
-            alert("Invalid username or password.");
+      const form = document.getElementById("Form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const formData = {
+          id: document.querySelector("input[name=id]").value,
+          pw: document.querySelector("input[name=pw]").value
+        }
+        fetch("/api/auth/login", {
+          method: "POST",
+          credentials: 'include',
+          body: JSON.stringify(formData),
+          headers: {
+            'Content-Type': 'application/json'
           }
-        });
+        })
+                .then(response => response.json())
+                .then(data => {
+                  if (data["status"] == "success") {
+                    alert(data["message"]);
+                    window.location.href = "/";
+                  } else {
+                    document.getElementById("ERROR").innerHTML = data["message"];
+                  }
+                })
+                .catch(error => {
+                  console.error(error);
+                });
+      });
     </script>
   </body>
 </xmlns:th=>

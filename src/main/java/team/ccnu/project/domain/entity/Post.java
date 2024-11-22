@@ -16,14 +16,17 @@ public class Post {
     private long sn;
 
     @Column(name="id")
-    private int id;
+    private long id;
+    //FK
+    @ManyToOne
+    private User owner;
+
     //FK
     @OneToMany
-    private LinkedList<File> files = new LinkedList<>();
+    private LinkedList<Image> files = new LinkedList<>();
+
 
     //DATA COLUMN
     private String title;
     @Lob private String content;
-    @ColumnDefault("0") private Long view;
-    @ColumnDefault("0") private Long like;
 }

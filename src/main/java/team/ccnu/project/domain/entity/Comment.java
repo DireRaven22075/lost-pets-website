@@ -20,6 +20,7 @@ public class Comment {
     //FK
     @ManyToOne
     private User user;
+
     //DATA COLUMN
     private String text;
 }

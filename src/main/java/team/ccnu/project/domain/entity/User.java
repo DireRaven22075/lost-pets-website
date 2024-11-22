@@ -20,6 +20,8 @@ public class User {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long sn;
 
+    //FK
+    
     //DATA COLUMN
     // User ID
     private String id;

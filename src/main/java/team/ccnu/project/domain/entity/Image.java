@@ -1,22 +1,24 @@
 package team.ccnu.project.domain.entity;
 
-import jakarta.persistence.*;
-import lombok.*;
 
-@Getter
-@Setter
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+
+@lombok.Getter
+@lombok.Setter
+@lombok.NoArgsConstructor
 @Entity
 public class Image {
+    //PK
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(nullable = false)
-    private String url;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    private User user;
+    private Long sn;
+    //FK
+    @ManyToOne
+    private Post post;
+    //DATA COLUMN
+    private String path;
 }

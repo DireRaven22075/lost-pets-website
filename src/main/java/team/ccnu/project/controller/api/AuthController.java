@@ -8,11 +8,9 @@ import org.springframework.web.bind.annotation.*;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
-import team.ccnu.project.Utils;
 import team.ccnu.project.data.request.LogInDTO;
 import team.ccnu.project.data.response.UserDTO;
 import team.ccnu.project.domain.entity.User;
-import team.ccnu.project.service.MemberService;
 import team.ccnu.project.service.UserService;
 
 @Controller

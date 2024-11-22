@@ -3,17 +3,41 @@
         font-family: "Inter", sans-serif;
         background-color: #ffffff;
         color: #333;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 70vh;
+        display: block;
+        min-height: 100vh;
       }
 
       .container {
-        width: 1500px;
+        width: 100%;
+        max-width: 1500px;
+        margin: 0 auto;
         display: grid;
         grid-template-columns: 1fr 1.5fr 1.3fr;
         gap: 10px;
+        padding: 0 20px;
+      }
+
+      .edit-btn{
+        width: auto;
+        padding: 10px;
+        background-color: #333;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 13px;
+        cursor: pointer;
+      }
+      .edit-section {
+        display: none;
+        margin-top: 10px;
+      }
+      .edit-section input {
+        margin-right: 10px;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
       }
 
       /* Left Section - Recent Posts */
@@ -159,7 +183,8 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
+        padding: 20px;
       }
 
       .header h1 {

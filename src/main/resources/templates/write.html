@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <title>게시글 작성</title>
     <meta charset="utf-8" />
@@ -10,10 +10,18 @@
     <link rel="stylesheet" type="text/css" href="/src/css/write.css" />
   </head>
   <body>
+    <!-- 상단 헤더 -->
+    <div class="header">
+      <a href="/" class="header-title">Lost Pets Website</a>
+      <div class="header-buttons">
+        <button onclick="logout()">Log Out</button>
+      </div>
+    </div>
+
+    <!-- 게시글 작성 섹션 -->
     <div class="wrapper">
       <h1>게시글 작성</h1>
       <form id="postForm">
-        <!-- 카테고리부터 본문까지를 회색 배경으로 묶기 -->
         <div class="form-section">
           <label for="title">제목</label>
           <input
@@ -41,41 +49,45 @@
     </div>
 
     <script>
-      // Handle form submission and store the post in local storage
+      // 게시글 저장 기능
       document
         .getElementById("postForm")
         .addEventListener("submit", function (event) {
           event.preventDefault();
 
-          // Get form values
-          const category = document.getElementById("category").value;
+          // 입력값 가져오기
           const title = document.getElementById("title").value;
           const content = document.getElementById("content").value;
-          const files = document.getElementById("uploadImage").files[0]; // Getting the uploaded file if any
+          const files = document.getElementById("uploadImage").files[0];
 
-          // Create post object
+          // 게시글 객체 생성
           const newPost = {
-            category: category,
             title: title,
             content: content,
-            files: files ? URL.createObjectURL(files) : null, // If file is uploaded, create object URL
-            date: new Date().toLocaleString(), // Add the current date
+            files: files ? URL.createObjectURL(files) : null, // 업로드된 파일 URL 생성
+            date: new Date().toLocaleString(),
             view: 0,
             comment: 0,
           };
 
-          // Get existing posts from localStorage (if any)
+          // 기존 게시글 가져오기
           let posts = JSON.parse(localStorage.getItem("posts")) || [];
+          posts.push(newPost); // 새 게시글 추가
 
-          // Add the new post to the list
-          posts.push(newPost);
-
-          // Save updated list back to localStorage
+          // localStorage에 저장
           localStorage.setItem("posts", JSON.stringify(posts));
 
-          // Redirect to the list page to view the new post
+          // 게시글 목록 페이지로 이동
+          alert("게시글이 성공적으로 저장되었습니다!");
           window.location.href = "report.html";
         });
+
+      // 로그아웃 기능
+      function logout() {
+        localStorage.setItem("logInFlag", 0);
+        alert("로그아웃되었습니다.");
+        window.location.href = "/";
+      }
     </script>
   </body>
 </html>

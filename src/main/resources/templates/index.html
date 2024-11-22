@@ -10,7 +10,7 @@
   <!-- 네비게이션 -->
   <div class="navigation">
     <div class="title">Lost Pets Website</div>
-    <a id="getStartedButton" href="login.html" class="btn get-started-button">Get Started</a>
+    <a id="getStartedButton" href="/login" class="btn get-started-button">Get Started</a>
   </div>
 
   <!-- 메인 이미지 -->
@@ -34,7 +34,7 @@
     <h2>게시판 소개</h2>
 
     <div class="board-item">
-      <img src="/static/src/img/user1.jpg" alt="Report" class="board-image">
+      <img src="/src/img/user1.jpg" alt="Report" class="board-image">
       <div class="board">
         <h3>신고 게시판</h3>
         <p>유실 동물 발견 시 동물 정보를 입력해 유실 동물 신고를 할 수 있는 게시판</p>
@@ -43,7 +43,7 @@
     </div>
 
     <div class="board-item">
-      <img src="/static/src/img/user2.jpg" alt="Adoption" class="board-image">
+      <img src="/src/img/user2.jpg" alt="Adoption" class="board-image">
       <div class="board">
         <h3>입양 게시판</h3>
         <p>보호가 필요하거나 임시 보호 중인 유실 동물을 입양할 수 있는 게시판</p>
@@ -52,7 +52,7 @@
     </div>
 
     <div class="board-item">
-      <img src="/static/src/img/user3.jpg" alt="Education" class="board-image">
+      <img src="/src/img/user3.jpg" alt="Education" class="board-image">
       <div class="board">
         <h3>교육 게시판</h3>
         <p>유실 동물 발견 또는 입양 시 필요한 교육 정보를 공유하는 게시판</p>
@@ -120,8 +120,8 @@
   <div class="footer">
     <h2>Website for reporting and protection of pets</h2><br>
     <div class="signup-buttons">
-      <a href="login.html">Sign In</a>
-      <a href="signup.html">Sign Up</a>
+      <a href="/login">Sign In</a>
+      <a href="/register">Sign Up</a>
     </div><br><br>
     <p>Information.<br>
       이 사이트는 유기/반려 동물 신고 및 보호를 목적으로 만들어졌습니다.<br>
@@ -140,9 +140,9 @@
 
       const getStartedButton = document.getElementById("getStartedButton");
       if (logInFlag == 1) {
-        getStartedButton.href = "userinfo.html";
+        getStartedButton.href = "/ami";
       } else {
-        getStartedButton.href = "login.html";
+        getStartedButton.href = "/login";
       }
     });
   </script>

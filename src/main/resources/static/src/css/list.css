@@ -18,10 +18,44 @@ body, html {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2% 5%;
-    background-color: #FFFFFF;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+    padding: 10px 20px;
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .header .title {
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+  }
+
+  .header .menu {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+  }
+
+  .header .menu span {
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+    cursor: pointer;
+  }
+
+  .header .menu .main-btn {
+    font-size: 16px;
+    font-weight: bold;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 15px;
+    cursor: pointer;
+  }
+
+  .header .menu .main-btn:hover {
+    background-color: #333;
+  }
 
 .site-name {
     font-size: 2rem;

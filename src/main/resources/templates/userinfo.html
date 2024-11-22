@@ -12,34 +12,18 @@
       <div class="header">
         <h1>User Information</h1>
         <div class="buttons">
-          <button onclick="location.href='index.html'">메인 페이지</button>
+          <button onclick="location.href='/'">메인 페이지</button>
           <button id="logoutButton">Logout</button>
         </div>
       </div>
 
-      <!-- Left Section: Recent Posts -->
+      <!-- Recent Posts -->
       <div class="recent-posts">
         <h2>최근 작성한 게시글</h2>
         <div id="recent-posts-list"></div>
       </div>
-      <script src="js/test.js"></script>
 
-      <!-- Left Section: Recent Posts
-    <div class="reviews">
-      <h1>최근 작성한 게시글</h1>
-      <div class="review-box">
-        <a href="#">게시글 1</a>
-      </div>
-      <div class="review-box">
-        <a href="#">게시글 2</a>
-      </div>
-      <div class="review-box">
-        <a href="#">게시글 3</a>
-      </div>
-    </div>
-     -->
-
-      <!-- Center Section: Profile Picture -->
+      <!-- Profile Section -->
       <div class="profile">
         <img id="profile-pic" src="default-profile.png" alt="Profile Picture" />
         <label>
@@ -55,30 +39,54 @@
         </label>
       </div>
 
-      <!-- Right Section: User Info -->
+      <!-- User Info -->
       <div class="user-info">
         <div class="info">
           <div><strong>Name:</strong> <span id="user-name">user</span></div>
           <div>
-            <strong>Address:</strong> <span id="user-address">청주</span>
+            <strong>Address:</strong>
+            <span id="user-address">청주</span>
+            <button class="edit-btn" data-target="address">Edit</button>
+            <div class="edit-section" id="edit-address">
+              <input type="text" placeholder="새로운 주소" id="input-address" />
+              <button class="edit-btn" data-target="address">Confirm</button>
+            </div>
           </div>
           <div>
             <strong>Email address:</strong>
             <span id="user-email">user@mail.com</span>
+            <button class="edit-btn" data-target="email">Edit</button>
+            <div class="edit-section" id="edit-email">
+              <input
+                type="email"
+                placeholder="새로운 이메일"
+                id="input-email"
+              />
+              <button class="edit-btn" data-target="email">Confirm</button>
+            </div>
           </div>
-          <div><strong>ID:</strong> <span id="user-id">petlover</span></div>
+          <div>
+            <strong>ID:</strong>
+            <span id="user-id">petlover</span>
+            <button class="edit-btn" data-target="id">Edit</button>
+            <div class="edit-section" id="edit-id">
+              <input type="text" placeholder="새로운 ID" id="input-id" />
+              <button class="edit-btn" data-target="id">Confirm</button>
+            </div>
+          </div>
           <div>
             <strong>PW:</strong>
             <span id="user-pw-length">******** (8 characters)</span>
+            <button class="edit-btn" data-target="pw">Edit</button>
+            <div class="edit-section" id="edit-pw">
+              <input
+                type="password"
+                placeholder="새로운 비밀번호"
+                id="input-pw"
+              />
+              <button class="edit-btn" data-target="pw">Confirm</button>
+            </div>
           </div>
-        </div>
-
-        <div class="update">
-          <input type="text" id="new-id" placeholder="New ID" />
-          <input type="password" id="new-password" placeholder="New Password" />
-          <input type="email" id="new-email" placeholder="New Email" />
-          <input type="text" id="new-address" placeholder="New Address" />
-          <button id="update-btn">Update</button>
         </div>
       </div>
     </div>
@@ -98,84 +106,50 @@
           }
         });
 
-      // 사용자 정보 업데이트 처리
-      document.getElementById("update-btn").addEventListener("click", () => {
-        const newId = document.getElementById("new-id").value;
-        const newPassword = document.getElementById("new-password").value;
-        const newEmail = document.getElementById("new-email").value;
-        const newAddress = document.getElementById("new-address").value;
+      // Edit 버튼 클릭 시 input 표시
+      document.querySelectorAll(".edit-btn").forEach((button) => {
+        button.addEventListener("click", function () {
+          const target = this.getAttribute("data-target");
+          document.getElementById(`edit-${target}`).style.display = "block";
+        });
+      });
 
-        // 정보 업데이트
-        if (newId) {
-          document.getElementById("user-id").textContent = newId;
-        }
-        if (newPassword) {
-          const passwordLength = newPassword.length;
-          const maskedPassword = "*".repeat(passwordLength); // 비밀번호를 *로 표시
-          document.getElementById(
-            "user-pw-length"
-          ).textContent = `${maskedPassword} (${passwordLength} characters)`;
-        }
-        if (newEmail) {
-          document.getElementById("user-email").textContent = newEmail;
-        }
-        if (newAddress) {
-          document.getElementById("user-address").textContent = newAddress;
-        }
+      // Confirm 버튼 클릭 시 정보 업데이트
+      document.querySelectorAll(".confirm-btn").forEach((button) => {
+        button.addEventListener("click", function () {
+          const target = this.getAttribute("data-target");
+          const inputField = document.getElementById(`input-${target}`);
+          const newValue = inputField.value;
 
-        // 알림 표시
-        alert(
-          `업데이트 내역입니다:\nID: ${newId || "Not Changed"}\nPassword: ${
-            newPassword ? "Updated" : "Not Changed"
-          }\nEmail: ${newEmail || "Not Changed"}\nAddress: ${
-            newAddress || "Not Changed"
-          }`
-        );
+          if (newValue.trim()) {
+            if (target === "pw") {
+              const maskedPassword = "*".repeat(newValue.length);
+              document.getElementById(
+                `user-${target}-length`
+              ).textContent = `${maskedPassword} (${newValue.length} characters)`;
+            } else {
+              document.getElementById(`user-${target}`).textContent = newValue;
+            }
 
-        // 입력 필드 초기화
-        document.getElementById("new-id").value = "";
-        document.getElementById("new-password").value = "";
-        document.getElementByById("new-email").value = "";
-        document.getElementById("new-address").value = "";
+            alert(`${target} 정보가 업데이트되었습니다.`);
+          } else {
+            alert(`${target} 값을 입력하세요.`);
+          }
+
+          // 입력 필드 초기화 및 숨김 처리
+          inputField.value = "";
+          document.getElementById(`edit-${target}`).style.display = "none";
+        });
       });
 
       // 로그아웃 처리
-      // 로그아웃 버튼 클릭 시
       document
         .getElementById("logoutButton")
         .addEventListener("click", function () {
-          // 로그아웃 처리 후 localStorage에서 로그인 상태를 0으로 설정
-          localStorage.setItem("logInFlag", 0); // 로그아웃 상태로 설정
+          localStorage.setItem("logInFlag", 0);
           alert("로그아웃 되었습니다.");
-          window.location.href = "index.html"; // 로그아웃 후 index.html로 리디렉션
+          window.location.href = "index.html";
         });
-
-      document.addEventListener("DOMContentLoaded", function () {
-        // 로그아웃 버튼을 클릭하면 localStorage의 로그인 상태를 변경하고 페이지 이동
-        const logoutButton = document.getElementById("logoutButton");
-
-        if (logoutButton) {
-          logoutButton.addEventListener("click", function () {
-            // 로그아웃 상태로 localStorage 업데이트
-            localStorage.setItem("logInFlag", 0); // 로그아웃 상태로 설정
-            alert("로그아웃 되었습니다.");
-            window.location.href = "index.html"; // index.html로 리디렉션
-          });
-        }
-
-        // 로그인 상태를 확인하여 버튼 링크를 변경하는 부분
-        let logInFlag = localStorage.getItem("logInFlag");
-
-        const getStartedButton = document.getElementById("getStartedButton");
-
-        if (logInFlag == 1) {
-          alert("로그인 상태입니다. 사용자 정보 페이지로 이동합니다.");
-          getStartedButton.href = "userinfo.html"; // 로그인 상태일 때 유저 정보 페이지로 연결
-        } else if (logInFlag == 0 || logInFlag === null) {
-          alert("로그아웃 상태입니다. 로그인 페이지로 이동합니다.");
-          getStartedButton.href = "login.html"; // 비로그인 상태일 때 로그인 페이지로 연결
-        }
-      });
     </script>
   </body>
 </html>

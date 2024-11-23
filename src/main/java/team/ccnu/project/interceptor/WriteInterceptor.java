@@ -67,7 +67,7 @@ public class WriteInterceptor implements HandlerInterceptor {
     }
 }
 
-//// To Do ////
+//// To Do //////
 // 세션 관리 로직 개선: 현재 코드는 세션이 새로 생성 => 로그인 페이지로 무조건 리다이렉션. 이를 좀 더 정교하게 수정. 세션 관리 로직
 // 권한 체크 미구현: '새로운 세션이면 true 리턴X', '로그인 안됐는데 게시물 작성하면 false리턴' 기능 구현 
 

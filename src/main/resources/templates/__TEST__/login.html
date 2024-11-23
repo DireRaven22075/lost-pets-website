@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/src/js/main.js"></script>
+</head>
+
+<body>
+
+    <form id="Form">
+        <input required type="text" maxlength="20" name="id" placeholder="ID"/>
+        <input required type="password" maxlength="30" name="pw" placeholder="Password"/>
+        <p id="ERROR"></p>
+        <button type="submit">LOGIN</button>
+    </form>
+    <button onclick="window.location.href='/'">Main Page</button>
+
+<script>
+    const form = document.getElementById("Form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const formData = {
+            id: document.querySelector("input[name=id]").value,
+            pw: document.querySelector("input[name=pw]").value
+        }
+        fetch("/api/auth/login", {
+            method: "POST",
+            credentials: 'include',
+            body: JSON.stringify(formData),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data["status"] == "success") {
+                    alert(data["message"]);
+                    window.location.href = "/";
+                } else {
+                    document.getElementById("ERROR").innerHTML = data["message"];
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    });
+</script>
+</body>
+
+</html>

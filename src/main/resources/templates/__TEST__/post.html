@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <form id="Form">
+        <input name="title" placeholder="Title" />
+        <input name="content" placeholder="Content" />
+        <p id="ERROR"></p>
+        <button type="submit">submit</button>
+    </form>
+    <button onclick="window.location.href='/login'">Login Page</button>
+    <button onclick="window.location.href='/'">Main Page</button>
+
+    <script>
+        const form = document.getElementById("Form").addEventListener("submit", (e) => {
+            e.preventDefault();
+            const formData = {
+                title: document.querySelector("input[name=title]").value,
+                content: document.querySelector("input[name=content]").value
+            }
+            fetch("/api/boards/1/posts", {
+                method: "POST",
+                credentials: 'include',
+                body: JSON.stringify(formData),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data['status'] === "success") {
+                        window.location.href='/';
+                    }
+                    else {
+                        document.getElementById("ERROR").innerHTML = data["message"];
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        })
+    </script>
+
+</body>
+</html>

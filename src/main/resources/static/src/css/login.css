@@ -76,7 +76,7 @@ input {
 
 .btn.home {
     margin-top: 16px;
-    background-color: #000;
+    background-color: gray;
     color: #fff;
     width: 100%;
 }

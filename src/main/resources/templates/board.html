@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>게시글</title>
+    <link rel="stylesheet" type="text/css" href="/src/css/board.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="navigation">
+        <div class="title">
+          <a href="index.html">Lost Pets Website</a>
+        </div>
+        <div class="menu">
+          <span>입양</span>
+          <span>신고</span>
+          <span>후기</span>
+          <span class="logout-button">로그아웃</span>
+        </div>
+      </div>
+
+      <div class="content-header">
+        <div id="author-name" class="author">작성자: 로딩 중...</div>
+        <div id="post-date" class="date">날짜: 로딩 중...</div>
+      </div>
+
+      <div id="post-title" class="content-title">제목 로딩 중...</div>
+
+      <div class="post-container">
+        <div id="post-content" class="post-content">내용 로딩 중...</div>
+        <div class="post-image"></div>
+      </div>
+
+      <div class="comment-section">
+        <div class="comment-title">댓글 등록</div>
+        <div class="comment-form">
+          <input
+            id="user-name"
+            type="text"
+            placeholder="사용자 이름"
+            readonly
+          />
+          <textarea id="comment-input" placeholder="댓글 내용 입력"></textarea>
+          <div class="submit-btn" id="submit-comment">작성 완료</div>
+        </div>
+        <div id="comments-list" class="comments-list">댓글 불러오는 중...</div>
+      </div>
+
+      <div class="footer">
+        &copy; 2024 Lost Pets Website. All Rights Reserved.
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const comments = [];
+
+        // 댓글 렌더링 함수
+        function renderComments() {
+          const commentsList = document.getElementById("comments-list");
+          commentsList.innerHTML = "";
+
+          comments.forEach((comment) => {
+            const commentItem = document.createElement("div");
+            commentItem.classList.add("comment-item");
+            commentItem.innerHTML = `
+            <span class="comment-author">${comment.author}</span>
+            <span class="comment-content">${comment.content}</span>
+          `;
+            commentsList.appendChild(commentItem);
+          });
+        }
+
+        // 댓글 추가 함수
+        document
+          .getElementById("submit-comment")
+          .addEventListener("click", () => {
+            const userName =
+              document.getElementById("user-name").value || "익명 사용자";
+            const commentContent =
+              document.getElementById("comment-input").value;
+
+            if (!commentContent.trim()) {
+              alert("댓글 내용을 입력하세요.");
+              return;
+            }
+
+            comments.push({ author: userName, content: commentContent });
+            renderComments();
+            document.getElementById("comment-input").value = "";
+          });
+
+        // 로그아웃 버튼 이벤트
+        document
+          .querySelector(".logout-button")
+          .addEventListener("click", () => {
+            alert("로그아웃 되었습니다.");
+            localStorage.setItem("logInFlag", 0);
+            window.location.href = "index.html";
+          });
+
+        // 로그아웃 버튼 클릭 시
+
+        renderComments();
+      });
+    </script>
+  </body>
+</html>

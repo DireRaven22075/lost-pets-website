@@ -110,6 +110,23 @@
     .board a:hover {
       background: #333333;
     }
+    .get-started-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 24px;
+        background-color: #333;
+        color: #fff;
+        text-decoration: none; /* 링크 스타일 없애기 */
+        border-radius: 5px;
+        font-size: 16px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s ease;
+      }
+      
+      .get-started-button:hover {
+        background-color: #555;
+      }
     .institutions {
     padding: 40px 80px;
     display: flex;

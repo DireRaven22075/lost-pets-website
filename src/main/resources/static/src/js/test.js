@@ -28,3 +28,48 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error("recent-posts-list div not found!");
     }
 });
+
+const logInFlag = localStorage.getItem("logInFlag"); // Assuming logInFlag is stored in localStorage
+
+        function redirectToWrite() {
+          if (logInFlag == 1) {
+            window.location.href = "/write"; // 로그인 상태일 때 글쓰기 페이지로 연결
+          } else if (logInFlag == 0 || logInFlag === null) {
+            window.location.href = "/login"; // 비로그인 상태일 때 로그인 페이지로 연결
+          }
+        }
+
+// Function to load posts from localStorage and display them
+      function loadBulletin() {
+        const bulletinList = document.getElementById("bulletin-list");
+
+        // Get posts from localStorage
+        const posts = JSON.parse(localStorage.getItem("posts")) || [];
+
+        // Loop through each post and create a row
+        posts.forEach((post) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+                    <td class="bulletin-title">${post.title}</td>
+                    <td>${post.view}</td>
+                    <td>${post.date}</td>
+                    <td>${post.comment}</td>
+                `;
+          // Add click event to the title for redirection to board.html
+          row
+            .querySelector(".bulletin-title")
+            .addEventListener("click", function () {
+              window.location.href = "/board";
+            });
+          bulletinList.appendChild(row);
+        });
+      }
+
+      // Load the posts when the page is loaded
+      window.onload = loadBulletin;
+
+      function logout() {
+        localStorage.setItem("logInFlag", 0);
+        alert("로그아웃되었습니다.");
+        window.location.href = "/";
+        }

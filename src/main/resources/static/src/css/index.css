@@ -127,6 +127,12 @@
       .get-started-button:hover {
         background-color: #555;
       }
+      .header-title {
+        font-size: 25px;
+        font-weight: bold;
+        color: black;
+        text-decoration: none;
+      }
     .institutions {
     padding: 40px 80px;
     display: flex;

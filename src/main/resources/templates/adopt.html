@@ -10,12 +10,12 @@
     <div class="container">
       <!-- Header -->
       <div class="header">
-        <div class="site-name">Lost Pets Website</div>
+        <a href="/" class="header-title">Lost Pets Website</a>
         <nav class="nav-items">
-          <a href="report.html">신고</a>
-          <a href="adoption.html">입양</a>
-          <a href="education.html">교육</a>
-          <a class="button" href="/">Main</a>
+          <a href="/report">신고</a>
+          <a href="/adopt">입양</a>
+          <a href="/education">교육</a>
+          <a class="button" onclick="logout()">Log Out</a>
         </nav>
       </div>
 
@@ -23,16 +23,14 @@
       <div class="banner">
         <div class="banner-text">
           <h1>Adoption</h1>
-          <p>Subheading for description or instructions</p>
+          <p>Please post about animals waiting for adoption.</p>
         </div>
       </div>
 
       <!-- Bulletin Table -->
       <div class="bulletin-header">
         <h2>Bulletin</h2>
-        <button class="write-button" onclick="location.href='write.html'">
-          Write
-        </button>
+        <button class="write-button" onclick="redirectToWrite()">Write</button>
       </div>
       <table>
         <thead>
@@ -49,6 +47,6 @@
       </table>
     </div>
 
-    <script src="/js/list.js"></script>
+    <script src="/src/js/test.js"></script>
   </body>
 </html>

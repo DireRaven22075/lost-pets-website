@@ -6,14 +6,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import team.ccnu.project.data.request.UploadPostDTO;
 import team.ccnu.project.data.response.PostDTO;
-import team.ccnu.project.domain.entity.Post;
-import team.ccnu.project.service.PostService;
 
 @RestController
 @RequestMapping("/api/posts/{bbs}")
 public class PostController {
+
+    @PostMapping
+    public ResponseEntity<?> apiUploadPost(
+            @RequestParam("files") MultipartFile[] files,
+            @RequestParam("data") UploadPostDTO data,
+            @PathVariable String bbs) {
+        //파일 저장 경로 = uploads/{post.sn 값을 이용해서 작성}
+        return ResponseEntity.ok().build();
+    }
 }
 /*
     @Autowired

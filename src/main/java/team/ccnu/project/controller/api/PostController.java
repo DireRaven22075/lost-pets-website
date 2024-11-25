@@ -6,10 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import team.ccnu.project.data.request.UploadPostDTO;
+import team.ccnu.project.data.response.PostDTO;
+import team.ccnu.project.domain.entity.Post;
+import team.ccnu.project.service.PostService;
 
 @RestController
 @RequestMapping("/api/posts/{bbs}")
 public class PostController {
+}
+/*
     @Autowired
     PostService postService;
     /// <summary>
@@ -19,11 +25,12 @@ public class PostController {
     @GetMapping
     public ResponseEntity<List<PostDTO>> getAllPosts(@PathVariable Long boardId) {
         // Fetch all posts for the given boardId
-        List<Post> posts = postService.getAllPostsByBoardId(boardId);
-        List<PostDTO> postDTOs = posts.stream()
-                                      .map(post -> new PostDTO(post.getOwner(), post.getTitle(), post.getContent(), post.getView()))
-                                      .collect(Collectors.toList());
-        return ResponseEntity.ok(postDTOs);
+//        List<Post> posts = postService.getAllPostsByBoardId(boardId);
+//        List<PostDTO> postDTOs = posts.stream()
+//                                      .map(post -> new PostDTO(post.getOwner(), post.getTitle(), post.getContent(), post.getView()))
+//                                      .collect(Collectors.toList());
+//        return ResponseEntity.ok(postDTOs);
+        return ResponseEntity.ok().build();
     }
 
     /// <summary>
@@ -38,7 +45,7 @@ public class PostController {
             Post post = new Post();
             post.setTitle(dto.getTitle());
             post.setContent(dto.getContent());
-            post.setBoardId(boardId);
+            post.setId(boardId);
             postService.savePost(post);
             return ResponseEntity.status(HttpStatus.CREATED).body("{\"status\": \"success\", \"message\": \"Post created successfully\"}");
         } catch (Exception e) {
@@ -52,12 +59,12 @@ public class PostController {
     /// </summary>
     @GetMapping("/{postId}")
     public ResponseEntity<PostDTO> get(@PathVariable Long boardId, @PathVariable Long postId) {
-        Post post = postService.getPostByIdAndBoardId(postId, boardId);
+        Post post = postService.getPostBySn(postId);
         if (post == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
-        PostDTO postDTO = new PostDTO(post.getOwner(), post.getTitle(), post.getContent(), post.getView());
-        return ResponseEntity.ok(postDTO);
+//        PostDTO postDTO = new PostDTO(post.getOwner(), post.getTitle(), post.getContent(), post.getView());
+        return ResponseEntity.ok().build();
     }
 
     /// <summary>
@@ -67,7 +74,7 @@ public class PostController {
     @PutMapping("/{postId}")
     public ResponseEntity<?> update(@PathVariable long boardId, @PathVariable Long postId, @RequestBody UploadPostDTO dto) {
         try {
-            Post post = postService.getPostByIdAndBoardId(postId, boardId);
+            Post post = postService.getPostBySnAndId(postId, boardId);
             if (post == null) {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"status\": \"error\", \"message\": \"Post not found\"}");
             }
@@ -95,4 +102,6 @@ public class PostController {
     }
 
     
+
 }
+ */

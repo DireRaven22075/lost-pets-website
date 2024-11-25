@@ -13,6 +13,7 @@ public class UserDTO {
     private String id;
     private String name;
     private String mail;
+    private char role = 'U';
 
     public UserDTO(User user) {
         this.sn = user.getSn();

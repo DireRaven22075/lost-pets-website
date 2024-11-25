@@ -10,4 +10,6 @@ import lombok.*;
 public class UploadPostDTO {
     private String title;
     private String content;
+    private char status;
+    private Long uid;
 }

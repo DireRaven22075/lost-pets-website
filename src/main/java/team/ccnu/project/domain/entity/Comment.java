@@ -22,5 +22,5 @@ public class Comment {
     private User user;
 
     //DATA COLUMN
-    private String text;
+    private String content;
 }

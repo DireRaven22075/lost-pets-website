@@ -13,5 +13,4 @@ public class PostDTO {
     private String title;
     private String content;
     private Long view;
-    private Long liked;
 }

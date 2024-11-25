@@ -9,13 +9,13 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import team.ccnu.project.domain.entity.Post;
 import team.ccnu.project.domain.entity.User;
-import team.ccnu.project.service.PostService;
+//import team.ccnu.project.service.PostService;
 
 @Component
 public class WriteInterceptor implements HandlerInterceptor {
 
-    @Autowired
-    private PostService postService;
+//    @Autowired
+//    private PostService postService;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -39,7 +39,7 @@ public class WriteInterceptor implements HandlerInterceptor {
 
         // 기존 글 수정의 경우
         try {
-            Post post = postService.getPostBySn(Long.parseLong(postId));
+            Post post = new Post();
             if (post == null) {
                 response.sendError(HttpServletResponse.SC_NOT_FOUND, "Post not found");
                 return false;

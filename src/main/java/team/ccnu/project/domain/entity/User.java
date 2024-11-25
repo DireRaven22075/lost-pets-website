@@ -1,12 +1,9 @@
 package team.ccnu.project.domain.entity;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.Builder;
 
 @lombok.Getter
@@ -18,6 +15,7 @@ import lombok.Builder;
 public class User {
     //PK
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="sn")
     private long sn;
 
     //FK
@@ -32,6 +30,6 @@ public class User {
     // Email Address
     private String email;
 
-    @ColumnDefault("U")
+    @ColumnDefault("'U'")
     private char role;
 }

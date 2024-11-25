@@ -26,7 +26,7 @@ public class PostController {
     /// 특정 게시판 내 모든 게시글 불러오기
     /// </summary>
     @GetMapping
-    public ResponseEntity<List<PostDTO>> getAllPosts(@PathVariable String boardId) {
+    public ResponseEntity<List<PostDTO>> getAllPosts(@PathVariable Long boardId) {
         // Fetch all posts for the given boardId
         List<Post> posts = postService.getAllPostsByBoardId(boardId);
         List<PostDTO> postDTOs = posts.stream()
@@ -42,7 +42,7 @@ public class PostController {
     /// [POST] 특정 게시판 내 게시글을 추가하하는 함수
     /// </summary>
     @PostMapping
-    public ResponseEntity<?> apiAddPost(@PathVariable String boardId, @RequestBody UploadPostDTO dto) {
+    public ResponseEntity<?> apiAddPost(@PathVariable Long boardId, @RequestBody UploadPostDTO dto) {
         try {
             Post post = new Post();
             post.setTitle(dto.getTitle());
@@ -60,7 +60,7 @@ public class PostController {
     /// TODO : 구현 필요
     /// </summary>
     @GetMapping("/{postId}")
-    public ResponseEntity<PostDTO> get(@PathVariable String boardId, @PathVariable String postId) {
+    public ResponseEntity<PostDTO> get(@PathVariable Long boardId, @PathVariable Long postId) {
         Post post = postService.getPostByIdAndBoardId(postId, boardId);
         if (post == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
@@ -74,7 +74,7 @@ public class PostController {
     /// TODO : 구현 필요
     /// </summary>
     @PutMapping("/{postId}")
-    public ResponseEntity<?> update(@PathVariable String boardId, @PathVariable String postId, @RequestBody UploadPostDTO dto) {
+    public ResponseEntity<?> update(@PathVariable long boardId, @PathVariable Long postId, @RequestBody UploadPostDTO dto) {
         try {
             Post post = postService.getPostByIdAndBoardId(postId, boardId);
             if (post == null) {
@@ -94,7 +94,7 @@ public class PostController {
     /// TODO : 구현 필요
     /// </summary>
     @DeleteMapping("/{postId}")
-    public ResponseEntity<?> delete(@PathVariable String boardId, @PathVariable String postId) {
+    public ResponseEntity<?> delete(@PathVariable Long boardId, @PathVariable Long postId) {
         try {
             postService.deletePostByIdAndBoardId(postId, boardId);
             return ResponseEntity.ok("{\"status\": \"success\", \"message\": \"Post deleted successfully\"}");

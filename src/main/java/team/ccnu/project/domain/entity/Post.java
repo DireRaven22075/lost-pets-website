@@ -2,8 +2,15 @@ package team.ccnu.project.domain.entity;
 
 import java.util.LinkedList;
 
-import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
+import jakarta.persistence.OneToMany;
 
 @lombok.Getter
 @lombok.Setter
@@ -26,4 +33,7 @@ public class Post {
     @Lob private String content;
     @ColumnDefault("0") private Long view;
     @ColumnDefault("0") private Long like;
+    
+    // 게시판 ID
+    private Long boardId;
 }

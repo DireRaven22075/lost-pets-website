@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
-<body>
-    <header th:fragment="header" id="View-Header" class="view header">
-
-    </header>
-</body>
-
+  <body>
+    <!-- Header -->
+    <div class="header">
+      <a href="/" class="header-title">Lost Pets Website</a>
+      <nav class="nav-items">
+        <a href="/report">신고</a>
+        <a href="/adopt">입양</a>
+        <a href="/education">교육</a>
+        <a class="button" onclick="logout()">Log Out</a>
+      </nav>
+    </div>
+  </body>
 </html>

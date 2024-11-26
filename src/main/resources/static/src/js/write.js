@@ -26,9 +26,10 @@ document
   // localStorage에 저장
   localStorage.setItem("posts", JSON.stringify(posts));
 
+  const previousPage = document.referrer;
   // 게시글 목록 페이지로 이동
   alert("게시글이 성공적으로 저장되었습니다!");
-  window.location.href = "report.html";
+  window.location.href = previousPage;
 });
 
 // 로그아웃 기능

@@ -7,7 +7,9 @@ document.addEventListener("DOMContentLoaded", function() {
     } else {
       getStartedButton.href = "/login";
     }
+    
   });
+  
 
   function logout() {
     localStorage.setItem("logInFlag", 0);

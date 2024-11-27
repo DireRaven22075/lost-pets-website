@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 // @RequestMapping("/api/boards/{boardId}/posts/{postId}/comments")    // 여기 이거 맞나?
-@RequestMapping("/api/posts/{postSn}/comments")
+@RequestMapping("/api/comment/{pst}")
 public class CommentController {
 
     @Autowired

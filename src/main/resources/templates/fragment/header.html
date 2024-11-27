@@ -1,8 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" th:href="@{/src/css/list.css}" />
+  </head>
   <body>
     <!-- Header -->
-    <div class="header">
+    <div th:fragment="header">
       <a href="/" class="header-title">Lost Pets Website</a>
       <nav class="nav-items">
         <a href="/report">신고</a>

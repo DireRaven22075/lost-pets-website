@@ -21,7 +21,7 @@ public class Post {
     //PK
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="sn")
-    private long sn;
+    private long sn; //postID
     //FK
     @ManyToOne
     private User owner;
@@ -31,10 +31,10 @@ public class Post {
 
 
     //DATA COLUMN
-    private Long uid;
+    private Long uid; //boardID
     private String title;
     @Lob private String content;
     @ColumnDefault("0") private Long view;
     @ColumnDefault("'Y'")
-    private char status;
+    private char status;  //adoptive or not
 }

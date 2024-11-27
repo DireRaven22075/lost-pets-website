@@ -17,35 +17,35 @@ public class CommentController {
     private CommentService commentService;
 
     @GetMapping
-    public ResponseEntity<List<Comment>> getAllComments(@PathVariable Long postId) {
-        List<Comment> comments = commentService.getAllCommentsByPostSn(postId);
+    public ResponseEntity<List<Comment>> getAllComments(@PathVariable Long postSn) {
+        List<Comment> comments = commentService.getAllCommentsByPostSn(postSn);
         return ResponseEntity.ok(comments);
     }
 
     @PostMapping
-    public ResponseEntity<Comment> addComment(@PathVariable Long postId, @RequestBody Comment comment) {
-        comment.getPost().setSn(postId);
+    public ResponseEntity<Comment> addComment(@PathVariable Long postSn, @RequestBody Comment comment) {
+        comment.getPost().setSn(postSn);
         Comment savedComment = commentService.addComment(comment);
         return ResponseEntity.ok(savedComment);
     }
 
     @GetMapping("/{commentId}")
-    public ResponseEntity<Comment> getComment(@PathVariable Long commentId) {
-        return commentService.getCommentBySn(commentId)
+    public ResponseEntity<Comment> getComment(@PathVariable Long postSn) {
+        return commentService.getCommentBySn(postSn)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PutMapping("/{commentId}")
-    public ResponseEntity<Comment> updateComment(@PathVariable Long commentId, @RequestBody Comment comment) {
-        comment.setSn(commentId);
+    public ResponseEntity<Comment> updateComment(@PathVariable Long postSn, @RequestBody Comment comment) {
+        comment.setSn(postSn);
         Comment updatedComment = commentService.updateComment(comment);
         return ResponseEntity.ok(updatedComment);
     }
 
     @DeleteMapping("/{commentId}")
-    public ResponseEntity<Void> deleteComment(@PathVariable Long commentId) {
-        commentService.deleteComment(commentId);
+    public ResponseEntity<Void> deleteComment(@PathVariable Long postSn) {
+        commentService.deleteComment(postSn);
         return ResponseEntity.ok().build();
     }
 }

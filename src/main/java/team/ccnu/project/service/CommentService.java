@@ -15,7 +15,7 @@ public class CommentService {
     private CommentRepository commentRepository;
 
     public List<Comment> getAllCommentsByPostSn(Long postSn) {
-        return commentRepository.findByPostSn(postSn);
+        return commentRepository.findByPost_Sn(postSn);
     }
 
     public Comment addComment(Comment comment) {

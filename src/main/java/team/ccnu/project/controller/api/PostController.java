@@ -134,18 +134,18 @@ public class PostController {
     // }
 
     // <특정 게시글 삭제>
-    @DeleteMapping("/{postId}")
-        boolean isDeleted = postService.deletePost(user.getId(), postId);
-        if (isDeleted) {
-            return ResponseEntity.ok().body("""
-                {"status": "success", "message": "Post deleted successfully"}
-                """);
-        } else {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("""
-                {"status": "error", "message": "You are not authorized to delete this post"}
-                """);
-
-    }
+//    @DeleteMapping("/{postId}")
+//        boolean isDeleted = postService.deletePost(user.getId(), postId);
+//        if (isDeleted) {
+//            return ResponseEntity.ok().body("""
+//                {"status": "success", "message": "Post deleted successfully"}
+//                """);
+//        } else {
+//            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("""
+//                {"status": "error", "message": "You are not authorized to delete this post"}
+//                """);
+//
+//    }
 }
 
 

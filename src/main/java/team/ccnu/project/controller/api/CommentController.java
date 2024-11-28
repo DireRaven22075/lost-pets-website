@@ -4,6 +4,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import team.ccnu.project.domain.entity.Comment;
+import team.ccnu.project.service.CommentService;
 
 @RestController
 @RequestMapping("/api/comment")

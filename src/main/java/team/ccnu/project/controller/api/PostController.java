@@ -19,11 +19,7 @@ import team.ccnu.project.service.PostService;
 
 
 @RestController
-<<<<<<< Updated upstream
 @RequestMapping("/api/posts")
-=======
-@RequestMapping("/api/posts/")
->>>>>>> Stashed changes
 public class PostController {
     @Autowired
     private PostService postService;
@@ -37,14 +33,14 @@ public class PostController {
             Post post = postService.createPost(postDTO);
             PostDTO responseDTO = new PostDTO(post);
             return ResponseEntity.ok().body("""
-            {"status": "success", "data": %s}
-            """.formatted(responseDTO));
+                    {"status": "success", "data": %s}
+                    """.formatted(responseDTO));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("""
-            {"status": "error", "message": "Internal Server Error"}
-            """);
+                    {"status": "error", "message": "Internal Server Error"}
+                    """);
+        }
     }
-} 
 
     /// <게시글 삭제>
     @DeleteMapping
@@ -52,12 +48,12 @@ public class PostController {
         try {
             postService.deletePost(deletePostDTO.getPostSn());
             return ResponseEntity.ok().body("""
-                {"status": "success", "message": "Post deleted successfully"}
-                """);
+                    {"status": "success", "message": "Post deleted successfully"}
+                    """);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("""
-                {"status": "error", "message": "Internal Server Error"}
-                """);
+                    {"status": "error", "message": "Internal Server Error"}
+                    """);
         }
     }
 
@@ -68,15 +64,15 @@ public class PostController {
             Post post = postService.updatePost(postSn, postDTO);
             PostDTO responseDTO = new PostDTO(post);
             return ResponseEntity.ok().body("""
-            {"status": "success", "data": %s}
-            """.formatted(responseDTO));
+                    {"status": "success", "data": %s}
+                    """.formatted(responseDTO));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("""
-            {"status": "error", "message": "Internal Server Error"}
-            """);
+                    {"status": "error", "message": "Internal Server Error"}
+                    """);
         }
     }
-
+}
     // /// <게시글 수정 및 파일 첨부>
     // @PutMapping("/{postSn}")
     // public ResponseEntity<?> apiUpdatePost(
@@ -112,18 +108,15 @@ public class PostController {
     //             """);
     //     }
     // }
-}
-
-    // @PostMapping{"/upload/}
-    // public ResponseEntity<?> apiUploadPost(
-    //         @RequestParam("files") MultipartFile[] files,
-    //         @RequestParam("data") UploadPostDTO data,
-    //         @PathVariable Long postSn) {
-    //     //파일 저장 경로 = uploads/{post.sn 값을 이용해서 작성}
-    //     return ResponseEntity.ok().build();
-    // }
-    /// <특정 게시판 내 모든 게시글 조회>
-<<<<<<< Updated upstream
+// @PostMapping{"/upload/}
+// public ResponseEntity<?> apiUploadPost(
+//         @RequestParam("files") MultipartFile[] files,
+//         @RequestParam("data") UploadPostDTO data,
+//         @PathVariable Long postSn) {
+//     //파일 저장 경로 = uploads/{post.sn 값을 이용해서 작성}
+//     return ResponseEntity.ok().build();
+// }
+/// <특정 게시판 내 모든 게시글 조회>
 //    @GetMapping
 //    public ResponseEntity<?> apiGetAllPosts() {
 //        try {
@@ -140,9 +133,8 @@ public class PostController {
 //                """);
 //        }
 //    }
-    
-    
-    
+
+
 //    /// <특정 게시판 내 특정 게시글 조회>
 //    @GetMapping("/{postId}")
 //    public ResponseEntity<?> apiGetPostByID(@PathVariable Long bbs, @PathVariable Long postId) {
@@ -164,96 +156,90 @@ public class PostController {
 //        }
 //    }
 //
-    
-    /// <특정 게시판 내 게시글 추가>
-    @PostMapping
-    public ResponseEntity<?> apiCreatePost(@RequestBody PostDTO postDTO) {
-        try {
-            Post post = postService.createPost(postDTO);
-            PostDTO responseDTO = new PostDTO(post);
-            return ResponseEntity.ok().body("""
-                {"status": "success", "data": %s}
-                """.formatted(responseDTO));
-            } catch (Exception e) {
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("""
-                    {"status": "error", "message": "Internal Server Error"}
-                    """);
-            }
-        } 
-=======
-    // @GetMapping
-    // public ResponseEntity<List<Post>> apiGetAllPosts(@PathVariable Long postSn) {
-    //     try {
-    //         List<Post> posts = postService.getAllPostsByBoardId(postSn);
-    //         List<PostDTO> postDTOs = posts.stream()
-    //                                       .map(post -> new PostDTO(post))
-    //                                       .toList(); // Java 16 이상
-    //         return ResponseEntity.ok(postDTOs).body("""
-    //             {"status": "success", "data": %s}
-    //             """.formatted(postDTOs));
-    //     } catch (Exception e) {
-    //         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("""
-    //             {"status": "error", "message": "Internal Server Error"}
-    //             """);
-    //     }
-    // }
-    
-    
-    
-    // /// <특정 게시판 내 특정 게시글 조회>
-    // @GetMapping
-    // public ResponseEntity<?> apiGetPostByID(@PathVariable Long postSn) {
-    //     try {
-    //         Post post = postService.getPostBySn(postId);
-    //         if (post == null) {
-    //             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("""
-    //                 {"status": "error", "message": "Post not found"}
-    //                 """);
-    //         }
-    //         PostDTO postDTO = new PostDTO(post);
-    //         return ResponseEntity.ok().body("""
-    //             {"status": "success", "data": %s}
-    //             """.formatted(postDTO));
-    //     } catch (Exception e) {
-    //         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("""
-    //             {"status": "error", "message": "Internal Server Error"}
-    //             """);
-    //     }
-    // }
-    
-    
->>>>>>> Stashed changes
 
-    
+/// <특정 게시판 내 게시글 추가>
+//    @PostMapping
+//    public ResponseEntity<?> apiCreatePost(@RequestBody PostDTO postDTO) {
+//        try {
+//            Post post = postService.createPost(postDTO);
+//            PostDTO responseDTO = new PostDTO(post);
+//            return ResponseEntity.ok().body("""
+//                {"status": "success", "data": %s}
+//                """.formatted(responseDTO));
+//            } catch (Exception e) {
+//                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("""
+//                    {"status": "error", "message": "Internal Server Error"}
+//                    """);
+//            }
+//        }
+// @GetMapping
+// public ResponseEntity<List<Post>> apiGetAllPosts(@PathVariable Long postSn) {
+//     try {
+//         List<Post> posts = postService.getAllPostsByBoardId(postSn);
+//         List<PostDTO> postDTOs = posts.stream()
+//                                       .map(post -> new PostDTO(post))
+//                                       .toList(); // Java 16 이상
+//         return ResponseEntity.ok(postDTOs).body("""
+//             {"status": "success", "data": %s}
+//             """.formatted(postDTOs));
+//     } catch (Exception e) {
+//         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("""
+//             {"status": "error", "message": "Internal Server Error"}
+//             """);
+//     }
+// }
 
-    /// <특정 게시글 수정>
-    //@PutMapping("/{postId}")
-    //public ResponseEntity<?> apiUpdatePost(@PathVariable Long bbs, @PathVariable Long postId, @RequestBody PostDTO postDTO) {
-        // 현재 인증된 사용자 정보 가져오기
 
-        // User 객체를 가져오는 로직 (예: UserService를 통해 가져오기)
-        //todo
+// /// <특정 게시판 내 특정 게시글 조회>
+// @GetMapping
+// public ResponseEntity<?> apiGetPostByID(@PathVariable Long postSn) {
+//     try {
+//         Post post = postService.getPostBySn(postId);
+//         if (post == null) {
+//             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("""
+//                 {"status": "error", "message": "Post not found"}
+//                 """);
+//         }
+//         PostDTO postDTO = new PostDTO(post);
+//         return ResponseEntity.ok().body("""
+//             {"status": "success", "data": %s}
+//             """.formatted(postDTO));
+//     } catch (Exception e) {
+//         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("""
+//             {"status": "error", "message": "Internal Server Error"}
+//             """);
+//     }
+// }
 
-    //     // 게시물 수정
-    //     try {
-    //         boolean isUpdated = postService.updatePost(user.getId(), postId, bbs, postDTO);
-    //         if (isUpdated) {
-    //             return ResponseEntity.ok().body("""
-    //                 {"status": "success", "message": "Post updated successfully"}
-    //                 """);
-    //         } else {
-    //             return ResponseEntity.status(HttpStatus.FORBIDDEN).body("""
-    //                 {"status": "error", "message": "You are not authorized to update this post"}
-    //                 """);
-    //         }
-    //     } catch (Exception e) {
-    //         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("""
-    //             {"status": "error", "message": "Internal Server Error"}
-    //             """);
-    //     }
-    // }
 
-    // <특정 게시글 삭제>
+/// <특정 게시글 수정>
+//@PutMapping("/{postId}")
+//public ResponseEntity<?> apiUpdatePost(@PathVariable Long bbs, @PathVariable Long postId, @RequestBody PostDTO postDTO) {
+// 현재 인증된 사용자 정보 가져오기
+
+// User 객체를 가져오는 로직 (예: UserService를 통해 가져오기)
+//todo
+
+//     // 게시물 수정
+//     try {
+//         boolean isUpdated = postService.updatePost(user.getId(), postId, bbs, postDTO);
+//         if (isUpdated) {
+//             return ResponseEntity.ok().body("""
+//                 {"status": "success", "message": "Post updated successfully"}
+//                 """);
+//         } else {
+//             return ResponseEntity.status(HttpStatus.FORBIDDEN).body("""
+//                 {"status": "error", "message": "You are not authorized to update this post"}
+//                 """);
+//         }
+//     } catch (Exception e) {
+//         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("""
+//             {"status": "error", "message": "Internal Server Error"}
+//             """);
+//     }
+// }
+
+// <특정 게시글 삭제>
 //    @DeleteMapping("/{postId}")
 //        boolean isDeleted = postService.deletePost(user.getId(), postId);
 //        if (isDeleted) {
@@ -266,10 +252,6 @@ public class PostController {
 //                """);
 //
 //    }
-
-
-
 // key: status message
 //status: success error
 //message: english
-

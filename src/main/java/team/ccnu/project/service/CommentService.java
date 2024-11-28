@@ -24,7 +24,9 @@ public class CommentService {
         comment.setContent(dto.getContent());
         return commentRepository.save(comment);
     }
-
+    public Comment addComment(Comment comment) {
+        return commentRepository.save(comment);
+    }
     public Optional<Comment> getCommentBySn(Long sn) {
         return commentRepository.findById(sn);
     }

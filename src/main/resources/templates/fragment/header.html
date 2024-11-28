@@ -1,32 +1,47 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" th:href="@{/src/css/list.css}" />
-  </head>
-  <body>
-    <!-- Header -->
-    <header th:fragment="header">
-      <a href="/" class="header-title">Lost Pets Website</a>
-      <nav class="nav-items">
-        <a href="/report">신고</a>
-        <a href="/adopt">입양</a>
-        <a href="/education">교육</a>
-        <th:block th:if="${user != null}">
-          <a class="button" onclick="logout()">Log Out</a>
-        </th:block>
-        <th:block th:unless="${user != null}">
-          <a class="button" href="/login">Log In</a>
-        </th:block>
-      </nav>
-    </header>
 
-    <header th:fragment="write" class="header">
-      <a href="/" class="header-title">Lost Pets Website</a>
-      <div class="header-buttons">
-        <button onclick="logout()">Log Out</button>
-      </div>
-    </header>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" th:href="@{/src/css/list.css}" />
+</head>
+
+<body>
+  <header th:fragment="index" id="View-Header" class="navigation">
+    <a href="/" class="header-title">Lost Pets Website</a>
+    <a id="getStartedButton" href="/login" class="btn get-started-button">Get Started</a>
+  </header>
+  <!-- Header -->
+  <header th:fragment="header" id="View-Header">
+    <a href="/" class="header-title">Lost Pets Website</a>
+    <nav class="nav-items">
+      <a href="/report">신고</a>
+      <a href="/adopt">입양</a>
+      <a href="/education">교육</a>
+      <th:block th:if="${user != null}">
+        <a class="button" onclick="logout()">Log Out</a>
+      </th:block>
+      <th:block th:unless="${user != null}">
+        <a class="button" href="/login">Log In</a>
+      </th:block>
+    </nav>
+  </header>
+
+  <header th:fragment="write" class="header">
+    <a href="/" class="header-title">Lost Pets Website</a>
+    <div class="header-buttons">
+      <button onclick="logout()">Log Out</button>
+    </div>
+  </header>
+
+  <header th:fragment="info" class="header">
+    <h1>User Information</h1>
+    <div class="buttons">
+      <button onclick="location.href='/'">메인 페이지</button>
+      <button id="logoutButton">Logout</button>
+    </div>
+  </header>
+</body>
+
 </html>

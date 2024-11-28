@@ -1,96 +1,319 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>User Information</title>
-    <link rel="stylesheet" type="text/css" href="/src/css/userinfo.css" />
-  </head>
-  <body>
-    <div class="container">
-      <!-- Header -->
-      <div class="header">
-        <h1>User Information</h1>
-        <div class="buttons">
-          <button onclick="location.href='/'">메인 페이지</button>
-          <button id="logoutButton">Logout</button>
+
+<head>
+  <title>User Information</title>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!--<link rel="stylesheet" type="text/css" href="/src/css/userinfo.css" />-->
+
+  <script defer src="/src/js/ajax/update-info.js"></script>
+
+  <style>
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 3rem;
+    }
+
+    body {
+      width: 100vw;
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      background-color: #FAFAFA;
+    }
+
+    main {
+      width: 60vw;
+      height: 60vh;
+
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0.5rem;
+
+      box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+      background-color: #fff;
+
+      article.info {
+        width: 30%;
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0.5rem 0 0 0.5rem;
+        background: linear-gradient(to right, #ff7e5f, #feb47b);
+      }
+
+      article.detail {
+        width: 70%;
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        section.content{
+          width: 90%;
+          height: 50%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          section.data {
+            width: 100%;
+            height: 3rem;
+            margin: 1rem 0;
+            b {
+              width: 70%;
+            }
+            button {
+              width: 25%;
+              height: 1.25rem;
+              margin-left: 5%;
+              color: #fff;
+              background-color: #ff7e5f;
+              border-radius: 0.25rem;
+              border: none;
+              outline: none;
+              &:hover {
+                background-color: #feb47b;
+              }
+            }
+            section.edit-section {
+              margin-top: 1rem;
+              input {
+                width: 70%;
+                height: 1rem;
+                border: none;
+                outline: none;
+                border-bottom: 1px solid #AAA;
+              }
+              button {
+                width: 25%;
+                height: 1.25rem;
+                margin-left: 5%;
+                color: #fff;
+                background-color: #ff7e5f;
+                border-radius: 0.25rem;
+                border: none;
+                outline: none;
+                &:hover {
+                  background-color: #feb47b;
+                }
+              }
+            }
+          }
+          &:nth-child(1) {
+            border-bottom: 1px solid #AAA;
+          }
+        }
+      }
+
+      .edit-section {
+        display: none;
+
+        &.active {
+          display: flex;
+        }
+      }
+      .btn.reset-password {
+        width: 90%;
+        height: 3rem;
+        background-color: #ff7e5f;
+        border-radius: 1.5rem;
+        border: none;
+        outline: none;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #fff;
+        cursor: pointer;
+        &:hover {
+          background-color: #feb47b;
+        }
+      }
+    }
+  </style>
+  <script>
+    function toggle(element) {
+      element.closest('section').querySelector('.edit-section').classList.toggle('active');
+    }
+  </script>
+</head>
+
+<body id="Page-Info">
+  <!-- Header -->
+  <th:block th:replace="~{fragment/header :: info}"></th:block>
+
+  <main>
+    <article class="info">
+      <section class="profile">
+        <img src="/src/img/icon/user.svg" />
+        <input type="file" id="upload-image" style="display: none" accept="image/*" />
+        <button onclick="document.getElementById('upload-image').click()">Confirm</button>
+      </section>
+      <section class="content">
+        <h1>username</h1>
+        <button class="edit-btn" data-target="name" onclick="toggle(this)">Edit</button>
+        <section class="edit-section">
+          <input type="text" id="Input-Update-Name" placeholder="새로운 이름" />
+          <button class="btn submit">Confirm</button>
+        </section>
+      </section>
+
+    </article>
+    <article class="detail">
+      <section class="content">
+        <section class="data">
+          <b>ID : <strong>dadasda</strong></b>
+          <button class="edit-btn" data-target="id" onclick="toggle(this)">Edit</button>
+          <section class="edit-section">
+            <input type="text" id="Input-Update-ID" placeholder="새로운 ID" />
+            <button class="btn submit">Confirm</button>
+          </section>
+        </section>
+        <section class="data">
+          <b>Email : <strong>dadasda@naver.com</strong></b>
+          <button class="edit-btn" data-target="email" onclick="toggle(this)">Edit</button>
+          <section class="edit-section">
+            <input type="email" id="Input-Update-Email" placeholder="새로운 이메일" />
+            <button class="btn submit">Confirm</button>
+          </section>
+        </section>
+      </section>
+      <section class="content">
+          <button class="btn reset-password">Reset Password</button>
+      </section>
+    </article>
+  </main>
+
+</body>
+
+</html>
+<!--
+    <article id="Info-Name">
+      <section class="content">
+        <b>이름 : <strong th:text="${user.name}"></strong></b>
+        <button class="edit-btn" data-target="name">Edit</button>
+      </section>
+      <form id="Form-Update-Name">
+        <input type="text" id="Input-Update-Name" placeholder="새로운 이름" />
+        <button class="edit-btn" data-target="name">Confirm</button>
+      </form>
+    </article>
+    <article id="Info-Address">
+      <section class="content">
+        <b>주소 : <strong th:text="${user.address}"></strong></b>
+        <button class="edit-btn" data-target="address">Edit</button>
+      </section>
+      <form id="Form-Update-Address">
+        <input type="text" id="Input-Update-Address" placeholder="새로운 주소" />
+        <button class="edit-btn" data-target="address">Confirm</button>
+      </form>
+    </article>
+    <article id="Info-Email">
+      <section class="content">
+        <b>이메일 : <strong th:text="${user.email}"></strong></b>
+        <button class="edit-btn" data-target="email">Edit</button>
+      </section>
+      <form id="Form-Update-Email">
+        <input type="email" id="Input-Update-Email" placeholder="새로운 이메일" />
+        <button class="edit-btn" data-target="email">Confirm</button>
+      </form>
+    </article>
+    <article id="Info-ID">
+      <section class="content">
+        <b>ID : <strong th:text="${user.id}"></strong></b>
+        <button class="edit-btn" data-target="id">Edit</button>
+      </section>
+      <form id="Form-Update-ID">
+        <input type="text" id="Input-Update-ID" placeholder="새로운 ID" />
+        <button class="edit-btn" data-target="id">Confirm</button>
+      </form>
+    </article>
+    <article id="Info-PW">
+      <section class="content">
+        <b>PW : </b>
+        <button class="edit-btn" data-target="pw">Reset-Password</button>
+      </section>
+      <form id="Form-Reset-PW">
+        <input type="password" id="Input-Reset-PW" placeholder="새로운 비밀번호" />
+        <input type="password" id="Input-Reset-PW-Confirm" placeholder="새로운 비밀번호 확인" />
+        <button class="edit-btn" data-target="pw">Confirm</button>
+      </form>
+    </article>
+  </main>
+
+
+
+
+
+<!-- 
+  <!-- Profile Section
+  <div class="profile">
+    <img id="profile-pic" src="default-profile.png" alt="Profile Picture" />
+    <label>
+      <input type="file" id="upload-image" style="display: none" accept="image/*" />
+      <button onclick="document.getElementById('upload-image').click()">
+        이미지 변경
+      </button>
+    </label>
+  </div> -->
+
+<!-- User Info 
+  <div class="user-info">
+    <div class="info">
+      <div><strong>Name:</strong> <span id="user-name">user</span></div>
+      <div>
+        <strong>Address:</strong>
+        <span id="user-address">청주</span>
+        <button class="edit-btn" data-target="address">Edit</button>
+        <div class="edit-section" id="edit-address">
+          <input type="text" placeholder="새로운 주소" id="input-address" />
+          <button class="edit-btn" data-target="address">Confirm</button>
         </div>
       </div>
-
-      <!-- Recent Posts -->
-      <div class="recent-posts">
-        <h2>최근 작성한 게시글</h2>
-        <div id="recent-posts-list"></div>
+      <div>
+        <strong>Email address:</strong>
+        <span id="user-email">user@mail.com</span>
+        <button class="edit-btn" data-target="email">Edit</button>
+        <div class="edit-section" id="edit-email">
+          <input type="email" placeholder="새로운 이메일" id="input-email" />
+          <button class="edit-btn" data-target="email">Confirm</button>
+        </div>
       </div>
-
-      <!-- Profile Section -->
-      <div class="profile">
-        <img id="profile-pic" src="default-profile.png" alt="Profile Picture" />
-        <label>
-          <input
-            type="file"
-            id="upload-image"
-            style="display: none"
-            accept="image/*"
-          />
-          <button onclick="document.getElementById('upload-image').click()">
-            이미지 변경
-          </button>
-        </label>
+      <div>
+        <strong>ID:</strong>
+        <span id="user-id">petlover</span>
+        <button class="edit-btn" data-target="id">Edit</button>
+        <div class="edit-section" id="edit-id">
+          <input type="text" placeholder="새로운 ID" id="input-id" />
+          <button class="edit-btn" data-target="id">Confirm</button>
+        </div>
       </div>
-
-      <!-- User Info -->
-      <div class="user-info">
-        <div class="info">
-          <div><strong>Name:</strong> <span id="user-name">user</span></div>
-          <div>
-            <strong>Address:</strong>
-            <span id="user-address">청주</span>
-            <button class="edit-btn" data-target="address">Edit</button>
-            <div class="edit-section" id="edit-address">
-              <input type="text" placeholder="새로운 주소" id="input-address" />
-              <button class="edit-btn" data-target="address">Confirm</button>
-            </div>
-          </div>
-          <div>
-            <strong>Email address:</strong>
-            <span id="user-email">user@mail.com</span>
-            <button class="edit-btn" data-target="email">Edit</button>
-            <div class="edit-section" id="edit-email">
-              <input
-                type="email"
-                placeholder="새로운 이메일"
-                id="input-email"
-              />
-              <button class="edit-btn" data-target="email">Confirm</button>
-            </div>
-          </div>
-          <div>
-            <strong>ID:</strong>
-            <span id="user-id">petlover</span>
-            <button class="edit-btn" data-target="id">Edit</button>
-            <div class="edit-section" id="edit-id">
-              <input type="text" placeholder="새로운 ID" id="input-id" />
-              <button class="edit-btn" data-target="id">Confirm</button>
-            </div>
-          </div>
-          <div>
-            <strong>PW:</strong>
-            <span id="user-pw-length">******** (8 characters)</span>
-            <button class="edit-btn" data-target="pw">Edit</button>
-            <div class="edit-section" id="edit-pw">
-              <input
-                type="password"
-                placeholder="새로운 비밀번호"
-                id="input-pw"
-              />
-              <button class="edit-btn" data-target="pw">Confirm</button>
-            </div>
-          </div>
+      <div>
+        <strong>PW:</strong>
+        <span id="user-pw-length">******** (8 characters)</span>
+        <button class="edit-btn" data-target="pw">Edit</button>
+        <div class="edit-section" id="edit-pw">
+          <input type="password" placeholder="새로운 비밀번호" id="input-pw" />
+          <button class="edit-btn" data-target="pw">Confirm</button>
         </div>
       </div>
     </div>
-
-    <script src="/src/js/userinfo.js"></script>
-  </body>
-</html>
+  </div>
+-->

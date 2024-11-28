@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Information</title>
+    <link rel="stylesheet" type="text/css" href="/src/css/userinfo.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <div class="header">
+        <h1>User Information</h1>
+        <div class="buttons">
+          <button onclick="location.href='/'">메인 페이지</button>
+          <button id="logoutButton">Logout</button>
+        </div>
+      </div>
+
+      <!-- Recent Posts -->
+      <div class="recent-posts">
+        <h2>최근 작성한 게시글</h2>
+        <div id="recent-posts-list"></div>
+      </div>
+
+      <!-- Profile Section -->
+      <div class="profile">
+        <img id="profile-pic" src="default-profile.png" alt="Profile Picture" />
+        <label>
+          <input
+            type="file"
+            id="upload-image"
+            style="display: none"
+            accept="image/*"
+          />
+          <button onclick="document.getElementById('upload-image').click()">
+            이미지 변경
+          </button>
+        </label>
+      </div>
+
+      <!-- User Info -->
+      <div class="user-info">
+        <div class="info">
+          <div><strong>Name:</strong> <span id="user-name">user</span></div>
+          <div>
+            <strong>Address:</strong>
+            <span id="user-address">청주</span>
+            <button class="edit-btn" data-target="address">Edit</button>
+            <div class="edit-section" id="edit-address">
+              <input type="text" placeholder="새로운 주소" id="input-address" />
+              <button class="edit-btn" data-target="address">Confirm</button>
+            </div>
+          </div>
+          <div>
+            <strong>Email address:</strong>
+            <span id="user-email">user@mail.com</span>
+            <button class="edit-btn" data-target="email">Edit</button>
+            <div class="edit-section" id="edit-email">
+              <input
+                type="email"
+                placeholder="새로운 이메일"
+                id="input-email"
+              />
+              <button class="edit-btn" data-target="email">Confirm</button>
+            </div>
+          </div>
+          <div>
+            <strong>ID:</strong>
+            <span id="user-id">petlover</span>
+            <button class="edit-btn" data-target="id">Edit</button>
+            <div class="edit-section" id="edit-id">
+              <input type="text" placeholder="새로운 ID" id="input-id" />
+              <button class="edit-btn" data-target="id">Confirm</button>
+            </div>
+          </div>
+          <div>
+            <strong>PW:</strong>
+            <span id="user-pw-length">******** (8 characters)</span>
+            <button class="edit-btn" data-target="pw">Edit</button>
+            <div class="edit-section" id="edit-pw">
+              <input
+                type="password"
+                placeholder="새로운 비밀번호"
+                id="input-pw"
+              />
+              <button class="edit-btn" data-target="pw">Confirm</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/src/js/userinfo.js"></script>
+  </body>
+</html>

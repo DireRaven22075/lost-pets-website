@@ -1,24 +1,60 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="https://thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title th:text="${@environment.getProperty('app.title')}"></title>
+  <title>게시글</title>
+  
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <meta charset="UTF-8"/>
-    <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, user-scalable=no"
-    />
+  <link rel="stylesheet" type="text/css" href="/src/css/board.css" />
 
-    <link rel="stylesheet" type="text/css" href="/src/css/main.css" />
-
-    <script src="/src/js/main.js"></script>
+  <script defer src="/src/js/ajax/post.js"></script>
 </head>
 
-<body>
-<div th:replace="~{fragments/header :: header}"></div>
+<body id="Page-Post" class="container">
+  <th:block th:replace="~{fragment/header :: header}"></th:block>
 
-<div th:replace="~{fragments/footer :: footer}"></div>
+  <main>
+    <section class="content-header">
+      <h1 th:text="${post.title}"></h1>
+      <h2>작성자 : <span th:text="${post.author}"></span></h2>
+      <h2>날짜 : <span th:text="${post.date}"></span></h2>
+    </section>
+
+    <section class="post-container">
+      <pre id="post-content" class="post-content" th:text="${post.content}"></pre>
+      <div class="post-image">
+        <th:block th:each="image : ${post.images}">
+          <img th:src="${image}" alt="post-image" />
+      </div>
+    </section>
+
+    <section class="comment-section">
+      <section class="comment-title">
+        <h2 class="comment-title">댓글 등록</h2>
+        <form class="comment-form">
+          <input id="comment-input" type="text" placeholder="댓글 내용 입력"></input>
+          <div class="submit-btn" id="submit-comment">작성 완료</div>
+        </form>
+      </section>
+
+      <section>
+        <th:block th:if="${#lists.isEmpty(comments)}">
+          <h2>댓글이 없습니다.</h2>
+        </th:block>
+        <th:block th:unless="${#lists.isEmpty(comments)}">
+          <h2>댓글 목록</h2>
+          <article th:each="comment : ${comments}" class="comment">
+            <h3 th:text="${comment.author}"></h3>
+            <p th:text="${comment.content}"></p>
+            <p th:text="${comment.date}"></p>
+          </article>
+      </section>
+    </section>
+  </main>
+
+  <th:block th:replace="~{fragment/footer :: footer}"></th:block>
 </body>
 
 </html>

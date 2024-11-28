@@ -1,41 +1,32 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login Page</title>
-    <link rel="stylesheet" type="text/css" href="/src/css/login.css" />
 
+<head>
+  <title>Login Page</title>
 
-    <script defer src="/src/js/login.js"></script>
-  </head>
-  <body class="login-container">
-      <main class="login-box">
-        <form>
-          <h1>Log In</h1>
-          <label for="id">ID</label>
-          <input type="text" id="id" name="id" placeholder="Enter your ID" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <link rel="stylesheet" type="text/css" href="/src/css/login.css" />
 
-          <label for="password">Password</label>
-          <input type="password" id="password" name="pw" placeholder="Enter your Password" />
+  <script defer src="/src/js/ajax/login.js"></script>
+</head>
 
-          <button type="submit" class="btn">Sign In</button>
-          <button
-            type="button"
-            class="btn secondary"
-            onclick="window.location.href='/register'"
-          >
-            Make Account
-          </button>
-        </form>
-        <button
-          type="button"
-          class="btn home"
-          onclick="window.location.href='/'"
-        >
-          Home
-        </button>
-      </main>
+<body id="Page-Login" class="login-container">
+    <form id="Form-Login" class="login-box">
+      <h1>Log In</h1>
+      <label for="id">ID</label>
+      <input type="text" id="id" name="id" placeholder="Enter your ID" />
 
-  </body>
-</xmlns:th=>
+      <label for="password">Password</label>
+      <input type="password" id="password" name="pw" placeholder="Enter your Password" />
+
+      <button type="submit" class="btn">Sign In</button>
+      <button type="button" class="btn secondary" onclick="window.location.href='/register'">
+        Make Account
+      </button>
+      <button type="button" class="btn home" onclick="window.location.href='/'">
+        Home
+      </button>
+    </form>
+</body>

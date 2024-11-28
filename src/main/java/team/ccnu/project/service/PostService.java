@@ -20,21 +20,6 @@ public class PostService {
     @Autowired
     private PostRepository postRepository;
 
-    //게시물 작성
-    public Post createPost(UploadPostDTO postDTO) {
-        Post post = new Post();
-        post.setTitle(postDTO.getTitle()); // 게시물 제목 설정
-        post.setContent(postDTO.getContent()); // 게시물 내용 설정
-        post.setStatus(postDTO.getStatus()); // 게시물 상태 설정
-        post.setUid(postDTO.getUid()); // 게시판 ID 설정
-
-        postRepository.save(post); // 게시물 저장
-        return post;
-    }
-
-
-
-
     //특정 게시물 조회
     public Post getPostBySn(Long sn) {
         return postRepository.findBySn(sn);
@@ -50,22 +35,33 @@ public class PostService {
     }
 
     //게시물 삭제
+    public void deletePost(Post post) {
+        postRepository.delete(post);
+    }
 
     public void deletePost(Long sn) {
-        Post post = postRepository.findBySn(sn);
         postRepository.deleteBySn(sn);
     }
 
-    public Post updatePost(Long postSn, UploadPostDTO postDTO) {
-        Post post = postRepository.findById(postSn).orElseThrow(() -> new RuntimeException("Post not found"));
-        post.setTitle(postDTO.getTitle()); // 게시물 제목 수정
-        post.setContent(postDTO.getContent()); // 게시물 내용 수정
-        post.setStatus(postDTO.getStatus()); // 게시물 상태 수정
-        post.setUid(postDTO.getUid()); // 게시판 ID 수정
-
-        postRepository.save(post); // 게시물 저장
+    public Post updatePost(Long sn, UploadPostDTO postDTO) {
+        Post post = postRepository.findBySn(sn);
+        post.setTitle(postDTO.getTitle());
+        post.setContent(postDTO.getContent());
+        post.setStatus(postDTO.getStatus());
+        post.setUid(postDTO.getUid());
+        postRepository.save(post);
         return post;
     }
+
+    
+    public void deleteBySn(Long sn) {
+        postRepository.deleteBySn(sn);
+    }
+
+    public Post findPostBySn(Long sn) {
+            return postRepository.findBySn(sn);
+        }
+
 
     //
 

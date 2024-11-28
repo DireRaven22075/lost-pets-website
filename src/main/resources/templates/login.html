@@ -5,17 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login Page</title>
     <link rel="stylesheet" type="text/css" href="/src/css/login.css" />
+
+
+    <script defer src="/src/js/login.js"></script>
   </head>
-  <body>
-    <div class="login-container">
-      <div class="login-box">
-        <h1>Log In</h1>
+  <body class="login-container">
+      <main class="login-box">
         <form>
+          <h1>Log In</h1>
           <label for="id">ID</label>
-          <input type="text" id="id" placeholder="Value" />
+          <input type="text" id="id" name="id" placeholder="Enter your ID" />
 
           <label for="password">Password</label>
-          <input type="password" id="password" placeholder="Value" />
+          <input type="password" id="password" name="pw" placeholder="Enter your Password" />
 
           <button type="submit" class="btn">Sign In</button>
           <button
@@ -33,9 +35,7 @@
         >
           Home
         </button>
-      </div>
-    </div>
+      </main>
 
-    <script src="/src/js/login.js"></script>
   </body>
 </xmlns:th=>

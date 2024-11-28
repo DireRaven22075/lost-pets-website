@@ -8,18 +8,14 @@
       content="width=device-width, initial-scale=1, user-scalable=no"
     />
     <link rel="stylesheet" type="text/css" href="/src/css/write.css" />
+    <script defer src="/src/js/write.js"></script>
   </head>
   <body>
     <!-- 상단 헤더 -->
-    <div class="header">
-      <a href="/" class="header-title">Lost Pets Website</a>
-      <div class="header-buttons">
-        <button onclick="logout()">Log Out</button>
-      </div>
-    </div>
+    <th:block th:replace="~{fragment/header :: write}"></th:block>
 
     <!-- 게시글 작성 섹션 -->
-    <div class="wrapper">
+    <main class="wrapper">
       <h1>게시글 작성</h1>
       <form id="postForm">
         <div class="form-section">
@@ -46,8 +42,6 @@
 
         <button type="submit" class="submit-button">Submit</button>
       </form>
-    </div>
-
-    <script src="/src/js/write.js"></script>
+    </main>
   </body>
 </html>

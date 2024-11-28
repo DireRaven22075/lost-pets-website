@@ -7,14 +7,26 @@
   </head>
   <body>
     <!-- Header -->
-    <div th:fragment="header">
+    <header th:fragment="header">
       <a href="/" class="header-title">Lost Pets Website</a>
       <nav class="nav-items">
         <a href="/report">신고</a>
         <a href="/adopt">입양</a>
         <a href="/education">교육</a>
-        <a class="button" onclick="logout()">Log Out</a>
+        <th:block th:if="${user != null}">
+          <a class="button" onclick="logout()">Log Out</a>
+        </th:block>
+        <th:block th:unless="${user != null}">
+          <a class="button" href="/login">Log In</a>
+        </th:block>
       </nav>
-    </div>
+    </header>
+
+    <header th:fragment="write" class="header">
+      <a href="/" class="header-title">Lost Pets Website</a>
+      <div class="header-buttons">
+        <button onclick="logout()">Log Out</button>
+      </div>
+    </header>
   </body>
 </html>

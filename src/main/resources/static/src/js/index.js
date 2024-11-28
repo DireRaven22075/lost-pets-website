@@ -10,13 +10,6 @@ document.addEventListener("DOMContentLoaded", function() {
     
   });
 
-  function navigateToPage(boardUrl) {
-    if (logInFlag == 1) {
-      window.location.href = boardUrl;
-    } else {
-      window.location.href = '/login';
-    }
-  }
 
   function logout() {
     localStorage.setItem("logInFlag", 0);

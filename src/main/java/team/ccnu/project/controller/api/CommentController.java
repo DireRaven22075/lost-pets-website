@@ -9,43 +9,36 @@ import team.ccnu.project.service.CommentService;
 import java.util.List;
 
 @RestController
-// @RequestMapping("/api/boards/{boardId}/posts/{postId}/comments")    // 여기 이거 맞나?
-@RequestMapping("/api/posts/{postSn}/comments")
+@RequestMapping("/api/comment")
 public class CommentController {
 
     @Autowired
     private CommentService commentService;
 
-    @GetMapping
-    public ResponseEntity<List<Comment>> getAllComments(@PathVariable Long postSn) {
-        List<Comment> comments = commentService.getAllCommentsByPostSn(postSn);
+    @GetMapping("/{pst}")
+    public ResponseEntity<List<Comment>> getAllComments(@PathVariable Long pst) {
+        List<Comment> comments = commentService.getAllCommentsByPostSn(pst);
         return ResponseEntity.ok(comments);
     }
 
-    @PostMapping
-    public ResponseEntity<Comment> addComment(@PathVariable Long postSn, @RequestBody Comment comment) {
-        comment.getPost().setSn(postSn);
+    @PostMapping("/{pst}")
+    public ResponseEntity<Comment> addComment(@PathVariable Long pst, @RequestBody Comment comment) {
+        comment.getPost().setSn(pst);
         Comment savedComment = commentService.addComment(comment);
         return ResponseEntity.ok(savedComment);
     }
 
-    @GetMapping("/{commentId}")
-    public ResponseEntity<Comment> getComment(@PathVariable Long postSn) {
-        return commentService.getCommentBySn(postSn)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
-    }
-
-    @PutMapping("/{commentId}")
-    public ResponseEntity<Comment> updateComment(@PathVariable Long postSn, @RequestBody Comment comment) {
-        comment.setSn(postSn);
+    @PutMapping("/{pst}/{cmnt}")
+    public ResponseEntity<Comment> updateComment(@PathVariable Long pst, @PathVariable Long cmnt, @RequestBody Comment comment) {
+        comment.setSn(cmnt);
+        comment.getPost().setSn(pst);
         Comment updatedComment = commentService.updateComment(comment);
         return ResponseEntity.ok(updatedComment);
     }
 
-    @DeleteMapping("/{commentId}")
-    public ResponseEntity<Void> deleteComment(@PathVariable Long postSn) {
-        commentService.deleteComment(postSn);
+    @DeleteMapping("/{pst}/{cmnt}")
+    public ResponseEntity<Void> deleteComment(@PathVariable Long cmnt) {
+        commentService.deleteComment(cmnt);
         return ResponseEntity.ok().build();
     }
 }

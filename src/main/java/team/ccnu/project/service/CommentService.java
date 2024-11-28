@@ -2,6 +2,7 @@ package team.ccnu.project.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import team.ccnu.project.data.request.UploadCommentDTO;
 import team.ccnu.project.domain.entity.Comment;
 import team.ccnu.project.domain.repository.CommentRepository;
 
@@ -18,7 +19,9 @@ public class CommentService {
         return commentRepository.findByPostSn(postSn);
     }
 
-    public Comment addComment(Comment comment) {
+    public Comment addComment(UploadCommentDTO dto, Long postId) {
+        Comment comment = new Comment();
+        comment.setContent(dto.getContent());
         return commentRepository.save(comment);
     }
 

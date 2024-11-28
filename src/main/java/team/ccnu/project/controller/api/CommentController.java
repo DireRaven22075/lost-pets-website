@@ -3,6 +3,7 @@ package team.ccnu.project.controller.api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import team.ccnu.project.data.request.UploadCommentDTO;
 import team.ccnu.project.domain.entity.Comment;
 import team.ccnu.project.service.CommentService;
 
@@ -10,7 +11,7 @@ import java.util.List;
 
 @RestController
 // @RequestMapping("/api/boards/{boardId}/posts/{postId}/comments")    // 여기 이거 맞나?
-@RequestMapping("/api/posts/{postSn}/comments")
+@RequestMapping("/api/comment/{postId}")
 public class CommentController {
 
     @Autowired
@@ -23,10 +24,11 @@ public class CommentController {
     }
 
     @PostMapping
-    public ResponseEntity<Comment> addComment(@PathVariable Long postId, @RequestBody Comment comment) {
-        comment.getPost().setSn(postId);
-        Comment savedComment = commentService.addComment(comment);
-        return ResponseEntity.ok(savedComment);
+    public ResponseEntity<Comment> addComment(@PathVariable Long postId, @RequestBody UploadCommentDTO dto) {
+        System.out.print(dto.getContent());
+        System.out.println(postId.toString());
+        commentService.addComment(dto, postId);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/{commentId}")

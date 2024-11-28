@@ -19,9 +19,9 @@ public class PostService {
 
     //게시물 작성
 
-    public Post createPost(Long uid, PostDTO postDTO) {
+    public Post createPost(PostDTO postDTO) {
         Post post = new Post();
-        post.setUid(uid); // 게시판 ID 설정
+        post.setUid(0L); // 게시판 ID 설정
         post.setTitle(postDTO.getTitle()); // 게시물 제목 설정
         post.setContent(postDTO.getContent()); // 게시물 내용 설정
         post.setView(0L); // 조회수 0으로 초기화

@@ -33,7 +33,7 @@ import team.ccnu.project.data.response.PostDTO;
 
 
 @RestController
-@RequestMapping("/api/posts/{bbs}")
+@RequestMapping("/api/posts")
 public class PostController {
     @Autowired
     private PostService postService;
@@ -47,52 +47,52 @@ public class PostController {
     //     return ResponseEntity.ok().build();
     // }
     /// <특정 게시판 내 모든 게시글 조회>
-    @GetMapping
-    public ResponseEntity<?> apiGetAllPosts(@PathVariable Long bbs) {
-        try {
-            List<Post> posts = postService.getAllPostsByBoardId(bbs);
-            List<PostDTO> postDTOs = posts.stream()
-                                          .map(post -> new PostDTO(post))
-                                          .toList(); // Java 16 이상
-            return ResponseEntity.ok().body("""
-                {"status": "success", "data": %s}
-                """.formatted(postDTOs));
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("""
-                {"status": "error", "message": "Internal Server Error"}
-                """);
-        }
-    }
+//    @GetMapping
+//    public ResponseEntity<?> apiGetAllPosts() {
+//        try {
+//            List<Post> posts = postService.getAllPostsByBoardId(bbs);
+//            List<PostDTO> postDTOs = posts.stream()
+//                                          .map(post -> new PostDTO(post))
+//                                          .toList(); // Java 16 이상
+//            return ResponseEntity.ok().body("""
+//                {"status": "success", "data": %s}
+//                """.formatted(postDTOs));
+//        } catch (Exception e) {
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("""
+//                {"status": "error", "message": "Internal Server Error"}
+//                """);
+//        }
+//    }
     
     
     
-    /// <특정 게시판 내 특정 게시글 조회>
-    @GetMapping("/{postId}")
-    public ResponseEntity<?> apiGetPostByID(@PathVariable Long bbs, @PathVariable Long postId) {
-        try {
-            Post post = postService.getPostBySn(postId);
-            if (post == null) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("""
-                    {"status": "error", "message": "Post not found"}
-                    """);
-            }
-            PostDTO postDTO = new PostDTO(post);
-            return ResponseEntity.ok().body("""
-                {"status": "success", "data": %s}
-                """.formatted(postDTO));
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("""
-                {"status": "error", "message": "Internal Server Error"}
-                """);
-        }
-    }
-    
+//    /// <특정 게시판 내 특정 게시글 조회>
+//    @GetMapping("/{postId}")
+//    public ResponseEntity<?> apiGetPostByID(@PathVariable Long bbs, @PathVariable Long postId) {
+//        try {
+//            Post post = postService.getPostBySn(postId);
+//            if (post == null) {
+//                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("""
+//                    {"status": "error", "message": "Post not found"}
+//                    """);
+//            }
+//            PostDTO postDTO = new PostDTO(post);
+//            return ResponseEntity.ok().body("""
+//                {"status": "success", "data": %s}
+//                """.formatted(postDTO));
+//        } catch (Exception e) {
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("""
+//                {"status": "error", "message": "Internal Server Error"}
+//                """);
+//        }
+//    }
+//
     
     /// <특정 게시판 내 게시글 추가>
     @PostMapping
-    public ResponseEntity<?> apiCreatePost(@PathVariable Long bbs, @RequestBody PostDTO postDTO) {
+    public ResponseEntity<?> apiCreatePost(@RequestBody PostDTO postDTO) {
         try {
-            Post post = postService.createPost(bbs, postDTO);
+            Post post = postService.createPost(postDTO);
             PostDTO responseDTO = new PostDTO(post);
             return ResponseEntity.ok().body("""
                 {"status": "success", "data": %s}

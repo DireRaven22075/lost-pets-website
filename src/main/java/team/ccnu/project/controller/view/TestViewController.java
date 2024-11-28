@@ -59,9 +59,9 @@ public class TestViewController {
     /// [HTTP GET] 게시글 화면 출력 함수
     /// TODO : 구현 필요
     /// </summary>
-    @GetMapping("/post/{id}/{sn}")
-    public ModelAndView post(HttpServletRequest request, @PathVariable String id, @PathVariable String sn) {
-        ModelAndView mav = buildModelAndView(request, "/board");
+    @GetMapping("/comment")
+    public ModelAndView post(HttpServletRequest request) {
+        ModelAndView mav = buildModelAndView(request, "/__test__/board");
         return mav;
     }
     ///<summary>

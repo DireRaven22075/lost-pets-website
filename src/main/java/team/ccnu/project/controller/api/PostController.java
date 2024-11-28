@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import team.ccnu.project.data.request.DeletePostDTO;
 import team.ccnu.project.data.request.UploadPostDTO;
 import team.ccnu.project.data.response.PostDTO;
 import team.ccnu.project.domain.entity.Post;
@@ -45,18 +46,18 @@ public class PostController {
     }
 } 
 
-    // <게시글 삭제>
-    @DeleteMapping("/{postSn}")
-    public ResponseEntity<?> apiDeletePost(@PathVariable Long postSn) {
+    /// <게시글 삭제>
+    @DeleteMapping
+    public ResponseEntity<?> apiDeletePost(@RequestBody DeletePostDTO deletePostDTO) {
         try {
-            postService.deletePost(postSn);
+            postService.deletePost(deletePostDTO.getPostSn());
             return ResponseEntity.ok().body("""
-            {"status": "success", "message": "Post deleted successfully"}
-            """);
+                {"status": "success", "message": "Post deleted successfully"}
+                """);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("""
-            {"status": "error", "message": "Internal Server Error"}
-            """);
+                {"status": "error", "message": "Internal Server Error"}
+                """);
         }
     }
 

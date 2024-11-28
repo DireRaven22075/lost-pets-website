@@ -1,54 +1,49 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign Up</title>
     <link rel="stylesheet" type="text/css" href="/src/css/signup.css" />
-
-    <script defer src="/src/js/ajax/register.js"></script>
+    <script defer src="/src/js/makeaccount.js"></script>
   </head>
-  <body>
-    <div class="signup-container">
-      <div class="signup-box">
-        <h1>Sign Up</h1>
-        <form id="Form-Register">
-          <label for="username">ID</label>
-          <input type="text" id="username" name="id" placeholder="Enter your ID" />
+  <body class="signup-container">
+    <form class="signup-box">
+      <h1>Sign Up</h1>
+      <label for="username">ID</label>
+      <input type="text" id="username" name="id" placeholder="Enter your ID" />
 
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" placeholder="Enter your name" />
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" placeholder="Enter your name" />
 
-          <label for="email">Email</label>
-          <input type="email" id="email" name="mail" placeholder="Enter your email" />
+      <label for="email">Email</label>
+      <input
+        type="email"
+        id="email"
+        name="mail"
+        placeholder="Enter your email"
+      />
 
-          <label for="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="pw"
-            placeholder="Enter your password"
-          />
+      <label for="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        name="pw"
+        placeholder="Enter your password"
+      />
 
-          <label for="confirm-password">Confirm Password</label>
-          <input
-            type="password"
-            id="confirm-password"
-            name="pw-confirm"
-            placeholder="Re-enter your password"
-          />
+      <label for="confirm-password">Confirm Password</label>
+      <input
+        id="confirm-password"
+        type="password"
+        name="pw-confirm"
+        placeholder="Re-enter your password"
+      />
 
-          <button type="submit" class="btn">Sign Up</button>
-        </form>
-        <button type="button" class="btn home">Home</button>
-        <script>
-          document
-            .querySelector(".btn.home")
-            .addEventListener("click", function () {
-              window.location.href = "/";
-            });
-        </script>
-      </div>
-    </div>
+      <button type="submit" class="btn">Sign Up</button>
+      <button type="button" onclick="window.location.href='/'" class="btn home">
+        Home
+      </button>
+    </form>
   </body>
 </html>

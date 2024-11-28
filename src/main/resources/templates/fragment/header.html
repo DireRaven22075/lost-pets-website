@@ -1,10 +1,32 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-
-<body>
-    <header th:fragment="header" id="View-Header" class="view header">
-
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" th:href="@{/src/css/list.css}" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header th:fragment="header">
+      <a href="/" class="header-title">Lost Pets Website</a>
+      <nav class="nav-items">
+        <a href="/report">신고</a>
+        <a href="/adopt">입양</a>
+        <a href="/education">교육</a>
+        <th:block th:if="${user != null}">
+          <a class="button" onclick="logout()">Log Out</a>
+        </th:block>
+        <th:block th:unless="${user != null}">
+          <a class="button" href="/login">Log In</a>
+        </th:block>
+      </nav>
     </header>
-</body>
 
+    <header th:fragment="write" class="header">
+      <a href="/" class="header-title">Lost Pets Website</a>
+      <div class="header-buttons">
+        <button onclick="logout()">Log Out</button>
+      </div>
+    </header>
+  </body>
 </html>

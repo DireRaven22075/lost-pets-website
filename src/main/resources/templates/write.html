@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" >
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
   <head>
     <title>게시글 작성</title>
     <meta charset="utf-8" />
@@ -8,28 +8,16 @@
       content="width=device-width, initial-scale=1, user-scalable=no"
     />
     <link rel="stylesheet" type="text/css" href="/src/css/write.css" />
+    <script defer src="/src/js/write.js"></script>
   </head>
   <body>
     <!-- 상단 헤더 -->
-    <div class="header">
-      <a href="/" class="header-title">Lost Pets Website</a>
-      <div class="header-buttons">
-        <button onclick="logout()">Log Out</button>
-      </div>
-    </div>
+    <th:block th:replace="~{fragment/header :: write}"></th:block>
 
     <!-- 게시글 작성 섹션 -->
-    <div class="wrapper">
+    <main class="wrapper">
       <h1>게시글 작성</h1>
       <form id="postForm">
-        <div class="form-section">
-          <label for="board">게시판 선택</label>
-          <select id="board" name="board" required>
-            <option value="report">신고 게시판</option>
-            <option value="adoption">입양 게시판</option>
-            <option value="education">교육 게시판</option>
-          </select>
-        </div>
         <div class="form-section">
           <label for="title">제목</label>
           <input
@@ -54,59 +42,6 @@
 
         <button type="submit" class="submit-button">Submit</button>
       </form>
-    </div>
-
-    <script>
-      // 게시글 저장 기능
-      document
-        .getElementById("postForm")
-        .addEventListener("submit", function (event) {
-          event.preventDefault();
-
-          // 입력값 가져오기
-          const board = document.getElementById("board").value;
-          const title = document.getElementById("title").value;
-          const content = document.getElementById("content").value;
-          const files = document.getElementById("uploadImage").files[0];
-
-          // 게시글 객체 생성
-          const newPost = {
-            board: board,
-            title: title,
-            content: content,
-            files: files ? URL.createObjectURL(files) : null, // 업로드된 파일 URL 생성
-            date: new Date().toLocaleString(),
-            view: 0,
-            comment: 0,
-          };
-
-          // 기존 게시글 가져오기
-          let posts = JSON.parse(localStorage.getItem("posts")) || [];
-          posts.push(newPost); // 새 게시글 추가
-
-          // localStorage에 저장
-          localStorage.setItem("posts", JSON.stringify(posts));
-
-          // 게시글 목록 페이지로 이동
-          alert("게시글이 성공적으로 저장되었습니다!");
-          window.location.href = board + ".html";
-        });
-
-      // 이전 페이지에서 선택된 게시판을 기본값으로 설정
-      document.addEventListener("DOMContentLoaded", function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const board = urlParams.get('board');
-        if (board) {
-          document.getElementById('board').value = board;
-        }
-      });
-
-      // 로그아웃 기능
-      function logout() {
-        localStorage.setItem("logInFlag", 0);
-        alert("로그아웃되었습니다.");
-        window.location.href = "/";
-      }
-    </script>
+    </main>
   </body>
 </html>

@@ -1,12 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-</head>
-<body>
-    <div th:fragments="{footer :: footer}">
-        <footer>
-            FOOTER
-        </footer>
-    </div>
-</body>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+  <body>
+    <footer th:fragment="footer" class="footer">
+      <p>&copy; 2024 Lost Pets Website. All Rights Reserved.</p>
+    </footer>
+  </body>
 </html>

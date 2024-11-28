@@ -78,9 +78,19 @@ public class ViewController {
    /// [HTTP GET] 게시판 화면 출력 함수
    /// TODO : 구현 필요
    ///</summary>
-   @GetMapping("/board/{id}/{index}")
-   public ModelAndView board(HttpServletRequest request, @PathVariable String id, @PathVariable String index) {
-       ModelAndView mav = buildModelAndView(request, "/board");
+   @GetMapping("/education")
+   public ModelAndView education(HttpServletRequest request) {
+       ModelAndView mav = buildModelAndView(request, "/education");
+       return mav;
+   }
+   @GetMapping("/adopt")
+   public ModelAndView adopt(HttpServletRequest request) {
+       ModelAndView mav = buildModelAndView(request, "/adopt");
+       return mav;
+   }
+   @GetMapping("/report")
+   public ModelAndView report(HttpServletRequest request) {
+       ModelAndView mav = buildModelAndView(request, "/report");
        return mav;
    }
    /// <summary>
@@ -98,7 +108,7 @@ public class ViewController {
    ///</summary>
    @GetMapping("/write/{id}")
    public ModelAndView write(HttpServletRequest request, @PathVariable String id) {
-       ModelAndView mav = buildModelAndView(request, "/board");
+       ModelAndView mav = buildModelAndView(request, "/write");
        return mav;
    }
    ///<summary>

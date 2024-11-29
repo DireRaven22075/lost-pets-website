@@ -56,7 +56,7 @@ public class AuthController {
     /// <summary>
     /// DONE : 구현 완료
     /// <br/> 로그아웃 처리 <br/>
-    /// DELETE, Json, /api/auth/logout
+    /// DELETE, Json, /api/auth/DELETELogout
     /// </summary>
     @DeleteMapping("/logout")
     public ResponseEntity<?> apiAuthLogout(HttpServletRequest request) {
@@ -69,7 +69,7 @@ public class AuthController {
         try {
             session.invalidate();
             return ResponseEntity.status(HttpStatus.OK).body("""
-            {"status": "success", "message": "logout successful"}
+            {"status": "success", "message": "DELETELogout successful"}
             """);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("""

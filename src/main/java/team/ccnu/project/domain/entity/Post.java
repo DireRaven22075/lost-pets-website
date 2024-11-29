@@ -37,4 +37,8 @@ public class Post {
     @ColumnDefault("0") private Long view;
     @ColumnDefault("'Y'")
     private char status;  //adoptive or not
+
+    public void addFile(Image image) {
+        files.add(image);
+    }
 }

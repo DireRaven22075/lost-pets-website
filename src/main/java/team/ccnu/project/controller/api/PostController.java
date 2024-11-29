@@ -3,19 +3,19 @@ package team.ccnu.project.controller.api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import org.springframework.web.multipart.MultipartFile;
 import team.ccnu.project.data.request.DeletePostDTO;
 import team.ccnu.project.data.request.UploadPostDTO;
 import team.ccnu.project.data.response.PostDTO;
+import team.ccnu.project.domain.entity.Image;
 import team.ccnu.project.domain.entity.Post;
+import team.ccnu.project.service.ImageService;
 import team.ccnu.project.service.PostService;
+
+import java.io.File;
+import java.rmi.server.ExportException;
 
 
 @RestController
@@ -23,18 +23,51 @@ import team.ccnu.project.service.PostService;
 public class PostController {
     @Autowired
     private PostService postService;
-
-    private final String uploadDir = "uploads/";
-
+    @Autowired
+    private ImageService img;
     /// <게시글 추가>
     @PostMapping
-    public ResponseEntity<?> apiCreatePost(@RequestBody UploadPostDTO postDTO) {
+    public ResponseEntity<?> apiCreatePost(
+            @RequestParam("files") MultipartFile[] files,
+            @RequestParam("data") UploadPostDTO dto) {
+        String sysPath = System.getProperty("user.home") + "/uploads" ;
+        String path = "";
         try {
-            Post post = postService.createPost(postDTO);
-            PostDTO responseDTO = new PostDTO(post);
-            return ResponseEntity.ok().body("""
-                    {"status": "success", "data": %s}
-                    """.formatted(responseDTO));
+            Post post = postService.createPost(dto);
+            Long uid = post.getUid();
+            if (uid == 0L) {
+                sysPath += "/adopt";
+                path += "/adopt";
+            } else if (uid == 1L) {
+                sysPath += "/report";
+                path += "/report";
+            } else if (uid == 2L) {
+                sysPath += "/education";
+                path += "/education";
+            } else {
+                throw new Exception();
+            }
+            if (files != null && files.length > 0) {
+                File directory = new File(sysPath);
+                if (!directory.exists()) {
+                    if (!directory.mkdirs()) {
+                        throw new Exception();
+                    }
+                }
+                for (MultipartFile file : files) {
+                    String format = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
+                    String name = System.currentTimeMillis() + format;
+                    file.transferTo(new File(sysPath+name));
+                    Image image = img.addImage(path + name + format);
+                    image.setPost(post);
+                    post.addFile(image);
+                    postService.savePost(post);
+                    img.save(image);
+                }
+            }
+            return ResponseEntity.ok("""
+            {"status": "success", "message": "Upload Successfully."}
+            """);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("""
                     {"status": "error", "message": "Internal Server Error"}
@@ -71,6 +104,58 @@ public class PostController {
                     {"status": "error", "message": "Internal Server Error"}
                     """);
         }
+    }
+
+
+
+
+    /// <summary>
+    /// 포스트 업로드 처리 핸들러
+    /// @Param files : MulipartFile[] : 이미지 파일들을 받아오는 인자
+    /// @Param dto : UploadPostDTO : 게시글 관련 값들을 받아오는 인자
+    /// @Return ResponseEntity
+    /// </summary>
+    @PostMapping("/test")
+    public ResponseEntity<?> apiUploadPost(
+            @RequestParam("files") MultipartFile[] files
+    ) {
+        try {
+            //Post post = postService.uploadPost(dto);
+
+            return ResponseEntity.ok("""
+            {"status": "success", "message": "Upload successfully"}
+            """);
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("""
+            {"status": "error", "message": "Internal Server Error"}
+            """);
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+        /*
+        try {
+            // 파일 처리
+            //Post post = postService.uploadPost(dto);
+            for (MultipartFile file : files) {
+                String fileName = file.getOriginalFilename();
+                long fileSize = file.getSize();
+                File directory = new File(System.getProperty("user.home") + "/uploads/adopt");
+                if (!directory.exists()) {
+                    if (!directory.mkdirs()) {
+                        throw new Exception();
+                    }
+                }
+                file.transferTo(new File(System.getProperty("user.home") + "/uploads/adopt/" + System.currentTimeMillis() + file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."))));
+                //Image image = img.uploadImge(file);
+            }
+
+            return ResponseEntity.ok("Files uploaded successfully: " + files.length + " files");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body("File upload failed");
+        }
+        
+         */
     }
 }
     // /// <게시글 수정 및 파일 첨부>

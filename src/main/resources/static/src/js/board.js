@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 로그아웃 버튼 이벤트
     document
-      .querySelector(".logout-button")
+      .querySelector(".DELETELogout-button")
       .addEventListener("click", () => {
         alert("로그아웃 되었습니다.");
         localStorage.setItem("logInFlag", 0);

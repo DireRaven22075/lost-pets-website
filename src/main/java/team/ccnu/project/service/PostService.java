@@ -1,5 +1,6 @@
 package team.ccnu.project.service;
 
+import java.io.File;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import org.springframework.web.multipart.MultipartFile;
 import team.ccnu.project.data.request.UploadPostDTO;
+import team.ccnu.project.domain.entity.Image;
 import team.ccnu.project.domain.entity.Post;
 import team.ccnu.project.domain.repository.PostRepository;
 
@@ -91,5 +94,47 @@ public class PostService {
     public Page<Post> getPostsByPageByIndex(Long bbs, int index) {
         Pageable pageable = PageRequest.of(index, 20);
         return postRepository.findAll(pageable);
+    }
+
+    public Post uploadPost(UploadPostDTO dto) {
+        try {
+            Post post = new Post();
+            post.setTitle(dto.getTitle());
+            post.setContent(dto.getContent());
+            post.setStatus(dto.getStatus());
+            post.setUid(dto.getUid());
+            postRepository.save(post);
+
+            return post;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    public Post uploadPost(UploadPostDTO dto, MultipartFile[] files) {
+        try {
+            Post post = new Post();
+            post.setTitle(dto.getTitle());
+            post.setContent(dto.getContent());
+            post.setStatus(dto.getStatus());
+            post.setUid(dto.getUid());
+            for (MultipartFile file : files) {
+                String fileName = file.getOriginalFilename();
+                long fileSize = file.getSize();
+                File directory = new File(System.getProperty("user.home") + "/uploads/adopt");
+                if (!directory.exists()) {
+                    if (!directory.mkdirs()) {
+                        throw new Exception();
+                    }
+                }
+                file.transferTo(new File(System.getProperty("user.home") + "/uploads/adopt/" + System.currentTimeMillis() + file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."))));
+                //Image image = img.uploadImge(file);
+            }
+
+
+            postRepository.save(post);
+            return post;
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

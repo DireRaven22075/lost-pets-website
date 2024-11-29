@@ -20,6 +20,13 @@ public class MvcConfiguration implements WebMvcConfigurer {
                 .addResourceLocations("classpath:/templates/", "classpath:/static/")
                 .addResourceLocations("classpath:/static/css/images")
                 .setCacheControl(CacheControl.maxAge(10, TimeUnit.MINUTES));
+
+        // user.home 경로를 정적 리소스로 매핑
+        String userHome = System.getProperty("user.home");
+        String uploadDir = userHome + "/uploads/";
+
+        registry.addResourceHandler("/uploads/**")
+                .addResourceLocations("file:" + uploadDir);
     }
     @Override
     public void addInterceptors(InterceptorRegistry registry) {

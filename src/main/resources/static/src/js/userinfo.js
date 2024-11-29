@@ -47,12 +47,3 @@ button.addEventListener("click", function () {
   document.getElementById(`edit-${target}`).style.display = "none";
 });
 });
-
-// 로그아웃 처리
-document
-.getElementById("logoutButton")
-.addEventListener("click", function () {
-  localStorage.setItem("logInFlag", 0);
-  alert("로그아웃 되었습니다.");
-  window.location.href = "index.html";
-});

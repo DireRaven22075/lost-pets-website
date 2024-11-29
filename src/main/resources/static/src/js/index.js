@@ -10,9 +10,3 @@ document.addEventListener("DOMContentLoaded", function() {
     
   });
 
-
-  function logout() {
-    localStorage.setItem("logInFlag", 0);
-    alert("로그아웃되었습니다.");
-    window.location.href = "/";
-    }

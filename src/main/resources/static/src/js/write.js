@@ -31,10 +31,3 @@ document
   alert("게시글이 성공적으로 저장되었습니다!");
   window.location.href = previousPage;
 });
-
-// 로그아웃 기능
-function logout() {
-localStorage.setItem("logInFlag", 0);
-alert("로그아웃되었습니다.");
-window.location.href = "/";
-}

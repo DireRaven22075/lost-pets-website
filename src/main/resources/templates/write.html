@@ -1,43 +1,70 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>게시글 작성</title>
 
-<head>
-  <title>게시글 작성</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
 
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="/src/css/write.css" />
 
-  <link rel="stylesheet" type="text/css" href="/src/css/write.css" />
+    <script defer src="/src/js/ajax/board/write.js"></script>
+    <script defer src="/src/js/ajax/account/logout.js"></script>
+  </head>
 
-  <script defer src="/src/js/ajax/board/write.js"></script>
-</head>
+  <body id="Page-Write">
+    <!-- 상단 헤더 -->
+    <th:block th:replace="~{fragment/header :: write}"></th:block>
+    <!-- 게시글 작성 섹션 -->
+    <main
+      class="wrapper"
+      style="
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+      "
+    >
+      <p hidden id="Value-BBS" th:text="${bbs}"></p>
+      <h1>게시글 작성</h1>
+      <form id="Form-Write">
+        <div class="form-section">
+          <label for="title">제목</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            placeholder="제목을 입력하세요"
+            required
+          />
 
-<body id="Page-Write">
-  <!-- 상단 헤더 -->
-  <th:block th:replace="~{fragment/header :: write}"></th:block>
-  <!-- 게시글 작성 섹션 -->
-  <main class="wrapper" style="display: flex; flex-direction: column; align-items: flex-start; justify-content: center;">
-    <p hidden id="Value-BBS" th:text="${bbs}"></p>
-    <h1>게시글 작성</h1>
-    <form id="Form-Write">
-      <div class="form-section">
-        <label for="title">제목</label>
-        <input type="text" id="title" name="title" placeholder="제목을 입력하세요" required />
+          <label for="files">파일 첨부</label>
+          <input
+            type="file"
+            id="uploadImage"
+            name="files"
+            accept="image/*"
+            multiple
+          />
 
-        <label for="files">파일 첨부</label>
-        <input type="file" id="uploadImage" name="files" accept="image/*" multiple />
+          <label for="content">본문</label>
+          <textarea
+            id="content"
+            name="content"
+            placeholder="본문 내용을 작성하세요"
+            required
+          ></textarea>
+        </div>
 
-        <label for="content">본문</label>
-        <textarea id="content" name="content" placeholder="본문 내용을 작성하세요" required></textarea>
-      </div>
+        <button type="submit" class="submit-button">Submit</button>
+      </form>
+    </main>
 
-      <button type="submit" class="submit-button">Submit</button>
-    </form>
-  </main>
-
-  <footer id="View-Footer" class="min">
-    <p id="Text-Footer-Copyright">ⓣ CCNU Team. All rights reserved.</p>
-  </footer>
-</body>
-
+    <footer id="View-Footer" class="min">
+      <p id="Text-Footer-Copyright">ⓣ CCNU Team. All rights reserved.</p>
+    </footer>
+  </body>
 </html>

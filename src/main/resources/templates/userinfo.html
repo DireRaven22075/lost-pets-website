@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>User Information</title>
     <link rel="stylesheet" type="text/css" href="/src/css/userinfo.css" />
-    <script defer src="/src/js/userinfo.js"></script>
-    <script defer src="/src/js/ajax/account/[DELETE]-logout.js"></script>
+    <script defer src="/src/js/ajax/account/logout.js"></script>
   </head>
   <body>
     <div class="container">
@@ -15,7 +14,7 @@
         <h1>User Information</h1>
         <div class="buttons">
           <button onclick="location.href='/'">메인 페이지</button>
-          <button id="logoutButton">Logout</button>
+          <button id="logoutButton" onclick="DELETELogout()">Logout</button>
         </div>
       </div>
 

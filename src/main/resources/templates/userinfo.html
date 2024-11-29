@@ -14,7 +14,8 @@
         <h1>User Information</h1>
         <div class="buttons">
           <button onclick="location.href='/'">메인 페이지</button>
-          <button id="logoutButton" onclick="DELETELogout()">Logout</button>
+          <button id="logoutButton">Logout</button>
+          <button id="deleteIDButton">회원 탈퇴</button>
         </div>
       </div>
 
@@ -44,15 +45,6 @@
       <div class="user-info">
         <div class="info">
           <div><strong>Name:</strong> <span id="user-name">user</span></div>
-          <div>
-            <strong>Address:</strong>
-            <span id="user-address">청주</span>
-            <button class="edit-btn" data-target="address">Edit</button>
-            <div class="edit-section" id="edit-address">
-              <input type="text" placeholder="새로운 주소" id="input-address" />
-              <button class="edit-btn" data-target="address">Confirm</button>
-            </div>
-          </div>
           <div>
             <strong>Email address:</strong>
             <span id="user-email">user@mail.com</span>

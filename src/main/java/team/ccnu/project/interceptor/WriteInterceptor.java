@@ -27,7 +27,7 @@ public class WriteInterceptor implements HandlerInterceptor {
             return false;
         }
 
-        User user = (User) session.getAttribute("user");
+        //User user = session.getAttribute("user");
         
         // URL에서 postId 추출
         String postId = extractPostIdFromUrl(request.getRequestURI());
@@ -45,10 +45,10 @@ public class WriteInterceptor implements HandlerInterceptor {
                 return false;
             }
 
-            if (user.getSn() != post.getOwner().getSn()) {
-                response.sendRedirect("/");
-                return false;
-            }
+//            //if (user.getSn() != post.getOwner().getSn()) {
+//                response.sendRedirect("/");
+//                return false;
+//            //}
         } catch (NumberFormatException e) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid post ID");
             return false;

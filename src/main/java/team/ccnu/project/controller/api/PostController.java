@@ -16,6 +16,7 @@ import team.ccnu.project.service.PostService;
 
 import java.io.File;
 import java.rmi.server.ExportException;
+import java.util.List;
 
 
 @RestController
@@ -25,11 +26,12 @@ public class PostController {
     private PostService postService;
     @Autowired
     private ImageService img;
+
     /// <게시글 추가>
     @PostMapping
     public ResponseEntity<?> apiCreatePost(
-            @RequestParam("files") MultipartFile[] files,
-            @RequestParam("data") UploadPostDTO dto) {
+            @RequestParam("files") List<MultipartFile> files,
+            @RequestPart("data") UploadPostDTO dto) {
         String sysPath = System.getProperty("user.home") + "/uploads" ;
         String path = "";
         try {
@@ -47,7 +49,7 @@ public class PostController {
             } else {
                 throw new Exception();
             }
-            if (files != null && files.length > 0) {
+            if (files != null && files.size() > 0) {
                 File directory = new File(sysPath);
                 if (!directory.exists()) {
                     if (!directory.mkdirs()) {
@@ -65,8 +67,8 @@ public class PostController {
                     img.save(image);
                 }
             }
-            return ResponseEntity.ok("""
-            {"status": "success", "message": "Upload Successfully."}
+            return ResponseEntity.status(200).body("""
+            {"status": "success", "message": "Upload Success."}      
             """);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("""
@@ -120,22 +122,6 @@ public class PostController {
             @RequestParam("files") MultipartFile[] files
     ) {
         try {
-            //Post post = postService.uploadPost(dto);
-
-            return ResponseEntity.ok("""
-            {"status": "success", "message": "Upload successfully"}
-            """);
-        } catch (Exception e) {
-            return ResponseEntity.status(500).body("""
-            {"status": "error", "message": "Internal Server Error"}
-            """);
-        } catch (Throwable e) {
-            throw new RuntimeException(e);
-        }
-        /*
-        try {
-            // 파일 처리
-            //Post post = postService.uploadPost(dto);
             for (MultipartFile file : files) {
                 String fileName = file.getOriginalFilename();
                 long fileSize = file.getSize();
@@ -154,8 +140,6 @@ public class PostController {
             e.printStackTrace();
             return ResponseEntity.status(500).body("File upload failed");
         }
-        
-         */
     }
 }
     // /// <게시글 수정 및 파일 첨부>

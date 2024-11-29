@@ -67,9 +67,3 @@ const logInFlag = localStorage.getItem("logInFlag"); // Assuming logInFlag is st
 
       // Load the posts when the page is loaded
       window.onload = loadBulletin;
-
-      function logout() {
-        localStorage.setItem("logInFlag", 0);
-        alert("로그아웃되었습니다.");
-        window.location.href = "/";
-        }

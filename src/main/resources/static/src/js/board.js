@@ -36,14 +36,6 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("comment-input").value = "";
       });
 
-    // 로그아웃 버튼 이벤트
-    document
-      .querySelector(".logout-button")
-      .addEventListener("click", () => {
-        alert("로그아웃 되었습니다.");
-        localStorage.setItem("logInFlag", 0);
-        window.location.href = "index.html";
-      });
 
     // 로그아웃 버튼 클릭 시
 

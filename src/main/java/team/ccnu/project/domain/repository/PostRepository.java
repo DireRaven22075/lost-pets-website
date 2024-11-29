@@ -11,4 +11,5 @@ import team.ccnu.project.domain.entity.Post;
 public interface PostRepository extends JpaRepository<Post, Long> {
     Post findBySn(Long sn);
     void deleteBySn(Long sn);
+    List<Post> findAll();
 }

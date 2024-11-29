@@ -14,13 +14,10 @@ document.querySelector("#Form-Write").addEventListener("submit", (e) => {
         status: 'W',
         uid: document.querySelector("#Value-BBS").innerHTML
     }
-    formData.append("data", data);
+    formData.append("data", new Blob([JSON.stringify(data)], {type: "application/json"}));
     fetch("/api/posts", {
         method: "POST",
         credentials: 'include',
-        headers: {
-            'Content-Type': 'multipart/form-data'
-        },
         body: formData
     }).then(response => {
         return response.json()

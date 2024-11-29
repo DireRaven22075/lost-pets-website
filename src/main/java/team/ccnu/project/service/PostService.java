@@ -1,6 +1,7 @@
 package team.ccnu.project.service;
 
 import java.io.File;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,17 @@ public class PostService {
         post.setUid(postDTO.getUid());
         postRepository.save(post);
         return post;
+    }
+    public Post createPost(UploadPostDTO postDTO) {
+        Post post = new Post();
+        post.setTitle(postDTO.getTitle());
+        post.setContent(postDTO.getContent());
+        post.setUid(postDTO.getUid());
+        post.setStatus(postDTO.getStatus());
+        post.setUid(postDTO.getUid());
+        post.setFiles(new LinkedList<>());
+        post.setOwner(null);
+        return postRepository.save(post);
     }
 
     

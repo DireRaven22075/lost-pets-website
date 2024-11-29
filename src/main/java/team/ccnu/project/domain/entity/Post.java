@@ -1,6 +1,7 @@
 package team.ccnu.project.domain.entity;
 
 import java.util.LinkedList;
+import java.util.List;
 
 import org.hibernate.annotations.ColumnDefault;
 
@@ -27,7 +28,7 @@ public class Post {
     private User owner;
     //FK
     @OneToMany
-    private LinkedList<Image> files = new LinkedList<>();
+    private List<Image> files = new LinkedList<>();
 
 
     //DATA COLUMN

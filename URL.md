@@ -17,7 +17,7 @@
 | 기능 | 메서드 | URL | 설명 |
 | --- | --- | --- | --- |
 | 로그인 | POST | /api/auth/login | 로그인 시 인증 토큰 또는 세션 생성 |
-| 로그아웃 | DELETE | /api/auth/DELETELogout | 로그아웃 시 인증 세션 삭제 |
+| 로그아웃 | DELETE | /api/auth/Logout | 로그아웃 시 인증 세션 삭제 |
 | 비밀번호 찾기 요청 | POST | /api/auth/password/reset-request | 비밀번호 재설정 요청 |
 | 비밀번호 업데이트 | PUT | /api/auth/password/reset | 비밀번호 재설정 |
 | 회원가입 | POST | /api/users | 새 사용자 계정을 생성 |

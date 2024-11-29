@@ -18,7 +18,7 @@ document.getElementById("Form-Login").addEventListener("submit", (e) => {
                 alert(data["message"]);
                 window.location.href = "/";
             } else {
-                document.getElementById("ERROR").innerHTML = data["message"];
+                document.querySelector("#Text-Login-Message").innerHTML = data["message"];
             }
         })
         .catch(error => {

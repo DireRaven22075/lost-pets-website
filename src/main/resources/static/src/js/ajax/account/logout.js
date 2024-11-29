@@ -1,4 +1,4 @@
-function DELETELogout() {
+function Logout() {
     fetch("/api/auth/logout", {
         method: "DELETE",
         credentials: 'include',

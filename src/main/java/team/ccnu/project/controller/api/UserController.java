@@ -63,8 +63,8 @@ public class UserController {
         HttpSession session = request.getSession();
         if (session == null || session.getAttribute("user") == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("""
-                    {"status": "error", "message": "Unauthorized Request"}
-                    """);
+            {"status": "error", "message": "Unauthorized Request"}
+            """);
         }
         try {
             session.invalidate();
@@ -73,12 +73,12 @@ public class UserController {
             userService.update(user);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("""
-                 {"status": "error", "message": "Internal Server Error"}   
-            """);
+                         {"status": "error", "message": "Internal Server Error"}   
+                    """);
         }
         return ResponseEntity.status(HttpStatus.OK).body("""
-            {"status": "success", "message": "Success"}   
-        """);
+                    {"status": "success", "message": "Success"}   
+                """);
     }
 
     /// <summary>

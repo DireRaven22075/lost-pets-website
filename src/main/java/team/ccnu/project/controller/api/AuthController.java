@@ -56,7 +56,7 @@ public class AuthController {
     /// <summary>
     /// DONE : 구현 완료
     /// <br/> 로그아웃 처리 <br/>
-    /// DELETE, Json, /api/auth/DELETELogout
+    /// DELETE, Json, /api/auth/Logout
     /// </summary>
     @DeleteMapping("/logout")
     public ResponseEntity<?> apiAuthLogout(HttpServletRequest request) {

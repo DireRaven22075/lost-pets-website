@@ -8,6 +8,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import team.ccnu.project.data.response.PostDTO;
+import team.ccnu.project.domain.entity.Post;
+import team.ccnu.project.service.PostService;
+import team.ccnu.project.service.ImageService;
+import team.ccnu.project.data.request.UploadPostDTO;
+
 
 @RestController
 @RequestMapping("/api/posts")
@@ -100,10 +106,10 @@ public class PostController {
     public ResponseEntity<?> apiUpdatePost(@PathVariable Long postSn, @RequestBody UploadPostDTO postDTO) {
         try {
             Post post = postService.updatePost(postSn, postDTO);
-            PostDTO responseDTO = new PostDTO(post);
+
             return ResponseEntity.ok().body("""
-                    {"status": "success", "data": %s}
-                    """.formatted(responseDTO));
+                    {"status": "success", "message": "Post updated successfully"}
+                    """);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("""
                     {"status": "error", "message": "Internal Server Error"}

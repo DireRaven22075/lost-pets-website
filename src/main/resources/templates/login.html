@@ -8,35 +8,35 @@
 
     <link rel="stylesheet" type="text/css" href="/src/css/login.css" />
 
-    <script defer src="/src/js/ajax/login.js"></script>
+    <script defer src="/src/js/ajax/account/[POST]-login.js"></script>
   </head>
   <body class="login-container">
-      <main class="login-box">
-        <form>
-          <h1>Log In</h1>
-          <label for="id">ID</label>
-          <input type="text" id="id" name="id" placeholder="Enter your ID" />
+    <main class="login-box">
+      <form>
+        <h1>Log In</h1>
+        <label for="id">ID</label>
+        <input type="text" id="id" name="id" placeholder="Enter your ID" />
 
-          <label for="password">Password</label>
-          <input type="password" id="password" name="pw" placeholder="Enter your Password" />
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="pw"
+          placeholder="Enter your Password"
+        />
 
-          <button type="submit" class="btn">Sign In</button>
-          <button
-            type="button"
-            class="btn secondary"
-            onclick="window.location.href='/register'"
-          >
-            Make Account
-          </button>
-        </form>
+        <button type="submit" class="btn">Sign In</button>
         <button
           type="button"
-          class="btn home"
-          onclick="window.location.href='/'"
+          class="btn secondary"
+          onclick="window.location.href='/register'"
         >
-          Home
+          Make Account
         </button>
-      </main>
-
+      </form>
+      <button type="button" class="btn home" onclick="window.location.href='/'">
+        Home
+      </button>
+    </main>
   </body>
 </html>

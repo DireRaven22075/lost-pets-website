@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .addEventListener("click", () => {
         alert("로그아웃 되었습니다.");
         localStorage.setItem("logInFlag", 0);
-        window.location.href = "index.html";
+        window.location.href = "/";
       });
 
     // 로그아웃 버튼 클릭 시

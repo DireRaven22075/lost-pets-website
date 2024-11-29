@@ -12,10 +12,10 @@
   <!-- 네비게이션 -->
   <div class="navigation">
     <a href="/" class="header-title">Lost Pets Website</a>
-    <th:block th:if="${user != null}">
+    <th:block th:if="${user == null}">
       <a class="btn get-started-button" href="/login">Get Started</a>
     </th:block>
-    <th:block th:unless="${user != null}">
+    <th:block th:unless="${user == null}">
       <a class="btn get-started-button" href="/ami">User Info</a>
     </th:block>
     

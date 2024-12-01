@@ -44,7 +44,7 @@ public class CommentController {
     
     // 답글 기능을 위한 추가 메서드
     @PostMapping("/{pst}/reply")
-    public ResponseEntity<Comment> addReply(@PathVariable Long pst, @RequestBody UploadReplyDTO replyDTO) {
+    public ResponseEntity<Comment> addReply(@PathVariable Comment pst, @RequestBody Long replyDTO) {
         Comment savedReply = commentService.addReply(replyDTO, pst);    // 답글 저장
         return ResponseEntity.ok(savedReply);
     }

@@ -40,4 +40,18 @@ public class CommentController {
         commentService.deleteComment(cmnt);
         return ResponseEntity.ok().build();
     }
+    
+    
+    // 답글 기능을 위한 추가 메서드
+    @PostMapping("/{pst}/reply")
+    public ResponseEntity<Comment> addReply(@PathVariable Long pst, @RequestBody UploadReplyDTO replyDTO) {
+        Comment savedReply = commentService.addReply(replyDTO, pst);    // 답글 저장
+        return ResponseEntity.ok(savedReply);
+    }
+
+    @GetMapping("/{pst}/replies")
+    public ResponseEntity<List<Comment>> getReplies(@PathVariable Long pst) {
+        List<Comment> replies = commentService.getRepliesByCommentSn(pst); // 답글 목록 가져옴.
+        return ResponseEntity.ok(replies);
+    }
 }

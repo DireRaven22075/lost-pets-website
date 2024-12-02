@@ -2,6 +2,7 @@ package team.ccnu.project.controller.api;
 
 import java.io.File;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,14 +31,8 @@ public class PostController {
     /// <게시글 추가>
     @PostMapping
     public ResponseEntity<?> apiCreatePost(
-            @RequestPart(value = "files", required = false) List<MultipartFile> files,
-            @RequestPart("data") UploadPostDTO dto) {
-
-        // DTO 및 파일 유효성 확인
-        if (dto == null || (files == null || files.isEmpty())) {
-            return ResponseEntity.badRequest().body("Invalid input data.");
-        }
-
+            @ModelAttribute UploadPostDTO dto
+    ) {
         // 경로 설정
         String sysPath = System.getProperty("user.home") + "/uploads";
         String path = determinePathBasedOnUid(dto.getUid(), sysPath);
@@ -49,14 +44,14 @@ public class PostController {
         }
 
         // 파일 처리
-        if (files != null && !files.isEmpty()) {
+        if (dto.getFiles() != null && !dto.getFiles().isEmpty()) {
             File directory = new File(sysPath);
             if (!directory.exists()) {
                 directory.mkdirs();
             }
 
             try {
-                for (MultipartFile file : files) {
+                for (MultipartFile file : dto.getFiles()) {
                     String filename = generateUniqueFilename(file);
                     File destFile = new File(sysPath + filename);
                     file.transferTo(destFile); // 파일 저장
@@ -75,8 +70,7 @@ public class PostController {
                 return ResponseEntity.internalServerError().body("Error while processing files.");
             }
         }
-
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(Map.of("status", "success", "message", "Post uploaded successfully!"));
     }
 
     // 게시글의 UID에 따른 경로 결정
@@ -181,6 +175,7 @@ public class PostController {
 
     /// <summary>
     /// 포스트 업로드 처리 핸들러
+    ///
     /// @Param files : MulipartFile[] : 이미지 파일들을 받아오는 인자
     /// @Param dto : UploadPostDTO : 게시글 관련 값들을 받아오는 인자
     /// @Return ResponseEntity

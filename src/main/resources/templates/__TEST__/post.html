@@ -4,32 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="/src/js/main.js"></script>
 </head>
 
 <body>
 <h1>REGISTER FORM</h1>
 <form id="Form" method="post" action="/api/users">
     <p id="ERROR"></p>
+    <input id="Files" type="file" multiple />
     <button type="submit">REQUEST</button>
 </form>
 <button onclick="window.location.href='/'">Main Page</button>
 <script>
     const form = document.getElementById("Form").addEventListener("submit", (e) => {
         e.preventDefault();
-        const formData = {
-            title: "TEST",
-            content: "La campabeela",
-            status: 'C',
-            uid: 0
+        let formData = new FormData();
+        formData.append("title", "test");
+        formData.append("content", "La Campabella");
+        formData.append("status", 'C');
+        formData.append("uid", 0);
+        let files = document.querySelector("#Files").files;
+        for (let i = 0; i < files.length; i++) {
+            formData.append("files", files[i]);
         }
-        fetch("/api/posts/test", {
+        fetch("/api/posts", {
             method: "POST",
             credentials: 'include',
-            body: JSON.stringify(formData),
-            headers: {
-                'Content-Type': 'application/json'
-            }
+            body: formData
         })
             .then(response => response.json())
             .then(data => {

@@ -10,6 +10,8 @@ import jakarta.persistence.ManyToOne;
 @lombok.Getter
 @lombok.Setter
 @lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
+@lombok.Builder
 @Entity
 public class Image {
     //PK

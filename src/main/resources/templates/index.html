@@ -7,22 +7,55 @@
   <link rel="stylesheet" type="text/css" href="/src/css/index.css" />
   <script defer src="/src/js/index.js"></script>
   <script defer src="/src/js/ajax/logout.js"></script>
+  <style>
+    nav {
+      width: auto;
+      ul li a {
+        display: flex;
+        list-style: none;
+        text-decoration: none;
+      }
+      ul {
+        width: auto;
+        height: 1rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        list-style: none;
+         {
+          list-style: none;
+          text-decoration: none;
+        }
+        li>a {
+          text-decoration: none;
+          width: 10rem;
+          height: 1rem;
+        }
+      }
+    }
+  </style>
 </head>
 <body>
   <!-- 네비게이션 -->
-  <div class="navigation">
+  <nav class="navigation" style="position: fixed; top: 0; width: calc(100vw - 160px);">
     <a href="/" class="header-title">Lost Pets Website</a>
+    <ul>
+      <li><a href="/report/0">신고 계시판</a></li>
+      <li><a href="/adopt/0">입양 계시판</a></li>
+      <li><a href="/education/0">교육 계시판</a></li>
+    </ul>
+
     <th:block th:if="${user == null}">
       <a class="btn get-started-button" href="/login">Get Started</a>
     </th:block>
     <th:block th:unless="${user == null}">
       <a class="btn get-started-button" href="/ami">User Info</a>
     </th:block>
-    
-  </div>
+  </nav>
 
   <!-- 메인 이미지 -->
-  <div class="main-image"></div>
+  <div class="main-image" style="margin-top: 90px"></div>
 
   <!-- 소개 섹션 -->
   <div class="intro">

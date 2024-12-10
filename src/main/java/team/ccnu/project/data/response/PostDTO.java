@@ -9,13 +9,13 @@ import team.ccnu.project.domain.entity.User;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class PostDTO {
     //Public Variables
     private Long sn;
     private String title;
     private String content;
     private Long view;
+    private char status = 'Y';
 
     //System Variables
     private User owner; // User ID

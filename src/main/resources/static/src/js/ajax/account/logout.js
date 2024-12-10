@@ -9,8 +9,8 @@ function Logout() {
         .then(response => response.json())
         .then(data => {
             if (data['status'] === "success") {
-                alert(data["message"]);
-                window.location.href='/';
+                alert("로그아웃되었습니다.");
+                history.go(0);
             }
         })
         .catch(error => {

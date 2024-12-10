@@ -1,5 +1,6 @@
 package team.ccnu.project.controller.view.board;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,11 +14,20 @@ import team.ccnu.project.service.PostService;
 public class EducationBoardController {
     @Autowired
     private PostService posts;
+    private ModelAndView buildModelAndView(HttpServletRequest request, String viewName) {
+        ModelAndView mav = new ModelAndView(viewName);
+        mav.addObject("user", request.getSession(true).getAttribute("user"));
+        return mav;
+    }
 
     @GetMapping("/{index}")
-    public ModelAndView viewList(@PathVariable int index) {
-        ModelAndView mav = new ModelAndView("/board");
-        mav.addObject("posts", posts.getPostsByPageByIndex(2L, index));
+    public ModelAndView viewList(
+            HttpServletRequest request,
+            @PathVariable int index
+    ) {
+        ModelAndView mav = buildModelAndView(request, "board");
+        mav.addObject("title", "Education");
+        mav.addObject("description", index);
         return mav;
     }
     @GetMapping("/post/{pst}")

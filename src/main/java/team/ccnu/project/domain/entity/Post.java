@@ -3,17 +3,8 @@ package team.ccnu.project.domain.entity;
 import java.util.LinkedList;
 import java.util.List;
 
+import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
-
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 
 @lombok.Getter
 @lombok.Setter
@@ -54,7 +45,17 @@ public class Post {
 
     // 이미지 파일 추가 메서드
     public void addFile(Image image) {
+        if (files == null) {
+            files = new LinkedList<>();
+        }
         files.add(image);
         image.setPost(this);
+    }
+
+    @PostLoad
+    public void ensureFilesInitialized() {
+        if (files == null) {
+            files = new LinkedList<>();
+        }
     }
 }

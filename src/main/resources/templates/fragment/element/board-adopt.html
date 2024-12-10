@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="ko" xmlns:th="https://www.thymeleaf.org">
+<body>
+<th:block th:fragment="element">
+    <tr th:each="post : ${posts}" onclick="location.href='[[@{/adopt/post/{sn}(sn=${post.sn})}]]'" style="cursor: pointer;">
+        <td th:if="${post.status == 'Y'}">입양중</td>
+        <td th:unless="${post.status == 'Y'}">입양완료</td>
+        <td th:text="${post.title}"></td>
+        <td th:text="${post.ownver.name}"></td>
+        <td th:text="${post.view}"></td>
+    </tr>
+</th:block>
+</body>
+</html>

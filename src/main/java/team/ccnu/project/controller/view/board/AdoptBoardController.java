@@ -1,5 +1,6 @@
 package team.ccnu.project.controller.view.board;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,16 +12,29 @@ import team.ccnu.project.data.response.PostDTO;
 import team.ccnu.project.domain.entity.Post;
 import team.ccnu.project.service.PostService;
 
+import java.util.LinkedList;
+
 @Controller
 @RequestMapping("/adopt")
 public class AdoptBoardController {
     @Autowired
     private PostService posts;
+    private ModelAndView buildModelAndView(HttpServletRequest request, String viewName) {
+        ModelAndView mav = new ModelAndView(viewName);
+        mav.addObject("user", request.getSession(true).getAttribute("user"));
+        return mav;
+    }
 
     @GetMapping("/{index}")
-    public ModelAndView viewList(@PathVariable int index) {
-        ModelAndView mav = new ModelAndView("board");
-        mav.addObject("posts", posts.getPostsByPageByIndex(0L, index));
+    public ModelAndView viewList(
+            HttpServletRequest request,
+            @PathVariable int index
+    ) {
+        ModelAndView mav = buildModelAndView(request, "board");
+        mav.addObject("title", "Adopt");
+        mav.addObject("description", "이히히히히히");
+
+        mav.addObject("posts", new LinkedList<PostDTO>().add(new PostDTO()));
         return mav;
     }
     @GetMapping("/post/{pst}")

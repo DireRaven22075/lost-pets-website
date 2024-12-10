@@ -1,50 +1,107 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Adoption</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/src/css/list.css}" />
+<head>
+    <title th:title="${title}"></title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/src/css/list.css}"/>
     <script defer src="/src/js/list.js"></script>
     <script defer src="/src/js/ajax/logout.js"></script>
-  </head>
-  <body>
-    <div class="container">
-      <!-- Header -->
-      <th:block th:replace="~{fragment/header :: header}"></th:block>
 
-      <!-- Banner -->
-      <th:block th:replace="~{fragment/banner :: banner}"></th:block>
+    <style>
+        tr {
+            padding: 0.5rem 0;
+            height: 2rem;
+        }
+        td:nth-child(1) {
+            width: 10%;
+        }
+        td:nth-child(2) {
+            width: 50%;
+        }
+        td:nth-child(3) {
+            width: 30%;
+        }
+        td:nth-child(4) {
+            width: 10%;
+        }
+    </style>
+</head>
+<body class="container" style="
+    padding: 0;
+    background-image: url('/src/img/banner/board.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+">
+<!-- Header -->
+<div th:replace="~{fragment/header::header}"></div>
 
-      <!-- Bulletin Table -->
-      <main>
-        <section class="bulletin-header">
-          <h2>Bulletin</h2>
-          <button class="write-button" onclick="redirectToWrite()">Write</button>
-        </section>
-        <table>
-          <thead>
-            <tr>
-              <th>TITLE</th>
-              <th>VIEW</th>
-              <th>DATE</th>
-              <th>COMMENT</th>
-            </tr>
-          </thead>
-          <th:block th:each="post : ${posts}">
-            <tbody class="builtin-list">
-            </tbody>
-          </th:block>
-        </table>
-        <section>
-          <!-- 게시판 돌아다니는 버튼 작성-->
-            <th:block th:each="index : ${#numbers.sequence(1, page)}">
-              <button class="page-button" th:text="${index}" th:onclick="'movePage(' + ${index} + ')'" th:if="${index} == ${currentPage}"></button>
-            </th:block>
-        </section>
-    </main>
+<article id="banner" style="
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    height:50vh;
+">
+    <h1 style="font-size: 2rem; color: white; font-weight: bold;" th:text="${title}"></h1>
+    <h2 style="color: white; font-weight: bold;" th:text="${description}"></h2>
+</article>
+<!-- Bulletin Table -->
+<main id="root" class="board-wrapper" style="
+    width: calc(100vw - 4rem);
+    padding: 1rem 2rem;
+    height: 200vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: white;
+">
+    <section class="bulletin-header" style="width: 100%; height: 15vh;">
+        <h2>입양 게시판</h2>
+        <button class="write-button" onclick="redirectToWrite()">Write</button>
+    </section>
+    <table>
+        <thead>
+        <tr height="200px">
+            <th>상태</th>
+            <th>제목</th>
+            <th>게시자</th>
+            <th>조회수</th>
+        </tr>
+        </thead>
+        <tbody>
+        <div th:replace="~{fragment/element/board-adopt :: element}"></div>
+        <tr>
+            <td>
+                진행중
+            </td>
+            <td>
+                임시 제목
+            </td>
+            <td>
+                24.11.31
+            </td>
+            <td>
+                0
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <section style="display: flex; flex-direction: row; justify-content: space-between; width: 25vw; margin-left: 37.5%">
+        <!-- 게시판 돌아다니는 버튼 작성-->
+        <button><</button>
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>></button>
+    </section>
+</main>
 
-      <!-- Footer -->
-      <th:block th:replace="~{fragment/footer :: footer}"></th:block>    
-  </body>
+<!-- Footer -->
+<th:block th:replace="~{fragment/footer :: footer}"></th:block>
+</body>
 </html>

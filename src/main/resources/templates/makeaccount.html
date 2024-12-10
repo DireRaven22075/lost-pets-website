@@ -10,16 +10,16 @@
   <body class="signup-container">
     <form id="Form-Register" class="signup-box">
       <h1>Sign Up</h1>
-      <label for="username">ID</label>
-      <input type="text" id="username" name="id" placeholder="Enter your ID" />
+      <label for="username">ID *</label>
+      <input type="text" id="username" required name="id" placeholder="Enter your ID" />
 
-      <label for="name">Name</label>
-      <input type="text" id="name" name="name" placeholder="Enter your name" />
+      <label for="name">Name * </label>
+      <input type="text" id="name" required name="name" placeholder="Enter your name" />
 
-      <label for="email">Email</label>
+      <label for="email">Email * </label>
       <input
         type="email"
-        id="email"
+        id="email" required
         name="mail"
         placeholder="Enter your email"
       />
@@ -28,6 +28,7 @@
       <input
         type="password"
         id="password"
+        required
         name="pw"
         placeholder="Enter your password"
       />
@@ -35,7 +36,7 @@
       <label for="confirm-password">Confirm Password</label>
       <input
         id="confirm-password"
-        type="password"
+        type="password" required
         name="pw-confirm"
         placeholder="Re-enter your password"
       />

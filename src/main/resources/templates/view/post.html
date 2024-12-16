@@ -1,24 +1,97 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="https://thymeleaf.org">
+<html lang="ko" xmlns:th="https://www.thymeleaf.org">
 
 <head>
-    <title th:text="${@environment.getProperty('app.title')}"></title>
+    <title>Document</title>
 
-    <meta charset="UTF-8"/>
-    <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, user-scalable=no"
-    />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" type="text/css" href="/src/css/main.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 
-    <script src="/src/js/main.js"></script>
+    <script defer src="/src/js/api/comment/create.js"></script>
+
+    <script defer src="/src/js/global.js"></script>
 </head>
 
-<body>
-<div th:replace="~{fragments/header :: header}"></div>
+<body id="body" class="post-page">
+    <header id="header" class="page-header">
+        <a class="btn header-title layout-left" href="/">Lost Pets Website</a>
+        <nav class="row-container layout-right">
+            <ul class="row-container header-nav">
+                <li><a href="/report/0">신고</a></li>
+                <li><a href="/adopt/0">입양</a></li>
+                <li><a href="/education/0">교육</a></li>
+            </ul>
+            <button id="btn-header-account" class="btn header-account">Login</button>
+        </nav>
+    </header>
 
-<div th:replace="~{fragments/footer :: footer}"></div>
+    <main id="root" class="post-wrapper">
+        <div>
+            <h1 class="text board-title">입양게시판</h1>
+        </div>
+        <article id="content" class="post-content">
+            <h1 id="text-title" class="text post-title">TITILE</h1>
+            <h3 id="text-author" class="text post-subtitle">AUTHOR</h3>
+            <pre id="text-content" class="text post-content"></pre>
+            <div id="container-image"></div>
+        </article>
+        <section id="contents" class="comment-contents">
+            <h8 hidden>Comment 리스트</h8>
+            <article class="comment-contents">
+                <h3>작성자</h3>
+                <p>내용</p>
+            </article>
+            <article class="comment-contents">
+                <h3>작성자</h3>
+                <p>내용</p>
+            </article>
+            <article class="item item-comment">
+                <h3>작성자</h3>
+                <p>내용</p>
+            </article>
+            <article class="item item-comment">
+                <h3>작성자</h3>
+                <p>내용</p>
+            </article>
+            <article class="item item-comment">
+                <h3>작성자</h3>
+                <p>내용</p>
+            </article>
+        </section>
+        <form id="form-comment" class="row-container" method="POST" action="/api/comments">
+            <input id="input-sn" type="hidden" value="30" />
+            <input id="input-content" type="text" class="input" required placeholder="댓글을 입력하세요" />
+            <button class="btn" style="width: 2rem; height: 2rem; background-color: #87ceeb; border: 1px solid #CCC; outline: none;">
+                <p hidden>등록</p>
+                <img style="width: 100%; height: 100%" src="/src/img/icon/icon-write.svg" />
+            </button>
+        </form>
+        <div>
+            <button style="background: none; border: 1px solid #87ceeb; color: #87ceeb" class="btn">
+                <img style="width: 1rem; height: 1rem;" src="/src/img/icon/icon-menu.svg" />
+                글 목록
+            </button>
+        </div>
+    </main>
+    <footer id="footer" class="post-footer">
+        <div>
+
+        </div>
+        <div>
+            <strong id="text-copyright">CCNU, Team. All rights reserved.</strong>
+        </div>
+    </footer>
 </body>
-
+<script>
+    const content = document.getElementById('text-content');
+    content.innerHTML = `
+관련된 내용을 전부 삽입할 예정입니다.
+이런식으로 줄 바꿈도 적용되고
+<strong>HTML 태그</strong>도 적용됩니다.
+<h1>제목</h1>
+`;
+</script>
 </html>

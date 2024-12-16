@@ -20,14 +20,14 @@ public class ReportBoardController {
         return mav;
     }
 
-    @GetMapping("/{index}")
+    @GetMapping
     public ModelAndView viewList(
-            HttpServletRequest request,
-            @PathVariable int index
+            HttpServletRequest request
     ) {
-        ModelAndView mav = buildModelAndView(request, "board");
+        ModelAndView mav = buildModelAndView(request, "view/board");
         mav.addObject("title", "Report");
-        mav.addObject("description", index);
+        mav.addObject("description", "작고 연약한 생명이 상처 받는 일이 없길");
+        mav.addObject("explain", "신고할 유실 동물의 외형과 위치를 알려주세요");
         return mav;
     }
     @GetMapping("/post/{pst}")

@@ -1,0 +1,99 @@
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 50;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    &.main-header {
+        width: 90vw;
+        height: 4rem;
+        position: absolute;
+        top: 3rem;
+        left: 5vw;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        background-color: #FFF;
+        border-bottom: 1px solid #CCC;
+        transition: left 0.2s, width 0.2s;
+
+        .container {
+            width: calc(90vw - 2rem);
+            height: 4rem;
+            padding: 0 1rem;
+
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            *:nth-child(1) {
+                margin-left: 0;
+                margin-right: auto;
+            }
+            *:nth-child(2) {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            *:nth-child(3) {
+                margin-left: auto;
+                margin-right: 0;
+            }
+            ul {
+                display: flex;
+                padding: 0 0.25rem;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+
+                * {
+                    margin: 0 0.25rem;
+                }
+            }
+        }
+
+        &.trigger {
+            width: 100vw;
+            left: 0;
+            top: 0;
+            position: fixed;
+        }
+    }
+
+    &.account-header {
+        width: 100vw;
+        height: 5rem;
+        top: 0;
+        left: 0;
+        position: fixed;
+        border-bottom: 2px solid #CCC;
+
+        * {
+            width: 100%;
+            text-align: center;
+        }
+    }
+
+    &.page-header {
+        width: calc(100vw - 2rem);
+        height: 4rem;
+        padding: 0 1rem;
+        position: fixed;
+        top: 0;
+        left: 0;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+
+        background-color: #FFF;
+        box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+        
+    }
+}

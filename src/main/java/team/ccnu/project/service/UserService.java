@@ -14,23 +14,15 @@ import team.ccnu.project.domain.repository.UserRepository;
 public class UserService {
     @Autowired
     private UserRepository repos;
-    public void signUp(String id, String pw, String name, String email) {
-        User user = new User();
-        user.setId(id);
-        user.setPw(Utils.getInstance().encodePW(pw));
-        user.setName(name);
-        user.setEmail(email);
-        user.setRole('U');
-        repos.save(user);
-    }
     public void update(User user) {
         repos.save(user);
-        return;
     }
     public void signUp(SignUpDTO dto) {
         User user = new User();
         user.setId(dto.getId());
-        user.setPw(Utils.getInstance().encodePW(dto.getPw()));
+        String salt = Utils.getInstance().getSalt();
+        user.setHash(salt);
+        user.setPw(Utils.getInstance().encodePW(dto.getPw() + salt));
         user.setName(dto.getName());
         user.setEmail(dto.getMail());
         user.setRole('U');
@@ -39,7 +31,7 @@ public class UserService {
     }
     public boolean equalsPW(LogInDTO dto) {
         User user = repos.findById(dto.getId());
-        return user.getPw().equals(Utils.getInstance().encodePW(dto.getPw()));
+        return user.getPw().equals(Utils.getInstance().encodePW(dto.getPw() + user.getHash()));
     }
     public User login(LogInDTO dto) {
         return repos.findById(dto.getId());

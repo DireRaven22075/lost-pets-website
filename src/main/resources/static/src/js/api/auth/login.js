@@ -1,22 +1,78 @@
-let URL = "/api/auth/login";
-document.querySelector("form#Comment-Post").addEventListener("submit", (e) => {
-    e.preventDefault();
-    let data = {
-        id: document.querySelector("input[name=id]").value,
-        pw: document.querySelector("input[name=pw]").value
-    };
-    fetch(URL, {
-        method: "POST",
-        credentials: "include",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-    }).then(res => res.json()).then((data) => {
-        if (data["status"] === "success") {
-            window.location.href = '/';
-        } else {
-            document.querySelector("p#Text-Error").innerHTML = data["message"];
+document
+    .querySelector(
+        //Form Query
+        "form#form-login" // <form id="form-login"...>
+    ).addEventListener(
+        //Event Type
+        "submit",
+        //Event Handler Function
+        (event) => { //Event Object
+            //Block Default Event (Form Submit)
+            event
+                .preventDefault();
+
+            //Define Data Object
+            let data = {
+                id: document
+                    .querySelector(
+                        //Input-ID Query
+                        "input[name=id]" //<input name="id"...>
+                    ).value, //Input-ID Value
+                pw: document
+                    .querySelector(
+                        //Input-Password Query
+                        "input[name=pw]" //<input name="pw"...>
+                    ).value //Input-Password Value
+            };
+
+            //API Request Function
+            fetch(
+                //API URL
+                "api/auth/login",
+                //API Request Option (Method, Credentials, Header, Body)
+                {
+                    method: "POST", //API Method
+                    credentials: "include", //API Option (Cookie & Session)
+                    headers: {//API Header
+                        "Content-Type": "application/json" //Content Type
+                    },
+                    body: JSON //API Body (Sending Data)
+                        .stringify(data) //Casting (Data Object -> JSON String)
+                }
+            ).then(
+                //API Response Handling (Casting Data)
+                (res) => {
+                    return res
+                        .json(); //Casting (Response Object -> JSON Object)
+                }
+            ).then(
+                //API Response Handling (Using Data)
+                data => {
+                    //If Request is Success
+                    if (data["status"] == "success") {
+                        //Redirect to the Previous Page
+                        alert(data["message"]);
+                        window.location.href='/';
+                    }
+                    //If Request is Failed
+                    else {
+
+                        let msg = document
+                            .querySelector(
+                                //Text Message Query
+                                "#text-msg" //<* id="text-msg" ..>
+                            );
+                        msg
+                            .hidden = false;
+                        if (data["message"] == "Invalid ID") {
+
+                        }
+                        msg
+                            .innerHTML = data["message"];
+                    }
+                }
+            ).catch(
+                (err) => console.error(err)
+            );
         }
-    }).catch(err => console.error(err));
-});
+    );

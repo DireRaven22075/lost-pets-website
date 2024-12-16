@@ -1,0 +1,82 @@
+#contents {
+    /* Main Page */
+    &.main-contents {
+        width: 100vw;
+        height: auto;
+        padding: 0 3rem;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+
+        .main-content {
+            width: calc(100vw - 6rem);
+            height: auto;
+            padding: 2rem 3rem;
+            padding-bottom: 7rem;
+            position: relative;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            background-color: white;
+            .header {
+                width: 100vw;
+                height: 3rem;
+                top: -3rem;
+                left: 0;
+                position: absolute;
+                border-radius: 3rem 3rem 0 0;
+                background-color: white;
+            }
+            &:nth-child(odd) {
+                background-color: #EEE;
+                .header {
+                    background-color: #EEE;
+                }
+            }
+        }
+    }
+    /* Board Page */
+    &.board-contents {
+        width: 100%;
+        height: auto;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+
+        .board-content {
+            width: calc(100% - 3rem);
+            height: auto;
+            position: relative;
+            padding: 0.25rem 1.5rem;
+
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            background-color: white;
+            border: 1px solid #DDD;
+            * {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+            }
+        }
+    }
+}
+#content {
+    &.post-content {
+        width: calc(100% - 3rem);
+        height: auto;
+        padding: 1.5rem;
+
+        background-color: #FFF;
+        border-radius: 0.25rem;
+        box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
+    }
+}

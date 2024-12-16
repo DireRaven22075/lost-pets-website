@@ -1,3 +1,19 @@
 #banner {
+    width: 100vw;
+    height: auto;
 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    &.main-banner {
+        height: 100vh;
+        position: relative;
+    }
+    &.page-banner {
+        aspect-ratio: 32 / 9;
+    }
 }

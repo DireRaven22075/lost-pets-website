@@ -13,8 +13,6 @@ import team.ccnu.project.domain.entity.User;
 @NoArgsConstructor
 public class CommentDTO {
     private String content;
-
     private User owner;
     private Post post;
-
 }

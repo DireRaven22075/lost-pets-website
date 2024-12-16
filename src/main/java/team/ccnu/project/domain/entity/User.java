@@ -18,11 +18,11 @@ public class User {
     @Column(name="sn")
     private long sn;
 
-    //FK
-    
     //DATA COLUMN
     // User ID
     private String id;
+    // User Salt
+    private String hash;
     // User Password
     private String pw;
     // User Name

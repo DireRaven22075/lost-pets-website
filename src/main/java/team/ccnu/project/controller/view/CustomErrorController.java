@@ -14,7 +14,7 @@ public class CustomErrorController implements ErrorController {
     @RequestMapping("/error")
     public ModelAndView handleError(HttpServletRequest request) {
         // Customize your error message
-        ModelAndView mav = new ModelAndView("__TEST__/error");
+        ModelAndView mav = new ModelAndView("view/error");
         String originalUrl = (String) request.getAttribute("javax.servlet.error.request_uri");
         mav.addObject("url", originalUrl);
         int code = Integer.valueOf(request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE).toString());

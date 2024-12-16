@@ -1,20 +1,15 @@
-let URL = "/api/comments"
-document.querySelector("form#Comment-Post").addEventListener("submit", (e) => {
-    e.preventDefault();
+let URL = "/api/comments";
 
-    let data = new FormData();
-
-    fetch(URL, {
-        method: "DELETE",
-        credentials: "include",
-        headers: {
-            "Content-Type": "application/json"
+document
+    .querySelector(
+        "form#comment-delete"
+    ).addEventListener(
+        "submit",
+        (event) => {
+            event.preventDefault();
+            let data = {
+                sn: document.querySelector("input[name=sn]").value,
+                text: document.querySelector("input[name=text]").value
+            };
         }
-    }).then(res => res.json()).then((data) => {
-        if (data["status"] === "success") {
-
-        } else {
-
-        }
-    }).catch(err => console.error(err));
-});
+    );

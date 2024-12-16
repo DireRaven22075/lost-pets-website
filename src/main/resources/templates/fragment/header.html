@@ -10,7 +10,7 @@
             <a href="/adopt/0">입양</a>
             <a href="/education/0">교육</a>
             <th:block th:if="${user != null}">
-                <a class="button" onclick="Logout()">Log Out</a>
+                <a class="button" onclick="js: Logout()">Log Out</a>
             </th:block>
             <th:block th:unless="${user != null}">
                 <a class="button" href="/login">Log In</a>

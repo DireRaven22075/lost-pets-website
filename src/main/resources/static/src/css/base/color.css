@@ -1,0 +1,27 @@
+:root {
+    --color-selected: blue;
+    --color-hover: lightblue;
+    --color-background: white;
+    --color-text: black;
+    --color-text-dark: #555;
+    --color-text-light: #AAA;
+    
+}
+:root {
+    --color-theme-1: #FFF;
+    --color-theme-2: #EEE;
+    --color-theme-3: #DDD;
+    --color-theme-4: #CCC;
+    --color-theme-5: #BBB;
+    --color-theme-6: #AAA;
+    --color-theme-7: #999;
+    --color-theme-8: #888;
+    --color-theme-9: #777;
+    --color-theme-10: #666;
+    --color-theme-11: #555;
+    --color-theme-12: #444;
+    --color-theme-13: #333;
+    --color-theme-14: #222;
+    --color-theme-15: #111;
+    --color-theme-16: #000;
+}

@@ -1,0 +1,25 @@
+.post-form {
+    width: 100%;
+    height: 3rem;
+    overflow-y: hidden;
+    border-collapse: collapse;
+    border: 1px solid #000;
+    transition: height 0.5s;
+    &.visible {
+        height: auto;
+    }
+    .img {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border: 1px solid #000;
+        grid-gap: 1rem;
+        width: 100%;
+        height: auto;
+    }
+}
+.login-form {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+}

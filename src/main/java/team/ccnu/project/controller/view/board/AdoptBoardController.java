@@ -25,15 +25,14 @@ public class AdoptBoardController {
         return mav;
     }
 
-    @GetMapping("/{index}")
+    @GetMapping
     public ModelAndView viewList(
-            HttpServletRequest request,
-            @PathVariable int index
+            HttpServletRequest request
     ) {
-        ModelAndView mav = buildModelAndView(request, "board");
+        ModelAndView mav = buildModelAndView(request, "view/board");
         mav.addObject("title", "Adopt");
-        mav.addObject("description", "이히히히히히");
-
+        mav.addObject("description", "작고 연약한 아이가 받은 상처가 아물 수 있도록");
+        mav.addObject("explain", "입양하고 싶은 유실 동물에 대해 자세하게 작성해 주세요");
         mav.addObject("posts", new LinkedList<PostDTO>().add(new PostDTO()));
         return mav;
     }

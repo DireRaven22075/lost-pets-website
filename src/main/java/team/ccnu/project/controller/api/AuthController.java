@@ -4,7 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -19,7 +22,6 @@ public class AuthController {
     @Autowired
     private UserService userService;
     /// <summary>
-    /// FIXME : MYSQL 연동 필요..
     /// <br/> 로그인 처리 <br/>
     /// METHOD : POST
     /// RETURN : Json-Session
@@ -28,27 +30,22 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<?> apiAuthLogin(HttpServletRequest request, @RequestBody LogInDTO dto) {
         try {
-            if (!userService.isExistID(dto.getId())) {
+            if (!userService.isExistID(dto.getId()) || !userService.equalsPW(dto)) {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("""
-                {"status": "error", "message" : "Id not found"}
-                """);
-            }
-            if (!userService.equalsPW(dto)) {
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("""
-                {"status": "error", "message" : "Password incorrect"}
+                {"status": "error", "message" : "아이디 혹은 비밀번호가 일치하지 않습니다."}
                 """);
             }
             User user = userService.login(dto);
             UserDTO response = new UserDTO(user);
             HttpSession session = request.getSession(true);
             session.setAttribute("user", response);
-            return ResponseEntity.ok().body("""
-            {"status": "success", "message": "login successful"}
-            """);
+            return ResponseEntity.ok().body(String.format("""
+            {"status": "success", "message": "%s님 환영합니다."}
+            """, response.getName()));
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("""
-            {"status": "error", "message": "internal server error"}   
+            {"status": "error", "message": "잠시후 다시 시도해주십시오."}
             """);
         }
     }
@@ -63,17 +60,17 @@ public class AuthController {
         HttpSession session = request.getSession(false);
         if (session == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("""
-            {"status": "error", "message": "unauthorized"}
+            {"status": "error", "message": "이미 로그아웃 상태입니다."}
             """);
         }
         try {
             session.invalidate();
             return ResponseEntity.status(HttpStatus.OK).body("""
-            {"status": "success", "message": "DELETELogout successful"}
+            {"status": "success", "message": "로그아웃 되었습니다."}
             """);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("""
-            {"status": "error", "message": "internal server error"}   
+            {"status": "error", "message": "잠시후 다시 시도해주십시오"}
             """);
         }
     }

@@ -19,15 +19,14 @@ public class EducationBoardController {
         mav.addObject("user", request.getSession(true).getAttribute("user"));
         return mav;
     }
-
-    @GetMapping("/{index}")
+    @GetMapping
     public ModelAndView viewList(
-            HttpServletRequest request,
-            @PathVariable int index
+            HttpServletRequest request
     ) {
-        ModelAndView mav = buildModelAndView(request, "board");
+        ModelAndView mav = buildModelAndView(request, "view/board");
         mav.addObject("title", "Education");
-        mav.addObject("description", index);
+        mav.addObject("description","생명을 기르기 위한 위대한 한 걸음");
+        mav.addObject("explain", "모든 반려 동물을 위해 공유하고 싶은 정보를 자유롭게 작성하세요");
         return mav;
     }
     @GetMapping("/post/{pst}")

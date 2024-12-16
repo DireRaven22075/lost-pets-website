@@ -1,23 +1,16 @@
-let URL = "/api/comments"
-document.querySelector("form#Comment-Post").addEventListener("submit", (e) => {
-    e.preventDefault();
+let URL = "/api/comments";
 
-    let data = {
-        content: document.querySelector("input[name=content]").value,
-        pst: document.querySelector("p#Value-PST").innerHTML
-    }
-    fetch(URL, {
-        method: "POST",
-        credentials: "include",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: data
-    }).then(res => res.json()).then((data) => {
-        if (data["status"] === "success") {
-
-        } else {
-
+document
+    .querySelector(
+        "form#form-comment"
+    ).addEventListener(
+        "submit",
+        (event) => {
+            event
+                .preventDefault();
+            let data = {
+                sn: document.querySelector("input[name=sn]").value,
+                text: document.querySelector("input[name=text]").value
+            }
         }
-    }).catch(err => console.error(err));
-});
+    );

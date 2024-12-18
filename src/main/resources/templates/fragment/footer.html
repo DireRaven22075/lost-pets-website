@@ -1,8 +1,24 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
   <body>
-    <footer th:fragment="footer" class="footer">
-      <p>&copy; 2024 Lost Pets Website. All Rights Reserved.</p>
-    </footer>
+  <footer th:fragment="footer" id="footer" class="page-footer">
+    <h2>Website for reporting and protection of pets</h2><br>
+    <div class="signup-buttons">
+      <a th:if="${user == null}" href="/login">Sign In</a>
+      <a th:unless="${user == null}" href="/register">Sign Up</a>
+    </div>
+    <p>Information.<br>
+      이 사이트는 유기/반려 동물 신고 및 보호를 목적으로 만들어졌습니다.<br/>
+      <br/>Contacts<br/>
+      Open-Source Development Project, Team 4<br>
+      Front-end(김다민, 이예솔, 이예호, 한윤수) Back-end(김민성, 박상인, 한윤수) DB(한윤수)<br>
+    </p>
+    <p id="text-copyright">Team CCNU. All rights are severved.</p>
+    <div>
+      <a href="https://github.com/DireRaven22075/opensource-project">
+        Github
+      </a>
+    </div>
+  </footer>
   </body>
 </html>

@@ -1,8 +1,10 @@
 package team.ccnu.project.controller.api;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import team.ccnu.project.data.request.UploadReplyDTO;
 import team.ccnu.project.domain.entity.Comment;
 import team.ccnu.project.service.CommentService;
 import team.ccnu.project.data.request.UploadCommentDTO;
@@ -11,9 +13,26 @@ import team.ccnu.project.data.request.DeleteCommentDTO;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/comment")
+@RequestMapping("/api/comments")
 public class CommentController {
-
+    @Autowired
+    private CommentService comments;
+    @PostMapping
+    public ResponseEntity<?> apiAddComment(
+            @RequestBody UploadCommentDTO dto,
+            HttpServletRequest request
+    ) {
+        comments.addComment(dto, request.getSession());
+        return ResponseEntity.ok().build();
+    }
+    @PostMapping("/reply")
+    public ResponseEntity<?> apiReplies(
+            @RequestBody UploadReplyDTO dto,
+            HttpServletRequest request
+    ) {
+        comments.addReply(dto, request.getSession());
+        return ResponseEntity.ok().build();
+    }
     @Autowired
     private CommentService commentService;
 
@@ -26,7 +45,7 @@ public class CommentController {
     @PostMapping("/{pst}")
     public ResponseEntity<Comment> addComment(@PathVariable Long pst, @RequestBody UploadCommentDTO uploadCommentDTO) {
         Comment comment = new Comment();
-        comment.setContent(uploadCommentDTO.getContent());
+        comment.setContent(uploadCommentDTO.getText());
         // Post 설정 로직 추가 필요
         Comment savedComment = commentService.addComment(comment);
         return ResponseEntity.ok(savedComment);
@@ -36,7 +55,7 @@ public class CommentController {
     public ResponseEntity<Comment> updateComment(@PathVariable Long pst, @PathVariable Long cmnt, @RequestBody UploadCommentDTO uploadCommentDTO) {
         Comment comment = commentService.getCommentBySn(cmnt)
                 .orElseThrow(() -> new RuntimeException("Comment not found"));
-        comment.setContent(uploadCommentDTO.getContent());
+        comment.setContent(uploadCommentDTO.getText());
         // Post 설정 로직 추가 필요
         Comment updatedComment = commentService.updateComment(comment);
         return ResponseEntity.ok(updatedComment);

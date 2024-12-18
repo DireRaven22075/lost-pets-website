@@ -39,6 +39,7 @@ public class AuthController {
             UserDTO response = new UserDTO(user);
             HttpSession session = request.getSession(true);
             session.setAttribute("user", response);
+            session.setAttribute("token", user.getSn());
             return ResponseEntity.ok().body(
                     String
                             .format("""

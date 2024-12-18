@@ -2,96 +2,178 @@
 <html lang="ko" xmlns:th="https://www.thymeleaf.org">
 
 <head>
-    <title>Document</title>
+    <title>유실 동물 웹사이트</title>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" type="text/css" href="/src/css/main.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="/src/css/page/post.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="/src/favicon.ico" />
 
     <script defer src="/src/js/api/comment/create.js"></script>
-
     <script defer src="/src/js/global.js"></script>
+
+    <style>
+        /* 댓글 스타일 */
+        .comment-content {
+            width: calc(100% - 2rem);
+            padding: 1rem;
+            border: 1px solid gray;
+            background-color: white;
+        }
+
+        /* 답글 리스트 컨테이너 */
+        .reply-list {
+            margin-left: 2rem;
+            /* 부모 댓글 대비 들여쓰기 */
+            padding-left: 1rem;
+            /* 추가적인 간격 */
+            background-color: #EBEBEB;
+        }
+
+        /* 답글 스타일 */
+        .reply-content {
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        /* 답글 작성 입력 폼 */
+        .reply-container {
+            margin-left: 2rem;
+            /* 부모 댓글과 동일한 들여쓰기 */
+            margin-top: 0.5rem;
+            display: flex;
+            gap: 0.5rem;
+
+            &.hidden {
+                display: none;
+            }
+        }
+
+        .input-reply {
+            flex-grow: 1;
+            padding: 0 0.5rem;
+            border: none;
+            outline: none;
+        }
+    </style>
 </head>
 
 <body id="body" class="post-page">
-    <header id="header" class="page-header">
-        <a class="btn header-title layout-left" href="/">Lost Pets Website</a>
-        <nav class="row-container layout-right">
-            <ul class="row-container header-nav">
-                <li><a href="/report/0">신고</a></li>
-                <li><a href="/adopt/0">입양</a></li>
-                <li><a href="/education/0">교육</a></li>
-            </ul>
-            <button id="btn-header-account" class="btn header-account">Login</button>
-        </nav>
-    </header>
-
+    <div th:replace="~{fragment/header :: page}"></div>
     <main id="root" class="post-wrapper">
-        <div>
-            <h1 class="text board-title">입양게시판</h1>
+        <div style="background-color: white; width: calc(100% - 2rem); padding: 0 1rem; height: 3rem; display: flex; align-items: center">
+            <h1 class="text board-title" style="font-size: 2rem; font-weight: bolder" th:text="${title}"></h1>
         </div>
         <article id="content" class="post-content">
-            <h1 id="text-title" class="text post-title">TITILE</h1>
-            <h3 id="text-author" class="text post-subtitle">AUTHOR</h3>
-            <pre id="text-content" class="text post-content"></pre>
-            <div id="container-image"></div>
+            <h1 id="text-title" class="text post-title" th:text="${post.getTitle()}"></h1>
+            <h3 id="text-author" class="text post-subtitle" th:text="${post.getUser().getName()}"></h3>
+            <pre id="text-content" class="text post-content" th:text="${post.getContent()}"></pre>
+            <span class="image-container">
+                <th:block th:each="image : ${post.getImages()}">
+                    <img th:src="${image.getPath()}" />
+                </th:block>
+            </span>
         </article>
-        <section id="contents" class="comment-contents">
-            <h8 hidden>Comment 리스트</h8>
-            <article class="comment-contents">
-                <h3>작성자</h3>
-                <p>내용</p>
-            </article>
-            <article class="comment-contents">
-                <h3>작성자</h3>
-                <p>내용</p>
-            </article>
-            <article class="item item-comment">
-                <h3>작성자</h3>
-                <p>내용</p>
-            </article>
-            <article class="item item-comment">
-                <h3>작성자</h3>
-                <p>내용</p>
-            </article>
-            <article class="item item-comment">
-                <h3>작성자</h3>
-                <p>내용</p>
+        <section id="contents" class="comment-contents" style="width: 100%;">
+            <article class="comment-content" th:each="cmnt : ${post.getComments()}" th:if="${cmnt.parent == null}">
+                <!-- 부모 댓글 -->
+                <h3 th:text="${cmnt.getUser().getName()}"></h3>
+                <p th:text="${cmnt.getContent()}"></p>
+
+                <!-- 답글 리스트 -->
+                <div class="reply-list" th:each="reply : ${cmnt.replies}">
+                    <article class="reply-content">
+                        <h4 th:text="${reply.getUser().getName()}"></h4>
+                        <p th:text="${reply.getContent()}"></p>
+                    </article>
+                </div>
+                <th:block th:if="${user != null}">
+                    <!-- 답글 버튼 -->
+                    <button class="btn-reply-toggle" type="button" th:attr="data-cmnt-id=${cmnt.getSn()}">답글</button>
+                    <!-- 답글 입력 -->
+                    <div class="reply-container hidden" th:attr="data-cmnt-id=${cmnt.getSn()}">
+                        <input type="text" class="input-reply" placeholder="답글을 입력하세요" />
+                        <button class="btn-submit-reply btn btn-icon" type="button"
+                            th:attr="data-cmnt-id=${cmnt.getSn()}">
+                            <img src="/src/img/icon/icon-write.svg" />
+                        </button>
+                    </div>
+                </th:block>
             </article>
         </section>
-        <form id="form-comment" class="row-container" method="POST" action="/api/comments">
-            <input id="input-sn" type="hidden" value="30" />
-            <input id="input-content" type="text" class="input" required placeholder="댓글을 입력하세요" />
-            <button class="btn" style="width: 2rem; height: 2rem; background-color: #87ceeb; border: 1px solid #CCC; outline: none;">
-                <p hidden>등록</p>
-                <img style="width: 100%; height: 100%" src="/src/img/icon/icon-write.svg" />
-            </button>
-        </form>
-        <div>
-            <button style="background: none; border: 1px solid #87ceeb; color: #87ceeb" class="btn">
-                <img style="width: 1rem; height: 1rem;" src="/src/img/icon/icon-menu.svg" />
-                글 목록
-            </button>
-        </div>
+        <th:block th:if="${user == null}">
+            <div class="btn" style="width: 100%; height: 2rem; background-color: white;">
+                로그인 이후 댓글 및 답글을 작성할 수 있습니다.
+            </div>
+        </th:block>
+        <th:block th:unless="${user ==null}">
+            <form id="form-comment" class="comment-form row-container" method="POST" action="/api/comments" style="width: 100%; height: 2rem;">
+                <input id="input-pst" hidden th:value="${post.getSn()}" />
+                <input id="input-content" type="text" class="input comment-input" required placeholder="댓글을 입력하세요" />
+                <button class="btn btn-icon">
+                    <img style="width: 100%; height: 100%" src="/src/img/icon/icon-write.svg" />
+                </button>
+            </form>
+        </th:block>
     </main>
-    <footer id="footer" class="post-footer">
-        <div>
+    <div th:replace="~{fragment/footer :: footer}"></div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 답글 토글 버튼
+            document.querySelectorAll('.btn-reply-toggle').forEach(button => {
+                button.addEventListener('click', () => {
+                    const commentId = button.getAttribute('data-cmnt-id');
+                    const replyContainer = document.querySelector(`.reply-container[data-cmnt-id="${commentId}"]`);
+                    replyContainer.classList.remove('hidden');
+                });
+            });
 
-        </div>
-        <div>
-            <strong id="text-copyright">CCNU, Team. All rights reserved.</strong>
-        </div>
-    </footer>
+            // 답글 전송 버튼
+            document.querySelectorAll('.btn-submit-reply').forEach(button => {
+                button.addEventListener('click', () => {
+                    const commentId = button.getAttribute('data-cmnt-id');
+                    const replyContainer = document.querySelector(`.reply-container[data-cmnt-id="${commentId}"]`);
+                    const inputField = replyContainer.querySelector('.input-reply');
+                    const content = inputField.value.trim();
+
+                    if (!content) {
+                        alert('답글 내용을 입력해주세요.');
+                        return;
+                    }
+
+                    // Fetch API 요청
+                    fetch('/api/comments/reply', {
+                        method: 'POST',
+                        cresentials: "include",
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            cmnt: commentId,
+                            pst: document.getElementById('input-pst').value,
+                            text: content,
+                        }),
+                    })
+                        .then(response => {
+                            if (response.ok) {
+                                alert('답글이 성공적으로 추가되었습니다.');
+                                window.location.reload();
+                                // 답글을 동적으로 추가하려면 아래 로직 작성
+                            } else {
+                                alert('답글 추가에 실패했습니다.');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            alert('오류가 발생했습니다.');
+                        });
+                });
+            });
+        });
+    </script>
 </body>
-<script>
-    const content = document.getElementById('text-content');
-    content.innerHTML = `
-관련된 내용을 전부 삽입할 예정입니다.
-이런식으로 줄 바꿈도 적용되고
-<strong>HTML 태그</strong>도 적용됩니다.
-<h1>제목</h1>
-`;
-</script>
+
 </html>

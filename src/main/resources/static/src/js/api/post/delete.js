@@ -12,7 +12,7 @@ document.querySelector("form#Post-Delete").addEventListener("submit", (e) => {
         if (data["status"] === "success") {
 
         } else {
-            
+
         }
     }).catch(err => console.error(err));
 });

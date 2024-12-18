@@ -40,7 +40,7 @@ public class Post {
     private String title; // 제목
     @Column(name="post_content", columnDefinition = "TEXT")
     private String content; // 내용
-    @ColumnDefault("0") private Long view; // 조회수
+    @ColumnDefault("0") private Long view = 0L; // 조회수
     @ColumnDefault("'Y'")
     private char status; // 상태 (입양 여부)
     @CreationTimestamp

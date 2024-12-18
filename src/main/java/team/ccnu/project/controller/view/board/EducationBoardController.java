@@ -27,6 +27,7 @@ public class EducationBoardController {
         mav.addObject("title", "Education");
         mav.addObject("description","생명을 기르기 위한 위대한 한 걸음");
         mav.addObject("explain", "모든 반려 동물을 위해 공유하고 싶은 정보를 자유롭게 작성하세요");
+        mav.addObject("bbs", 2L);
         return mav;
     }
     @GetMapping("/post/{pst}")

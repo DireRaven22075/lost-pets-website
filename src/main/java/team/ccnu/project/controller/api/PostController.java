@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.logging.Logger;
 import java.io.IOException;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,19 +28,19 @@ public class PostController {
     @Autowired private PostService posts;
     @Autowired private ImageService files;
 
-    @PostMapping("/test")
-    public ResponseEntity<?> apiCreatePost(@ModelAttribute UploadPostDTO dto) {
-        Post post = posts.uploadPost(dto);
-        if (post == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
-                    """
-                {"status": "error", "code": 400, "message": "요청 사항을 처리할 수 없습니다."}
-"""
-            );
-        }
-        else {
+    @PostMapping("/test2")
+    public ResponseEntity<?> _apiCreatePost(
+            HttpServletRequest request,
+            @ModelAttribute UploadPostDTO dto
+    ) {
+        if (posts.apicreatePost(dto, request)) {
             return ResponseEntity.status(HttpStatus.CREATED).body("""
             {"status": "success", "code": 201, "message": "성공적으로 게시글을 업로드 하였습니다."}   
+            """);
+        }
+        else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("""
+                {"status": "error", "code": 400, "message": "요청 사항을 처리할 수 없습니다."}
             """);
         }
     }

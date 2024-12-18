@@ -22,35 +22,36 @@ function logout() {
         }
     )
 }
+
 document
     .querySelector(
         "form#auth-logout"
     ).addEventListener(
-        "submit",
-        (event) => {
-            event
-                .preventDefault();
-            fetch(
-                URL,
-                {
-                    method: "DELETE",
-                    credentials: "include",
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
+    "submit",
+    (event) => {
+        event
+            .preventDefault();
+        fetch(
+            URL,
+            {
+                method: "DELETE",
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json"
                 }
-            ).then(
-                (res) => res.json()
-            ).then(
-                data => {
-                    if (data["status"] == "success") {
-                        location.href = "/";
-                    } else {
-                        alert("Failed to logout");
-                    }
+            }
+        ).then(
+            (res) => res.json()
+        ).then(
+            data => {
+                if (data["status"] == "success") {
+                    location.href = "/";
+                } else {
+                    alert("Failed to logout");
                 }
-            ).catch(
-                (err) => console.error(err)
-            );
-        }
-    );
+            }
+        ).catch(
+            (err) => console.error(err)
+        );
+    }
+);

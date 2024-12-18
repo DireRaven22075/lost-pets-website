@@ -4,7 +4,8 @@ package team.ccnu.project.data.request;
 @lombok.Setter
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class UploadCommentDTO {
-    private Long sn;
+public class UploadReplyDTO {
+    private Long pst;
+    private Long cmnt;
     private String text;
 }

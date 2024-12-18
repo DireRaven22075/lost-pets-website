@@ -33,22 +33,24 @@ public class AdoptBoardController {
         mav.addObject("title", "Adopt");
         mav.addObject("description", "작고 연약한 아이가 받은 상처가 아물 수 있도록");
         mav.addObject("explain", "입양하고 싶은 유실 동물에 대해 자세하게 작성해 주세요");
+        mav.addObject("bbs", 0L);
         mav.addObject("posts", new LinkedList<PostDTO>().add(new PostDTO()));
         return mav;
     }
     @GetMapping("/post/{pst}")
     public ModelAndView viewPost(@PathVariable Long pst) {
-        ModelAndView mav = new ModelAndView("post");
+        ModelAndView mav = new ModelAndView("view/post");
         Post post = posts.getPostBySn(pst);
         if (post == null) {
             return new ModelAndView(new RedirectView("/error"));
         }
-        mav.addObject("post", new PostDTO(post));
-        return mav;
-    }
-    @GetMapping("/write")
-    public ModelAndView viewWrite() {
-        ModelAndView mav = new ModelAndView("write");
+        post.setView(post.getView() + 1);
+        posts.save(post);
+        mav.addObject("post", post);
+        mav.addObject("title", "입양 게시판");
+        mav.addObject("description", "작고 연약한 아이가 받은 상처가 아물 수 있도록");
+        mav.addObject("explain", "입양하고 싶은 유실 동물에 대해 자세하게 작성해 주세요");
+        mav.addObject("posts", new LinkedList<PostDTO>().add(new PostDTO()));
         mav.addObject("bbs", 0L);
         return mav;
     }

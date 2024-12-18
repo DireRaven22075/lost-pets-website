@@ -35,28 +35,11 @@
     </style>
 
     <script defer src="/src/js/global.js"></script>
-    <script defer src="/src/js/event/focus/wrtie.js"></script>
     <script defer src="/src/js/api/auth/logout.js"></script>
 </head>
 
 <body id="body" class="board-page">
-<header id="header" class="page-header">
-    <a class="btn header-title layout-left" href="/">Lost Pets Website</a>
-    <nav class="row-container layout-right">
-        <ul class="row-container header-nav">
-            <li><a href="/report">신고</a></li>
-            <li><a href="/adopt">입양</a></li>
-            <li><a href="/education">교육</a></li>
-        </ul>
-        <button th:if="${user == null}" id="btn-header-login" class="btn header-account"
-                onclick="window.location.href='/login'">
-            Login
-        </button>
-        <button th:unless="${user == null}" id="btn-header-logout" class="btn header-account" onclick="logout();">
-            Logout
-        </button>
-    </nav>
-</header>
+    <div th:replace="~{fragment/header :: page}"></div>
 
 <article id="banner" class="page-banner">
     <h1 th:text="${title}" class="text banner-title"></h1>
@@ -82,6 +65,7 @@
         <form id="form-post" class="post-form">
             <input id="input-title" class="input post-title" type="text" placeholder="새 글을 작성해 주세요!"/>
             <textarea id="input-content" class="input post-content" th:placeholder="${explain}"></textarea>
+            <input hidden id="input-bbs" th:value="${bbs}"/>
             <div class="row-container">
                 <div class="img">
 
@@ -89,47 +73,31 @@
                 <label for="input-file" class="btn icon-clear">
                     <img src="/src/img/icon/icon-menu.svg"/>
                 </label>
-                <input id="input-file" type="file" accept="image/*" style="display: none;"/>
+                <input id="input-file" type="file" accept="image/*" multiple style="display: none;"/>
                 <button id="btn-submit" class="btn icon" type="submit">
                     <img src="/src/img/icon/icon-write.svg"/>
                 </button>
             </div>
         </form>
+        <script defer src="/src/js/event/focus/write.js"></script>
+        <script defer src="/src/js/api/post/create.js"></script>
     </th:block>
     <div id="contents" class="board-contents">
-
-        <article th:each="i : ${#numbers.sequence(1, 5)}" class="btn board-content row-container">
-            <h5 class="text board-title">TITLE</h5>
+        <article th:each="post : ${posts}" class="btn board-content row-container"
+        th:onclick="|location.href='/post/' + ${post.getSn()}|">
+            <h5 class="text board-title" th:text="${post.getTitle()}"></h5>
             <div class="layout-right" style="gap: 1rem;">
-                <p class="text board-owner" th:text="TEST_OWNER + ${i}"></p>
+                <p class="text board-owner" th:text="${post.getUser().getName()}"></p>
                 <span class="board-container">
                     <img src="/src/img/icon/icon-view.svg" width="20px" height="20px"/>
-                    <span>0</span>
+                    <span th:text="${post.getView()}"></span>
                 </span>
             </div>
         </article>
     </div>
 </main>
 
-<footer id="footer" class="page-footer">
-    <h2>Website for reporting and protection of pets</h2><br>
-    <div class="signup-buttons">
-        <a th:if="${user == null}" href="/login">Sign In</a>
-        <a th:unless="${user == null}" href="/register">Sign Up</a>
-    </div>
-    <p>Information.<br>
-        이 사이트는 유기/반려 동물 신고 및 보호를 목적으로 만들어졌습니다.<br/>
-        <br/>Contacts<br/>
-        Open-Source Development Project, Team 4<br>
-        Front-end(김다민, 이예솔, 이예호, 한윤수) Back-end(김민성, 박상인, 한윤수) DB(한윤수)<br>
-    </p>
-    <p id="text-copyright">Team CCNU. All rights are severved.</p>
-    <div>
-        <a href="https://github.com/DireRaven22075/opensource-project">
-            Github
-        </a>
-    </div>
-</footer>
+<div th:replace="~{fragment/footer :: footer}"></div>
 </body>
 
 </html>

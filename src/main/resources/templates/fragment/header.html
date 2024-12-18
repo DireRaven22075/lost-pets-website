@@ -1,25 +1,42 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <body>
-
-<th:block th:fragment="header">
-    <header id="header" class="header" style="width: calc(100vw - 2%); position: fixed; top: 0; left: 0;">
-        <a href="/" class="header-title">Lost Pets Website</a>
-        <nav class="nav-items">
-            <a href="/report/0">신고</a>
-            <a href="/adopt/0">입양</a>
-            <a href="/education/0">교육</a>
-            <th:block th:if="${user != null}">
-                <a class="button" onclick="js: Logout()">Log Out</a>
-            </th:block>
-            <th:block th:unless="${user != null}">
-                <a class="button" href="/login">Log In</a>
-            </th:block>
-        </nav>
-    </header>
-    <script defer src="/src/js/ajax/account/logout.js"></script>
-</th:block>
-
+<header th:fragment="main" id="header" class="main-header">
+    <nav class="container">
+        <a class="btn header-title" href="/">Lost Pets Website</a>
+        <ul class="row-container header-nav">
+            <li><a href="/boards/0">입양</a></li>
+            <li><a href="/boards/1">신고</a></li>
+            <li><a href="/boards/2">교육</a></li>
+        </ul>
+        <button th:if="${user == null}" id="btn-header-login" class="btn header-account"
+                onclick="window.location.href='/login'">
+            Get Started
+        </button>
+        <button th:unless="${user == null}" id="btn-header-logout" class="btn header-account" onclick="logout();">
+            Logout
+        </button>
+    </nav>
+    <script defer src="/src/js/api/auth/logout.js"></script>
+</header>
+<header th:fragment="page" id="header" class="page-header">
+    <a class="btn header-title layout-left" href="/">Lost Pets Website</a>
+    <nav class="row-container layout-right">
+        <ul class="row-container header-nav">
+            <li><a href="/boards/0">입양</a></li>
+            <li><a href="/boards/1">신고</a></li>
+            <li><a href="/boards/2">교육</a></li>
+        </ul>
+        <button th:if="${user == null}" id="btn-header-login" class="btn header-account"
+                onclick="window.location.href='/login'">
+            Login
+        </button>
+        <button th:unless="${user == null}" id="btn-header-logout" class="btn header-account" onclick="logout();">
+            Logout
+        </button>
+    </nav>
+    <script defer src="/src/js/api/auth/logout.js"></script>
+</header>
 </body>
 
 </html>

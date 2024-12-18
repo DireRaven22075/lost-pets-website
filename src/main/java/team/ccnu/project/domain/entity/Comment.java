@@ -21,7 +21,7 @@ public class Comment {
 
     //FK
     @ManyToOne
-    @JoinColumn(name="comment_sn")
+    @JoinColumn(name="comment_sn", nullable=true)
     private Comment parent;
 
     //FK

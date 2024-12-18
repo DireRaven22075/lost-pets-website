@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import team.ccnu.project.domain.entity.Post;
 
 public interface PostRepository extends JpaRepository<Post, Long> {
+    List<Post> findPostsByUid(Long uid);
     Post findBySn(Long sn);
     void deleteBySn(Long sn);
     List<Post> findAll();

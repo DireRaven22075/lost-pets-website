@@ -30,24 +30,7 @@
 </head>
 
 <body id="body" class="main-page">
-    <header id="header" class="main-header">
-        <nav class="container">
-            <a class="btn header-title" href="/">Lost Pets Website</a>
-
-            <ul>
-                <li style="margin-right: 0.25rem;"><a class="btn header-nav" href="/report">신고 게시판</a></li>
-                <li style="margin-right: 0.25rem;"><a class="btn header-nav" href="/adopt">입양 게시판</a></li>
-                <li><a class="btn header-nav" href="/education">교육 게시판</a></li>
-            </ul>
-
-            <button th:if="${user == null}" id="btn-header-login" class="btn header-account" onclick="window.location.href='/login'">
-                Get Started
-            </button>
-            <button th:unless="${user == null}" id="btn-header-logout" class="btn header-account" onclick="logout();">
-                Logout
-            </button>
-        </nav>
-    </header>
+    <div th:replace="~{fragment/header :: main}"></div>
     <script>
         document.addEventListener(
             "scroll",
@@ -62,8 +45,8 @@
             }
         );
     </script>
-
     <p id="text-scroll">Scroll down to see more..</p>
+
     <article id="banner" class="main-banner">
         <h2 class="typewriter text banner-title">유실 동물 웹사이트</h2>
         <p class="text banner-subtitle">
@@ -100,7 +83,7 @@
                             <p>유실된 동물들에게, 약간의 도움을 통해 집으로 돌아갈 수 있도록 도와주세요.</p>
                             <strong>허위 사실로 작성된 게시글은 삭제 처리되며, 반복적으로 허위사실을 작성하는 사용자는 이용 제제를 당할 수 있습니다.</strong>
                             <br />
-                            <a href="/report/0">신고 게시판 이동</a>
+                            <a href="/boards/1">신고 게시판 이동</a>
                         </div>
                     </div>
 
@@ -112,7 +95,7 @@
                             <p>매달 </p>
 
                             <strong>입양한 동물도 하나의 생명입니다.</strong>
-                            <a href="/adopt/0">입양 게시판 이동</a>
+                            <a href="/boards/0">입양 게시판 이동</a>
                         </div>
                     </div>
 
@@ -124,7 +107,7 @@
 
                             <strong>허위 사실로 작성된 게시글은 삭제 처리되며, 반복적으로 허위사실을 작성하는 사용자는 이용 제제를 당할 수 있습니다.</strong>
                             <br />
-                            <a href="/education">교육 게시판 이동</a>
+                            <a href="/boards/2">교육 게시판 이동</a>
                         </div>
                     </div>
                 </div>
@@ -165,25 +148,7 @@
     </main>
 
     <!-- FOOTER -->
-    <footer id="footer" class="page-footer">
-        <h2>Website for reporting and protection of pets</h2><br>
-        <div class="signup-buttons">
-            <a th:if="${user == null}" href="/login">Sign In</a>
-            <a th:unless="${user == null}" href="/register">Sign Up</a>
-        </div>
-        <p>Information.<br>
-            이 사이트는 유기/반려 동물 신고 및 보호를 목적으로 만들어졌습니다.<br/>
-            <br/>Contacts<br/>
-            Open-Source Development Project, Team 4<br>
-            Front-end(김다민, 이예솔, 이예호, 한윤수) Back-end(김민성, 박상인, 한윤수) DB(한윤수)<br>
-        </p>
-        <p id="text-copyright">Team CCNU. All rights are severved.</p>
-        <div>
-            <a href="https://github.com/DireRaven22075/opensource-project">
-                Github
-            </a>
-        </div>
-    </footer>
+    <div th:replace="~{fragment/footer :: footer}"></div>
 </body>
 
 </html>

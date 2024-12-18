@@ -62,3 +62,9 @@
 textarea {
     resize: none;
 }
+.input {
+    &.comment-input {
+        border: none;
+        outline: none;
+    }
+}

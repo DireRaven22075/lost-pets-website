@@ -3,7 +3,7 @@
 
 <head>
     <title>EMSYS!</title>
-    <link rel="stylesheet" type="text/css" href="/src/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="/src/css/main.css" />
     <link rel="shortcut icon" href="/src/favicon.ico" type="image/x-icon">
 
     <meta charset="UTF-8">
@@ -25,49 +25,45 @@
             border-radius: 0.5rem;
         }
     </style>
-    <style>
-
-    </style>
     <script defer src="/src/js/api/auth/login.js"></script>
+    <script defer src="/src/js/func.js"></script>
     <script defer src="/src/js/event/change/login.js"></script>
 </head>
 
 <body id="body" class="account-page">
-<main id="root" class="account-wrapper">
-    <h1 style="font-size: 2rem; font-weight: bold; text-align: center;">Login</h1>
-    <form id="form-login" class="login-form" method="POST" action="/api/auth/login">
-        <div class="input account-input" id="container-id">
-            <label for="input-id">
-                <img src="/src/img/icon/icon-id.svg"/>
-            </label>
-            <input id="input-id" class="input" name="id" type="text" maxlength="30" required placeholder="아이디"/>
-        </div>
-        <p id="text-id" class="text error-msg" hidden></p>
-        <div class="input account-input" id="container-pw">
-            <label for="input-pw">
-                <img src="/src/img/icon/icon-password.svg"/>
-            </label>
-            <input id="input-pw" class="input input-form" name="pw" type="password" maxlength="50" required placeholder="비밀번호"/>
-        </div>
-        <p id="text-pw" class="text error-msg" hidden></p>
-        <p id="text-msg" class="text error-msg" hidden></p>
-        <button id="btn-submit" class="btn form-primary" type="submit" disabled>
-            로그인
+    <main id="root" class="account-wrapper">
+        <h1 style="font-size: 2rem; font-weight: bold; text-align: center;">Login</h1>
+        <form id="form-login" class="login-form" method="POST" action="/api/auth/login">
+            <div class="input account-input" id="container-id">
+                <label for="input-id">
+                    <img src="/src/img/icon/icon-id.svg" />
+                </label>
+                <input id="input-id" class="input" name="id" type="text" maxlength="30" required placeholder="아이디" />
+            </div>
+            <p id="text-id" class="text error-msg" hidden></p>
+            <div class="input account-input" id="container-pw">
+                <label for="input-pw">
+                    <img src="/src/img/icon/icon-password.svg" />
+                </label>
+                <input id="input-pw" class="input input-form" name="pw" type="password" maxlength="50" required
+                    placeholder="비밀번호" />
+            </div>
+            <p id="text-pw" class="text error-msg" hidden></p>
+            <p id="text-msg" class="text error-msg" hidden></p>
+            <button id="btn-submit" class="btn form-primary" type="submit" disabled>
+                로그인
+            </button>
+        </form>
+        <button type="button" class="btn form-secondary" onclick="window.location.href='/register'">
+            회원가입
         </button>
-    </form>
-    <button type="button" class="btn form-secondary" onclick="window.location.href='/register'">
-        회원가입
-    </button>
-    <button type="button" class="btn form-secondary" onclick="window.location.href='/'">
-        홈으로
-    </button>
-</main>
-<footer id="footer" class="account-footer" style="bottom: 0; position: fixed; background: none;">
-    <p style="color: #CCC; text-align: center;">Team CCNU. All rights reserved.</p>
-</footer>
+        <button type="button" class="btn form-secondary" onclick="window.location.href='/'">
+            홈으로
+        </button>
+    </main>
+    <footer id="footer" class="account-footer" style="bottom: 0; position: fixed; background: none;">
+        <p style="color: #CCC; text-align: center;">Team CCNU. All rights reserved.</p>
+    </footer>
 </body>
-
-<script defer src="/src/js/api/auth/login.js"></script>
-<script defer src="/src/js/func.js"></script>
 
 </html>

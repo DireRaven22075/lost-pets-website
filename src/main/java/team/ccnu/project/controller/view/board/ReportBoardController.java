@@ -28,6 +28,7 @@ public class ReportBoardController {
         mav.addObject("title", "Report");
         mav.addObject("description", "작고 연약한 생명이 상처 받는 일이 없길");
         mav.addObject("explain", "신고할 유실 동물의 외형과 위치를 알려주세요");
+        mav.addObject("bbs", 1L);
         return mav;
     }
     @GetMapping("/post/{pst}")

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,10 +16,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import org.springframework.web.multipart.MultipartFile;
 import team.ccnu.project.data.request.UploadPostDTO;
+import team.ccnu.project.data.response.UserDTO;
 import team.ccnu.project.domain.entity.Image;
 import team.ccnu.project.domain.entity.Post;
+import team.ccnu.project.domain.entity.User;
 import team.ccnu.project.domain.repository.ImageRepository;
 import team.ccnu.project.domain.repository.PostRepository;
+import team.ccnu.project.domain.repository.UserRepository;
 
 
 @Service
@@ -27,18 +31,45 @@ public class PostService {
     private PostRepository postRepos;
     @Autowired
     private ImageRepository imgRepos;
+    @Autowired
+    private UserRepository userRepos;
 
-    public boolean apicreatePost(UploadPostDTO dto) {
-
-        for (MultipartFile file : dto.getFiles()) {
-
+    public boolean apicreatePost(UploadPostDTO dto, HttpServletRequest request) {
+        Post post = new Post();
+        Long sn = (Long) request.getSession().getAttribute("token");
+        post.setTitle(dto.getTitle());
+        post.setContent(dto.getContent());
+        User user = userRepos.findBySn(sn);
+        post.setUser(user);
+        post.setUid(dto.getUid());
+        postRepos.save(post);
+        String _path = System.getProperty("user.home");
+        File dir = new File(_path + "/uploads/" + dto.getUid());
+        if (!dir.exists()) {
+            dir.mkdirs();
         }
-
+        if (dto.getFiles() == null || dto.getFiles().isEmpty()) {
+            return true;
+        }
+        for (MultipartFile file : dto.getFiles()) {
+            Image image = new Image();
+            image.setPost(post);
+            String path = "/uploads/" + dto.getUid() + "/" + System.currentTimeMillis();
+            path += file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
+            try {
+                file.transferTo(new File(_path + path));
+                image.setPath(path);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            imgRepos.save(image);
+        }
         return true;
     }
 
     //특정 게시물 조회
     public Post findBySn(Long sn) { return postRepos.findBySn(sn); }
+    public List<Post> findAll(Long bbs) { return postRepos.findPostsByUid(bbs); }
 
     @Autowired
     private PostRepository postRepository;

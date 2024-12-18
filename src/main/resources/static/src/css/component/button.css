@@ -11,6 +11,20 @@
     text-decoration: none;
     text-align: center;
 }
+.btn.btn-icon {
+    width: 2rem;
+    height: 2rem;
+    border: none;
+    outline: none;
+    background-color: #07CEEB;
+    &:hover {
+        background-color: #007bff;
+    }
+    img {
+        width: 100%;
+        height: 100%;
+    }
+}
 .btn.header-nav {
     font-size: 1rem;
     font-weight: inherit;

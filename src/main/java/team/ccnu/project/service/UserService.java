@@ -21,7 +21,7 @@ public class UserService {
         User user = new User();
         user.setId(dto.getId());
         String salt = Utils.getInstance().getSalt();
-        user.setHash(salt);
+        user.setSalt(salt);
         user.setPw(Utils.getInstance().encodePW(dto.getPw() + salt));
         user.setName(dto.getName());
         user.setEmail(dto.getMail());
@@ -31,7 +31,7 @@ public class UserService {
     }
     public boolean equalsPW(LogInDTO dto) {
         User user = repos.findById(dto.getId());
-        return user.getPw().equals(Utils.getInstance().encodePW(dto.getPw() + user.getHash()));
+        return user.getPw().equals(Utils.getInstance().encodePW(dto.getPw() + user.getSalt()));
     }
     public User login(LogInDTO dto) {
         return repos.findById(dto.getId());

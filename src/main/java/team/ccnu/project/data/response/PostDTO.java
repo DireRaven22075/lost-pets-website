@@ -23,7 +23,7 @@ public class PostDTO {
 
     // Post 엔티티를 기반으로 하는 생성자 추가
     public PostDTO(Post post) {
-        this.owner = post.getOwner();
+        this.owner = post.getUser();
         this.sn = post.getSn();
         this.title = post.getTitle();
         this.content = post.getContent();

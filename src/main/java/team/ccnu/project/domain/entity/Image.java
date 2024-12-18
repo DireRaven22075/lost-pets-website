@@ -1,11 +1,7 @@
 package team.ccnu.project.domain.entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 @lombok.Getter
 @lombok.Setter
@@ -15,12 +11,14 @@ import jakarta.persistence.ManyToOne;
 @Entity
 public class Image {
     //PK
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="file_sn")
     private Long sn;
     //FK
     @ManyToOne
+    @JoinColumn(name="post_sn")
     private Post post;
     //DATA COLUMN
+    @Column(name="file_path", columnDefinition="TEXT")
     private String path;
 }

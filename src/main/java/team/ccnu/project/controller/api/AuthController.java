@@ -32,20 +32,22 @@ public class AuthController {
         try {
             if (!userService.isExistID(dto.getId()) || !userService.equalsPW(dto)) {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("""
-                {"status": "error", "message" : "아이디 혹은 비밀번호가 일치하지 않습니다."}
+                {"status": "error", "code": 404, "message" : "아이디 혹은 비밀번호가 일치하지 않습니다."}
                 """);
             }
             User user = userService.login(dto);
             UserDTO response = new UserDTO(user);
             HttpSession session = request.getSession(true);
             session.setAttribute("user", response);
-            return ResponseEntity.ok().body(String.format("""
-            {"status": "success", "message": "%s님 환영합니다."}
-            """, response.getName()));
+            return ResponseEntity.ok().body(
+                    String
+                            .format("""
+                                {"status": "success", "code": 200, "message": "%s님 환영합니다."}""",
+                                    response.getName()));
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("""
-            {"status": "error", "message": "잠시후 다시 시도해주십시오."}
+            {"status": "error", "code": 500, "message": "잠시후 다시 시도해주십시오."}
             """);
         }
     }
@@ -60,17 +62,17 @@ public class AuthController {
         HttpSession session = request.getSession(false);
         if (session == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("""
-            {"status": "error", "message": "이미 로그아웃 상태입니다."}
+            {"status": "error", "code": 403, "message": "이미 로그아웃 상태입니다."}
             """);
         }
         try {
             session.invalidate();
             return ResponseEntity.status(HttpStatus.OK).body("""
-            {"status": "success", "message": "로그아웃 되었습니다."}
+            {"status": "success", "code": 200, "message": "로그아웃 되었습니다."}
             """);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("""
-            {"status": "error", "message": "잠시후 다시 시도해주십시오"}
+            {"status": "error", "code": 500, "message": "잠시후 다시 시도해주십시오"}
             """);
         }
     }

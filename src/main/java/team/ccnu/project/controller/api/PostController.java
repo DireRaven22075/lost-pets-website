@@ -24,6 +24,26 @@ import team.ccnu.project.data.request.UploadPostDTO;
 @RestController
 @RequestMapping("/api/posts")
 public class PostController {
+    @Autowired private PostService posts;
+    @Autowired private ImageService files;
+
+    @PostMapping("/test")
+    public ResponseEntity<?> apiCreatePost(@ModelAttribute UploadPostDTO dto) {
+        Post post = posts.uploadPost(dto);
+        if (post == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+                    """
+                {"status": "error", "code": 400, "message": "요청 사항을 처리할 수 없습니다."}
+"""
+            );
+        }
+        else {
+            return ResponseEntity.status(HttpStatus.CREATED).body("""
+            {"status": "success", "code": 201, "message": "성공적으로 게시글을 업로드 하였습니다."}   
+            """);
+        }
+    }
+
 
     @Autowired
     private PostService postService;
@@ -55,7 +75,7 @@ public class PostController {
                         .post(post)
                         .build();
                     
-                    post.getFiles().add(image);
+                    post.getImages().add(image);
                 } catch (IOException e) {
                     return ResponseEntity.internalServerError().body("Error while processing files.");
                 }

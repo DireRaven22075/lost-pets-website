@@ -13,7 +13,19 @@ document.querySelector("form#post-create").addEventListener("submit", (e) => {
         method: "POST",
         credentials: "include",
         body: data
-    }).then(res => res.json()).then(data => {
-        
-    }).catch(err => console.error(err));
+    }).then(
+        res => res.json()
+    ).then(
+        (data) => {
+            let status = data["status"];
+            if (status === "success") {
+                //현재 페이지를 리로드
+                history
+                    .go(0);
+            }
+            else {
+
+            }
+        }
+    ).catch(err => console.error(err));
 });

@@ -1,6 +1,7 @@
 package team.ccnu.project.service;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -16,11 +17,28 @@ import org.springframework.web.multipart.MultipartFile;
 import team.ccnu.project.data.request.UploadPostDTO;
 import team.ccnu.project.domain.entity.Image;
 import team.ccnu.project.domain.entity.Post;
+import team.ccnu.project.domain.repository.ImageRepository;
 import team.ccnu.project.domain.repository.PostRepository;
 
 
 @Service
 public class PostService {
+    @Autowired
+    private PostRepository postRepos;
+    @Autowired
+    private ImageRepository imgRepos;
+
+    public boolean apicreatePost(UploadPostDTO dto) {
+
+        for (MultipartFile file : dto.getFiles()) {
+
+        }
+
+        return true;
+    }
+
+    //특정 게시물 조회
+    public Post findBySn(Long sn) { return postRepos.findBySn(sn); }
 
     @Autowired
     private PostRepository postRepository;
@@ -69,8 +87,8 @@ public class PostService {
         post.setUid(postDTO.getUid());
         post.setStatus(postDTO.getStatus());
         post.setUid(postDTO.getUid());
-        post.setFiles(new LinkedList<>());
-        post.setOwner(null);
+        post.setImages(new ArrayList<>());
+        post.setUser(null);
         return postRepository.save(post);
     }
 

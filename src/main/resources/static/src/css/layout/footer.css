@@ -1,0 +1,42 @@
+#footer {
+    width: 100vw;
+
+    height: auto;
+
+    background-color: #EBEBEB;
+
+    &.account-footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+
+        z-index: 300;
+    }
+    &.page-footer {
+        padding-top: 2rem;
+        h2 {
+            text-align: center;
+        }
+        div {
+            padding-top: 0.25rem;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding-bottom: 0.75rem;
+        }
+        a {
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            background-color: #000;
+            border-radius: 0.5rem;
+            color: white;
+            text-decoration: none;
+
+        }
+        p, h5, strong,a {
+            text-align: center;
+        }
+    }
+}

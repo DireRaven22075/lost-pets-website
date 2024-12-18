@@ -1,0 +1,8 @@
+.layout-left {
+    margin-left: 0;
+    margin-right: auto;
+}
+.layout-right {
+    margin-left: auto;
+    margin-right: 0;
+}

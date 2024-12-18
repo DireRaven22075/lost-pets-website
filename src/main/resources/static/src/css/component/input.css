@@ -1,0 +1,70 @@
+.input {
+    &.account-input {
+        width: 100%;
+        height: 3rem;
+        margin-bottom: 0.25rem;
+        outline: none;
+        border: 1px solid #EEE;
+        border-collapse: collapse;
+        display: flex;
+        flex-direction: row;
+
+        background-color: #FFFFFF;
+        label {
+            width: 3rem;
+            height: 3rem;
+            background-color: #333333;
+            img {
+                width: 2.5rem;
+                height: 2.5rem;
+                margin: 0.25rem;
+            }
+        }
+        input {
+            width: calc(100% - 5rem);
+            height: 3rem;
+
+            background: none;
+            border: none;
+            outline: none;
+
+            padding: 0 1rem;
+
+        }
+        &.is-invalid {
+            border-bottom: 2px solid red;
+        }
+        &.is-valid {
+            border-bottom: 2px solid green;
+        }
+        &.is-warning {
+            border-bottom: 2px solid orange;
+        }
+    }
+
+}
+.input {
+    &.post-title {
+        width: calc(100% - 2rem);
+        height: 3rem;
+        padding: 0 1rem;
+        outline: none;
+    }
+    &.post-content {
+        width: calc(100% - 2rem);
+        height: 10rem;
+        padding: 1rem;
+        border: 1px solid #000;
+        outline: none;
+    }
+}
+
+textarea {
+    resize: none;
+}
+.input {
+    &.comment-input {
+        border: none;
+        outline: none;
+    }
+}

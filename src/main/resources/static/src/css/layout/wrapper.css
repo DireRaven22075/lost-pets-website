@@ -1,0 +1,53 @@
+/*
+Description: Wrapper component styles
+main element 내에 들어가는 wrapper component의 스타일을 정의합니다.
+*/
+#root {
+    width: 100vw;
+    height: auto;
+    
+    &.main-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+
+        background-color: #FFF;
+    }
+    &.error-wrapper {
+        position: absolute;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    &.board-wrapper {
+        
+    }
+    &.page-wrapper {
+        width: calc(100vw - 6rem);
+        height: auto;
+        min-height: 100vh;
+        position: relative;
+        padding: 0 3rem;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        background-color: white;
+    }
+    &.post-wrapper {
+        width: calc(100vw - 6rem);
+        min-height: 50vh;
+        margin: 5rem 0;
+        padding: 0 3rem;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+}

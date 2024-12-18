@@ -1,7 +1,0 @@
-.animation-slide {
-    transition: top 0.5s, left 0.5s, right 0.5s, bottom 0.5s;
-    &.slide-up { top: -100%; }
-    &.slide-down { bottom: -100%; }
-    &.slide-left { left: -100%; }
-    &.slide-right { right: -100%; }
-}

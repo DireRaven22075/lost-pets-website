@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<body>
+<header th:fragment="main" id="header" class="main-header">
+    <nav class="container">
+        <a class="btn header-title" href="/">Lost Pets Website</a>
+        <ul class="row-container header-nav">
+            <li><a href="/boards/0">입양</a></li>
+            <li><a href="/boards/1">신고</a></li>
+            <li><a href="/boards/2">교육</a></li>
+        </ul>
+        <button th:if="${user == null}" id="btn-header-login" class="btn header-account"
+                onclick="window.location.href='/login'">
+            Get Started
+        </button>
+        <button th:unless="${user == null}" id="btn-header-logout" class="btn header-account" onclick="logout();">
+            Logout
+        </button>
+    </nav>
+    <script defer src="/src/js/api/auth/logout.js"></script>
+</header>
+<header th:fragment="page" id="header" class="page-header">
+    <a class="btn header-title layout-left" href="/">Lost Pets Website</a>
+    <nav class="row-container layout-right">
+        <ul class="row-container header-nav">
+            <li><a href="/boards/0">입양</a></li>
+            <li><a href="/boards/1">신고</a></li>
+            <li><a href="/boards/2">교육</a></li>
+        </ul>
+        <button th:if="${user == null}" id="btn-header-login" class="btn header-account"
+                onclick="window.location.href='/login'">
+            Login
+        </button>
+        <button th:unless="${user == null}" id="btn-header-logout" class="btn header-account" onclick="logout();">
+            Logout
+        </button>
+    </nav>
+    <script defer src="/src/js/api/auth/logout.js"></script>
+</header>
+</body>
+
+</html>

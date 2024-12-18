@@ -1,0 +1,40 @@
+#body {
+    width: 100vw;
+    height: auto;
+
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+
+    &.main-page {
+        overflow-x: hidden;
+        background-image: url("/src/img/banner/main.png");
+    }
+
+    &.account-page {
+        background-image: url("/src/img/banner/account.jpg");
+    }
+
+    &.board-page {
+        background-image: url("/src/img/banner/board.jpg");
+    }
+
+    &.error-page {
+        height: 100vh;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background-color: #EBEBEB;
+    }
+    &.post-page {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+
+        background-color: white;
+    }
+}

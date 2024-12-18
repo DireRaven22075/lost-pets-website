@@ -1,23 +1,33 @@
-/* #region animation Folder */
-@import "animation/fade.css";
-@import "animation/slide.css";
-/* #endregion */
-
-/* #region base Folder */
-@import "base/reset.css";
-@import "base/typography.css";
+/* Base Folder Link */
 @import "base/color.css";
 @import "base/noselect.css";
-/* #endregion */
+@import "base/reset.css";
 
-/* #region components Folder */
-@import "components/form.css";
-@import "components/button.css";
-@import "components/input.css";
-@import "components/label.css";
-@import "components/text.css";
-/* #endregion */
+/* Component Folder Link */
+@import "component/form.css";
+@import "component/banner.css";
+@import "component/button.css";
+@import "component/content.css";
+@import "component/input.css";
+@import "component/item.css";
+@import "component/text.css";
+@import "component/image.css";
 
-/* #region layout Folder */
-@import "layout/flex.css";
-/* #endregion */
+/* Layout Folder Link */
+@import "layout/container.css";
+@import "layout/footer.css";
+@import "layout/header.css";
+@import "layout/layout.css";
+@import "layout/page.css";
+@import "layout/table.css";
+@import "layout/wrapper.css";
+@import "layout/nav.css";
+
+/* Page Folder Link */
+@import "page/account.css";
+@import "page/board.css";
+@import "page/error.css";
+@import "page/main.css";
+
+/* Util Folder Link */
+@import "util/layout.css";

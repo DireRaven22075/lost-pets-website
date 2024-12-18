@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <title>오류가 발생했습니다</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+
+        article.banner {
+            width: 40%;
+            height: 100%;
+
+            border-radius: 1rem 0 0 1rem;
+            background-color: blue;
+        }
+
+        article.windows {
+            width: calc(60% - 2rem);
+            height: calc(100% - 2rem);
+            padding: 1rem;
+            border-radius: 0 1rem 1rem 0;
+        }
+
+        footer {
+            width: 100vw;
+            height: 3rem;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            position: absolute;
+            bottom: 0;
+        }
+
+        .text.code {
+            height: 4rem;
+            font-size: 4rem;
+            font-weight: bolder;
+        }
+
+        .text.code-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .text.msg {
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        .text {
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 1rem;
+            font-weight: 400;
+
+            &.red {
+                color: red;
+            }
+        }
+    </style>
+
+    <link rel="stylesheet" type="text/css" href="/src/css/main.css" />
+</head>
+
+<body id="body" class="error-page">
+    <h1 class="text error-hidden noselect">404</h1>
+    <main id="root" class="error-wrapper noselect">
+
+        <p class="text error-title">
+            WE ARE SORRY, PAGE NOT FOUND!
+        </p>
+        <p class="text error-text">
+            THE PAGE YOU ARE LOOKING FOR MIGHT HAVE BEEN REMOVED, HAD ITS NAME CHANGED, <br /> OR IS TEMPORARILY
+            UNAVAILABLE.
+        </p>
+        <button class="btn error-btn" onclick="window.location.href='/'">
+            BACK TO HOMEPAGE
+        </button>
+    </main>
+</body>
+
+</html>

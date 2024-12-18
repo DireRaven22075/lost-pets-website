@@ -1,0 +1,6 @@
+.btn {
+    cursor: pointer;
+    &.selected {
+        cursor: default;
+    }
+}

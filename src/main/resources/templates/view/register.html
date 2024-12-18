@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <title>환영합니다!</title>
+    <link rel="stylesheet" type="text/css" href="/src/css/main.css"/>
+    <link rel="shortcut icon" href="/src/favicon.ico" type="image/x-icon">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #body.account-page {
+            display: flex;
+            height: 100vh;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #root.account-wrapper {
+            width: calc(30vw - 3rem);
+            height: auto;
+            padding: 1rem 1.5rem;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 0.5rem;
+        }
+    </style>
+    <style>
+
+        .form-primary {
+            font-size: 1.25rem;
+            width: 100%;
+            height: 2rem;
+            margin: 0.5rem 0;
+            padding: 0;
+            background-color: #111;
+            color: #fff;
+            border: none;
+            border-radius: 0.5rem;
+        }
+
+        .form-secondary {
+            font-size: 1.25rem;
+            width: 100%;
+            height: 2rem;
+            margin: 0.5rem 0;
+            padding: 0;
+            background-color: #EBEBEB;
+            border: 1px solid black;
+            color: black;
+            border-radius: 0.5rem;
+        }
+    </style>
+
+    <script defer src="/src/js/event/change/register.js"></script>
+    <script defer src="/src/js/api/account/create.js"></script>
+</head>
+
+<body id="body" class="account-page">
+
+<main id="root" class="account-wrapper">
+    <h1 style="font-size: 2rem; font-weight: bold; text-align: center;">Register</h1>
+    <form id="form-register" class method="POST" action="/api/users" style="border-bottom: 2px solid #CCC;">
+        <div id="container-id" class="input account-input">
+            <label for="input-id">
+                <img src="/src/img/icon/icon-id.svg"/>
+            </label>
+            <input type="text" id="input-id" name="id" required placeholder="아이디"/>
+        </div>
+        <p id="text-id" class="text error-msg"></p>
+        <div id="container-name" class="input account-input">
+            <label for="input-name">
+                <img src="/src/img/icon/icon-user.svg"/>
+            </label>
+            <input type="text" id="input-name" name="name" required placeholder="이름"/>
+        </div>
+        <p id="text-name" class="text error-msg"></p>
+        <div id="container-mail" class="input account-input">
+            <label for="input-mail">
+                <img src="/src/img/icon/icon-mail.svg"/>
+            </label>
+            <input type="email" id="input-mail" name="mail" class="error" placeholder="이메일주소"/>
+        </div>
+        <p id="text-mail" class="text error-msg"></p>
+        <div id="container-pw" class="input account-input">
+            <label for="input-pw">
+                <img src="/src/img/icon/icon-password.svg"/>
+            </label>
+            <input type="password" id="input-pw" name="pw" placeholder="비밀번호"/>
+        </div>
+        <p id="text-pw" class="text error-msg"></p>
+        <div id="container-pw-confirm" class="input account-input">
+            <label for="input-pw-confirm">
+                <img src="/src/img/icon/icon-password.svg" />
+            </label>
+            <input type="password" id="input-pw-confirm" name="pw-confirm" placeholder="비밀번호 확인"/>
+        </div>
+        <p id="text-pw-confirm" class="text error-msg"></p>
+        <p id="text-msg" class="text error-msg"></p>
+        <button id="btn-submit" class="btn form-primary" type="submit" disabled>
+            회원가입
+        </button>
+    </form>
+    <button type="button" class="btn form-secondary" onclick="window.location.href='/login'">
+        로그인
+    </button>
+    <button type="button" class="btn form-secondary" onclick="window.location.href='/'">
+        홈으로
+    </button>
+</main>
+<footer id="footer" class="account-footer" style="bottom: 0; position: fixed; background: none;">
+    <p style="color: #CCC; text-align: center;">Team CCNU. All rights reserved.</p>
+</footer>
+</body>
+
+
+</html>

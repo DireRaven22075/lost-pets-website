@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="https://www.thymeleaf.org">
+  <body>
+    <article th:fragment="banner" class="banner">
+      <div class="banner-text">
+        <h1 th:text="${title}"></h1>
+        <p th:text="${description}"></p>
+      </div>
+    </article>
+  </body>
+</html>

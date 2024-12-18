@@ -1,0 +1,12 @@
+.header-nav {
+    width: auto;
+    height: 1.5rem;
+    li {
+        display: inline;
+        margin: 0 1rem;
+    }
+    li>a {
+        color: #000;
+        text-decoration: none;
+    }
+}

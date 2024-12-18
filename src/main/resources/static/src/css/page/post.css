@@ -1,0 +1,6 @@
+.post-wrapper {
+    border-collapse: collapse;
+    div {
+        border: 1px solid gray;
+    }
+}

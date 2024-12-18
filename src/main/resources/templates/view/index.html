@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <title>유실 동물 웹사이트</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/src/css/main.css" />
+    <style>
+        #text-scroll {
+            bottom: 1rem;
+            position: fixed;
+            width: 100vw;
+            left: 0;
+            text-align: center;
+            font-size: 1.25rem;
+            font-weight: lighter;
+            z-index: 50;
+            transition: opacity 0.2s;
+            opacity: 1;
+
+            &.trigger {
+                opacity: 0;
+            }
+        }
+    </style>
+    <script defer src="/src/js/api/auth/logout.js"></script>
+</head>
+
+<body id="body" class="main-page">
+    <div th:replace="~{fragment/header :: main}"></div>
+    <script>
+        document.addEventListener(
+            "scroll",
+            () => {
+                if (window.scrollY > header.offsetTop) {
+                    document.querySelector("#text-scroll").classList.add("trigger");
+                    header.classList.add("trigger");
+                } else {
+                    document.querySelector("#text-scroll").classList.remove("trigger");
+                    header.classList.remove("trigger");
+                }
+            }
+        );
+    </script>
+    <p id="text-scroll">Scroll down to see more..</p>
+
+    <article id="banner" class="main-banner">
+        <h2 class="typewriter text banner-title">유실 동물 웹사이트</h2>
+        <p class="text banner-subtitle">
+            “Website for reporting and protection of abandoned/puppets”
+        </p>
+        <p class="text banner-text">
+            유기 동물을 찾는 사람은 많지만, 찾아주는 사람은 적습니다.
+        </p>
+        <p class="text banner-text">
+            이 웹페이지는 사용자 친화적이며 접근성이 높은 플랫폼으로,
+        </p>
+        <p class="text banner-text">
+            지역적인 특성을 추가해 지역적인 동물 보호, 동물 찾기 및 입양을 돕기 위한 웹페이지입니다.
+        </p>
+    </article>
+
+    <!-- Main Contents -->
+    <main id="root" class="main-wrapper">
+        <section id="contents" class="main-contents">
+            <article class="main-content">
+                <div class="header"></div>
+                <h2 class="text main-title">게시판 소개</h2>
+                <div class="container main-board-describe">
+
+                </div>
+                <div
+                    style="width: 100%; margin-top: 3rem; display: flex; flex-direction: column; align-items: center; justify-content: space-around;">
+
+                    <div class="item board-item">
+                        <img src="/src/img/icon/board/report.jpg" class="board-image">
+                        <div>
+                            <h3>신고 게시판</h3>
+                            <p>유실 동물 발견 시 동물 정보를 입력해 유실 동물 신고를 할 수 있는 게시판</p>
+                            <p>유실된 동물들에게, 약간의 도움을 통해 집으로 돌아갈 수 있도록 도와주세요.</p>
+                            <strong>허위 사실로 작성된 게시글은 삭제 처리되며, 반복적으로 허위사실을 작성하는 사용자는 이용 제제를 당할 수 있습니다.</strong>
+                            <br />
+                            <a href="/boards/1">신고 게시판 이동</a>
+                        </div>
+                    </div>
+
+                    <div class="board-item">
+                        <img src="/src/img/icon/board/adopt.jpg" alt="Adoption" class="board-image">
+                        <div>
+                            <h3>입양 게시판</h3>
+                            <p>보호가 필요하거나 임시 보호 중인 유실 동물을 입양할 수 있는 게시판</p>
+                            <p>매달 </p>
+
+                            <strong>입양한 동물도 하나의 생명입니다.</strong>
+                            <a href="/boards/0">입양 게시판 이동</a>
+                        </div>
+                    </div>
+
+                    <div class="board-item">
+                        <img src="/src/img/icon/board/education.jpg" alt="Education" class="board-image">
+                        <div class="board">
+                            <h3>교육 게시판</h3>
+                            <p>유실 동물 발견 또는 입양 시 필요한 교육 정보를 공유하는 게시판</p>
+
+                            <strong>허위 사실로 작성된 게시글은 삭제 처리되며, 반복적으로 허위사실을 작성하는 사용자는 이용 제제를 당할 수 있습니다.</strong>
+                            <br />
+                            <a href="/boards/2">교육 게시판 이동</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <article class="main-content">
+                <div class="header"></div>
+                <h2 class="text main-title">유실 동물 관련 기관</h2>
+
+                <div
+                    style="width: 100%; margin-top: 3rem; display: flex; flex-direction: row; align-items: center; justify-content: space-around;">
+                    <div class="btn main-center"
+                        onclick="window.open('https://map.naver.com/p/entry/place/79591739?c=15.00,0,0,3,dh&placePath=/home')">
+                        <img src="/src/img/icon/center/center1.png" />
+                        <div class="hover">
+                            <h5>반려동물보호센터</h5>
+                            <p>click to move on</p>
+                        </div>
+                    </div>
+
+                    <div class="btn main-center" onclick="window.open('https://www.karama.or.kr/')">
+                        <img src="/src/img/icon/center/center2.png" />
+                        <div class="hover">
+                            <h5>유기동물구조센터</h5>
+                            <p>click to move on</p>
+                        </div>
+                    </div>
+
+                    <div class="btn main-center" onclick="window.open('https://www.daejeon.go.kr/ani/index.do')">
+                        <img src="/src/img/icon/center/center3.png" />
+                        <div class="hover">
+                            <h5>대전반려동물센터</h5>
+                            <p>click to move on</p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <div th:replace="~{fragment/footer :: footer}"></div>
+</body>
+
+</html>

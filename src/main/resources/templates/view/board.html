@@ -10,6 +10,10 @@
     <link rel="stylesheet" type="text/css" href="/src/css/main.css"/>
 
     <style>
+        textarea {
+            border: none;
+            outline: none;
+        }
         html,
         body {
             scroll-behavior: smooth;
@@ -78,12 +82,12 @@
             <input hidden id="input-bbs" th:value="${bbs}"/>
             <div id="image-container" class="img">
             </div>
-            <div class="row-container">
-                <label for="input-file" class="btn icon-clear">
+            <div class="row-container" style="height: 2rem; border: 1px solid black">
+                <label for="input-file" class="btn icon-clear layout-left">
                     <img src="/src/img/icon/icon-menu.svg"/>
                 </label>
                 <input id="input-file" type="file" accept="image/*" multiple style="display: none;"/>
-                <button id="btn-submit" class="btn icon" type="submit">
+                <button id="btn-submit" class="btn icon layout-right" type="submit">
                     <img src="/src/img/icon/icon-write.svg"/>
                 </button>
             </div>
@@ -96,6 +100,7 @@
                 const container = document.getElementById('image-container');
 
                 // 기존 이미지를 모두 제거
+                container.hidden = false;
                 container.innerHTML = "";
 
                 // 선택한 파일들을 순차적으로 처리

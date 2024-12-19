@@ -76,7 +76,7 @@
         </script>
     </th:block>
     <th:block th:unless="${user == null}">
-        <form id="form-post" class="post-form">
+        <form id="form-post" class="post-form" style="overflow-x: hidden">
             <input id="input-title" class="input post-title" type="text" placeholder="새 글을 작성해 주세요!"/>
             <textarea id="input-content" class="input post-content" th:placeholder="${explain}"></textarea>
             <input hidden id="input-bbs" th:value="${bbs}"/>

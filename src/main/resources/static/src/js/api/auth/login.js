@@ -52,7 +52,8 @@ document
                     if (data["status"] == "success") {
                         //Redirect to the Previous Page
                         alert(data["message"]);
-                        window.location.href='/';
+                        history
+                            .go(-1);
                     }
                     //If Request is Failed
                     else {

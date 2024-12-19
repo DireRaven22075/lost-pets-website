@@ -9,6 +9,28 @@
 
     <link rel="stylesheet" href="/src/css/main.css" />
     <style>
+        .main-temp {
+            width: calc(100% - 20vw);
+            padding: 2rem 3rem;
+            h3 {
+                font-size: 1.5rem;
+                margin-bottom: 0.5rem;
+            }
+            a {
+                cursor: pointer;
+                color: black;
+                padding: 0.5rem 1rem;
+                border: 1px solid black;
+                &:hover {
+                    color: #007bff;
+                }
+            }
+            .t {
+                color: #007bff;
+                margin-top: 3rem;
+                margin-bottom: 1rem;
+            }
+        }
         #text-scroll {
             bottom: 1rem;
             position: fixed;
@@ -75,38 +97,37 @@
                 <div
                     style="width: 100%; margin-top: 3rem; display: flex; flex-direction: column; align-items: center; justify-content: space-around;">
 
+                    <div class="board-item">
+                        <img src="/src/img/icon/board/adopt.jpg" alt="Adoption" class="board-image">
+                        <div class="main-temp">
+                            <h3>입양 게시판</h3>
+                            <p>유실된 동물들이 새로운 가정을 찾을 수 있도록 돕는 공간입니다. <br/> 입양을 원하는 분들과 유실 동물 보호자들이 안전하고 사랑이 넘치는 가정을 만날 수 있도록 지원합니다. 반려동물을 입양하고자 하는 분들은 이 게시판을 통해 입양 가능한 동물들의 정보를 확인하고, 입양 절차에 대해 안내받을 수 있습니다.</p>
+                            <p class="t">허위 사실로 작성된 게시글은 삭제 처리되며, 반복적으로 허위사실을 작성하는 사용자는 이용 제제를 당할 수 있습니다.</p>
+                            <br />
+                            <a href="/boards/0">입양 게시판 이동</a>
+                        </div>
+                    </div>
+
                     <div class="item board-item">
                         <img src="/src/img/icon/board/report.jpg" class="board-image">
-                        <div>
+                        <div class="main-temp">
                             <h3>신고 게시판</h3>
-                            <p>유실 동물 발견 시 동물 정보를 입력해 유실 동물 신고를 할 수 있는 게시판</p>
-                            <p>유실된 동물들에게, 약간의 도움을 통해 집으로 돌아갈 수 있도록 도와주세요.</p>
-                            <strong>허위 사실로 작성된 게시글은 삭제 처리되며, 반복적으로 허위사실을 작성하는 사용자는 이용 제제를 당할 수 있습니다.</strong>
+                            <p>길을 잃은 반려동물을 찾거나 유실된 동물을 발견한 경우 신고하는 공간입니다. <br/>유실 동물을 발견하거나 자신의 반려동물이 사라졌을 때, 이곳에 정보를 게시하여 빠르게 주인을 찾고 동물을 안전하게 돌려보낼 수 있도록 도와주세요.</p>
+                            <p class="t">허위 사실로 작성된 게시글은 삭제 처리되며, 반복적으로 허위사실을 작성하는 사용자는 이용 제제를 당할 수 있습니다.</p>
                             <br />
                             <a href="/boards/1">신고 게시판 이동</a>
                         </div>
                     </div>
 
                     <div class="board-item">
-                        <img src="/src/img/icon/board/adopt.jpg" alt="Adoption" class="board-image">
-                        <div>
-                            <h3>입양 게시판</h3>
-                            <p>보호가 필요하거나 임시 보호 중인 유실 동물을 입양할 수 있는 게시판</p>
-                            <p>매달 </p>
-
-                            <strong>입양한 동물도 하나의 생명입니다.</strong>
-                            <a href="/boards/0">입양 게시판 이동</a>
-                        </div>
-                    </div>
-
-                    <div class="board-item">
                         <img src="/src/img/icon/board/education.jpg" alt="Education" class="board-image">
-                        <div class="board">
+                        <div class="main-temp">
                             <h3>교육 게시판</h3>
-                            <p>유실 동물 발견 또는 입양 시 필요한 교육 정보를 공유하는 게시판</p>
+                            <p>유실된 동물에 관한 다양한 정보와 자료를 공유하는 공간입니다.<br/> 길 잃은 반려동물을 찾고자 하는 보호자와 동물 구조에 관심 있는 분들이 유용한 정보를 서로 나누는 장소입니다. 여기서는 유실 동물의 발견 정보, 신고, 동물 보호소와 관련된 공지사항 등을 함께 공유할 수 있습니다.</p>
 
-                            <strong>허위 사실로 작성된 게시글은 삭제 처리되며, 반복적으로 허위사실을 작성하는 사용자는 이용 제제를 당할 수 있습니다.</strong>
+                            <p class="t">허위 사실로 작성된 게시글은 삭제 처리되며, 반복적으로 허위사실을 작성하는 사용자는 이용 제제를 당할 수 있습니다.</p>
                             <br />
+
                             <a href="/boards/2">교육 게시판 이동</a>
                         </div>
                     </div>

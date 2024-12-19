@@ -45,7 +45,6 @@
             /* 부모 댓글과 동일한 들여쓰기 */
             margin-top: 0.5rem;
             display: flex;
-            gap: 0.5rem;
 
             &.hidden {
                 display: none;
@@ -53,7 +52,7 @@
         }
 
         .input-reply {
-            flex-grow: 1;
+            width: calc(100% - 1rem);
             padding: 0 0.5rem;
             border: none;
             outline: none;
@@ -105,14 +104,14 @@
             </article>
         </section>
         <th:block th:if="${user == null}">
-            <div class="btn" style="width: 100%; height: 2rem; background-color: white;">
+            <div class="btn" style="width: 100%; height: 2rem; background-color: white;" onclick="window.location.href='/login'">
                 로그인 이후 댓글 및 답글을 작성할 수 있습니다.
             </div>
         </th:block>
         <th:block th:unless="${user ==null}">
             <form id="form-comment" class="comment-form row-container" method="POST" action="/api/comments" style="width: 100%; height: 2rem;">
                 <input id="input-pst" hidden th:value="${post.getSn()}" />
-                <input id="input-content" type="text" class="input comment-input" required placeholder="댓글을 입력하세요" />
+                <input id="input-content" type="text" class="input comment-input" style="width: calc(100% - 2rem);" required placeholder="댓글을 입력하세요" />
                 <button class="btn btn-icon">
                     <img style="width: 100%; height: 100%" src="/src/img/icon/icon-write.svg" />
                 </button>
@@ -159,7 +158,6 @@
                     })
                         .then(response => {
                             if (response.ok) {
-                                alert('답글이 성공적으로 추가되었습니다.');
                                 window.location.reload();
                                 // 답글을 동적으로 추가하려면 아래 로직 작성
                             } else {

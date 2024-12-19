@@ -14,6 +14,16 @@
         body {
             scroll-behavior: smooth;
         }
+        #image-container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .image-preview {
+            margin: 10px;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+        }
 
         #btn-move2top {
             width: 2rem;
@@ -66,10 +76,9 @@
             <input id="input-title" class="input post-title" type="text" placeholder="새 글을 작성해 주세요!"/>
             <textarea id="input-content" class="input post-content" th:placeholder="${explain}"></textarea>
             <input hidden id="input-bbs" th:value="${bbs}"/>
+            <div id="image-container" class="img">
+            </div>
             <div class="row-container">
-                <div class="img">
-
-                </div>
                 <label for="input-file" class="btn icon-clear">
                     <img src="/src/img/icon/icon-menu.svg"/>
                 </label>
@@ -81,6 +90,34 @@
         </form>
         <script defer src="/src/js/event/focus/write.js"></script>
         <script defer src="/src/js/api/post/create.js"></script>
+        <script>
+            document.getElementById('input-file').addEventListener('change', function(event) {
+                const files = event.target.files;
+                const container = document.getElementById('image-container');
+
+                // 기존 이미지를 모두 제거
+                container.innerHTML = "";
+
+                // 선택한 파일들을 순차적으로 처리
+                Array.from(files).forEach(file => {
+                    const reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        const imageUrl = e.target.result;
+                        const img = document.createElement('img');
+                        img.src = imageUrl;
+                        img.classList.add('image-preview');
+                        container.appendChild(img);
+                    };
+
+                    reader.onerror = function() {
+                        alert("파일을 읽는 중에 오류가 발생했습니다.");
+                    };
+
+                    reader.readAsDataURL(file);
+                });
+            });
+        </script>
     </th:block>
     <div id="contents" class="board-contents">
         <article th:each="post : ${posts}" class="btn board-content row-container"

@@ -65,13 +65,9 @@ __프로젝트 설치__
 <!-- USUAGE -->
 ## Usuage
 
+
+
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- ROADMAP -->
-## Roadmap
-
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -83,29 +79,34 @@ Use this space to show useful examples of how a project can be used. Additional 
   - Depart: Back-END
     1. Develop Interceptor
     2. Develop Comment API
+    3. Debugging API System
 - [한윤수(DireRaven22075)](https://github.com/DireRaven22075)
   - Role: Develop Manager
   - Depart: Full-Stack
     1. Manage Git Repository
     2. Develop Database
-    3. Add Security System
+    3. Develop Security Core System
     4. Develop JPA, JDBC
-    5. debugging FILE IO
+    5. Debugging FILE IO
 - [이예호(yecongE)](https://github.com/yecongE)
   - Design Manager
   - Depart: Front-END
-    1. Develop HTTP REST API REQUEST
-    2. Design 
+    1. Develop HTTP REST REQUEST
+    2. Convert pages to Thymeleaf Template
+    3. Design builtin board & accounts (login / sign up) Page
 - [박상인(C0BlA)](https://github.com/C0BlA)
   - Depart: Back-END
     1. Develop Board Posting Rest API
     2. Develop File IO System
+    3. Develop Posting & Reply API
 - [김다민(kdm0927)](https://github.com/kdm0927)
   - Depart: Front-END
-    1. Develop Web Page to Thymeleaf Template
+    1. Design and Develop pages
+    2. Design Error Page
 - [이예솔(ieeyesoi)](https://github.com/ieeyesoi)
   - Depart: Front-END
     1. Design and Develop pages
+    2. Design Post & Main Page
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -134,12 +135,12 @@ The license of this project itself can be chosen freely. However, when using thi
 <!-- CONTACTS -->
 ## Contacts
 
-- 김민성 : [rjaehno2@naver.com](mailto:rjaehno2@naver.com)
-- 한윤수 : [direraven22075@gmail.com](mailto:direraven22075@gmail.com), [gskids053@chungbuk.ac.kr](mailto:gskids053@chungbuk.ac.kr)
-- 박상인 : [cobia9e@gmail.com](mailto:cobia9e@gmail.com), [2021041009@chungbuk.ac.kr](mailto:2021041009@chungbuk.ac.kr)
-- 이예호 : [yeho0821@naver.com](mailto:yeho0821@naver.com), [yeconge0821@gmail.com](mailto:yeconge0821@gmail.com)
-- 김다민 : [kimdm5112@gmail.com](mailto:kimdm5112@gmail.com), [rlaekals585@chunguk.ac.kr](mailto:rlaekals585@chunguk.ac.kr)
-- 이예솔 : [yesol4138@naver.com](mailto:yesol4138@naver.com), [yesol4138@chungbuk.ac.krÏ](mailto:yesol4138@chungbuk.ac.krÏ)
+- 김민성 - 팀장 : [rjaehno2@naver.com](mailto:rjaehno2@naver.com)
+- 한윤수 - DB : [direraven22075@gmail.com](mailto:direraven22075@gmail.com), [gskids053@chungbuk.ac.kr](mailto:gskids053@chungbuk.ac.kr)
+- 박상인 - Back-END : [cobia9e@gmail.com](mailto:cobia9e@gmail.com), [2021041009@chungbuk.ac.kr](mailto:2021041009@chungbuk.ac.kr)
+- 이예호 - Front-END : [yeho0821@naver.com](mailto:yeho0821@naver.com), [yeconge0821@gmail.com](mailto:yeconge0821@gmail.com)
+- 김다민 - Front-END : [kimdm5112@gmail.com](mailto:kimdm5112@gmail.com), [rlaekals585@chunguk.ac.kr](mailto:rlaekals585@chunguk.ac.kr)
+- 이예솔 - Front-END : [yesol4138@naver.com](mailto:yesol4138@naver.com), [yesol4138@chungbuk.ac.krÏ](mailto:yesol4138@chungbuk.ac.krÏ)
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- ACKNOWLEDGEMENTS -->

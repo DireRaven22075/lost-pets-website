@@ -31,7 +31,7 @@
 
 ![project-image](_docs/title.png)
 
-간단한 프로젝트 설명
+
 
 ### Built With
 
@@ -53,12 +53,29 @@
 
 ### Prerequisites
 
-__프레임워크 설치__
+- Open JDK [Download](https://www.oracle.com/kr/java/technologies/downloads/)
+- MySQL Server 9.0 [Download](https://dev.mysql.com/downloads/)
 
 <!-- INSTALLATION -->
 ### Installation
 
-__프로젝트 설치__
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/DireRaven22075/lost-pets-website.git
+   cd lost-pets-website
+   ```
+2. Install dependencies:
+   ```bash
+   ./gradlew build
+   ```
+3. Run the application:
+   ```bash
+   java -jar build/libs/lost-pets-0.0.1-SNAPSHOT.jar
+   ```
+4. Open a browser and navigate to:
+   ```
+   http://localhost:8080
+   ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -66,8 +83,6 @@ __프로젝트 설치__
 ## Usuage
 
 
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -146,7 +161,7 @@ The license of this project itself can be chosen freely. However, when using thi
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgments
 
-- <Do it! 점프 투 스프링부트3>, 박응용, 이지스퍼블리싱
+- Do it! 점프 투 스프링부트3, 박응용, 이지스퍼블리싱
 - Java의 정석, 남궁성, 도우출판
 - Do it! HTML+CSS+자바스크립트 웹 표준의 정석 ━ 전면 개정판, 고경희, 이지스퍼블리싱
 - Do it! MySQL로 배우는 SQL 입문, 강성욱, 이지스퍼블리싱

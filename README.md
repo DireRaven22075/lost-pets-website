@@ -19,8 +19,7 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#contributors">Contributors</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
@@ -31,7 +30,7 @@
 
 ![project-image](_docs/title.png)
 
-간단한 프로젝트 설명
+This project helps users to efficiently find and report lost pets. The platform allows pet owners and finders to connect through a user-friendly interface.
 
 ### Built With
 

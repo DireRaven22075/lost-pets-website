@@ -1,6 +1,6 @@
 <a id="readme-top"></a>
 
-# 프로젝트명
+# Lost Pets Website
 
 <details>
   <summary>Table of Contents</summary>

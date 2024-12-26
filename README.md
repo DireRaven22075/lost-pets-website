@@ -102,8 +102,50 @@ Use this space to show useful examples of how a project can be used. Additional 
 
 <!-- LICENSE -->
 ## License
+License
+아래는 영어로 작성된 "License" 섹션의 예시입니다:
 
-__사용한 라이센스__
+---
+
+## License
+
+This project is developed using the following libraries and programs. Each library adheres to its respective license terms.
+
+### Libraries and Programs Used with Their Licenses:
+- **MySQL**: [GPL v2 with FOSS License Exception](https://www.mysql.com/about/legal/licensing/foss-exception/)
+- **Spring Boot**: [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
+- **OpenJDK 17**: [GPL v2 with Classpath Exception](https://openjdk.java.net/legal/gplv2+ce.html)
+- **Spring Boot Security**: [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
+- **Spring Boot DevTools**: [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
+- **Spring Reactive Web**: [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
+- **Spring Web**: [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
+- **Thymeleaf**: [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
+- **Lombok**: [MIT License](https://github.com/projectlombok/lombok/blob/master/LICENSE)
+- **Spring Data JPA**: [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
+- **MySQL Connector Java**: [GPL v2 with FOSS License Exception](https://www.mysql.com/about/legal/licensing/foss-exception/)
+
+The license of this project itself can be chosen freely. However, when using this project, you must comply with the individual licenses of the libraries listed above.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+---
+
+이 버전은 깔끔하게 영어로 작성되어 있으며, 다른 수정이 필요하다면 알려주세요!
+This project is developed using the following libraries and programs. Each library adheres to its respective license terms.
+
+Libraries and Programs Used with Their Licenses:
+MySQL: GPL v2 with FOSS License Exception
+Spring Boot: Apache License 2.0
+OpenJDK 17: GPL v2 with Classpath Exception
+Spring Boot Security: Apache License 2.0
+Spring Boot DevTools: Apache License 2.0
+Spring Reactive Web: Apache License 2.0
+Spring Web: Apache License 2.0
+Thymeleaf: Apache License 2.0
+Lombok: MIT License
+Spring Data JPA: Apache License 2.0
+MySQL Connector Java: GPL v2 with FOSS License Exception
+The license of this project itself can be chosen freely. However, when using this project, you must comply with the individual licenses of the libraries listed above.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

@@ -18,7 +18,6 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
     <li><a href="#contributors">Contributors</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -75,13 +74,6 @@ This project helps users to efficiently find and report lost pets. The platform 
    ```
    http://localhost:8080
    ```
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- USUAGE -->
-## Usuage
-
-
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
